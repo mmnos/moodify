@@ -27,9 +27,27 @@
 </head>
 
 <body>
+    <!-- NOTE: The app layout is a 40/60 split, where Weather takes 40% of the layout; Music is 60%.
+    The 'weather' container is broken down to display the current weather by graphic 'weather-icon', as well as
+    displaying the current temperature 'temperature' for the current city 'city'. -->
 
+    <!-- IMPORTANT: The 'city' div will hold the zip code input field, which will then get replaced by the text of
+    the city (DOM manipulation). -->
+    <container id="weather">
+        <div id="weather-data">
+            <div id="weather-icon"></div>
+            <div id="temperature"></div>
+            <div id="city"></div>
+        </div>
+
+    </container>
+    <container id="music">
+        
+    </container>
 
     
+
+
     <!-- js file -->
     <script src="./assets/javascript/app.js"></script>
 

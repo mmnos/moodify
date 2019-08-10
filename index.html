@@ -60,6 +60,17 @@
 
 
 
+    <div class="test"></div>
+
+    <!-- spotify sdk -->
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+
+    <!-- will execute once the sdk has successfully been loaded -->
+    <script>
+        window.onSpotifyWebPlaybackSDKReady = () => {
+            // You can now initialize Spotify.Player and use the SDK
+        };
+    </script>
 
     <!-- js file -->
     <script src="./assets/javascript/app.js"></script>

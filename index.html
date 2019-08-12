@@ -9,11 +9,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Moodify</title>
 
-    <!-- css -->
+    <!-- CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./assets/owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="./assets/owlcarousel/owl.theme.default.min.css">
     <link rel="stylesheet" href="./assets/css/styles.css">
 
-    <!-- firebase -->
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-database.js"></script>
 
@@ -48,7 +50,44 @@
             <div id="playlist3"></div>
         </div>
         <div id="artist-data">
-            <!-- Doing research on different frameworks to find best option for navigating artist data -->
+            <div class="nonloop owl-carousel">
+                <div class="item">
+                  <h4>1</h4>
+                </div>
+                <div class="item">
+                  <h4>2</h4>
+                </div>
+                <div class="item">
+                  <h4>3</h4>
+                </div>
+                <div class="item">
+                  <h4>4</h4>
+                </div>
+                <div class="item">
+                  <h4>5</h4>
+                </div>
+                <div class="item">
+                  <h4>6</h4>
+                </div>
+                <div class="item">
+                  <h4>7</h4>
+                </div>
+                <div class="item">
+                  <h4>8</h4>
+                </div>
+                <div class="item">
+                  <h4>9</h4>
+                </div>
+                <div class="item">
+                  <h4>10</h4>
+                </div>
+                <div class="item">
+                  <h4>11</h4>
+                </div>
+                <div class="item">
+                  <h4>12</h4>
+                </div>
+              </div>
         </div>
         <div id="play-controls">
             <div id="previous-button"></div>
@@ -62,6 +101,10 @@
 
     <div class="test"></div>
 
+    <!-- owl -->
+    <script src="jquery.min.js"></script>
+    <script src="./assets/owlcarousel/owl.carousel.min.js"></script>
+
     <!-- spotify sdk -->
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
 
@@ -72,7 +115,7 @@
         };
     </script>
 
-    <!-- js file -->
+    <!-- app file -->
     <script src="./assets/javascript/app.js"></script>
 
 </body>

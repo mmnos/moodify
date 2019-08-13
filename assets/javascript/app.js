@@ -21,7 +21,7 @@ $(document).ready(function () {
 
             console.log(weatherData);
 
-            //display location
+            // display location
             cityName = weatherData.name;
             let cityP = $("<span>").text(cityName).addClass("updatedWeather");
 
@@ -73,12 +73,14 @@ $(document).ready(function () {
 
     }
 
+    // checks zipcode after clicking submit button
     $("#submitZip").on("click", function (event) {
 
         checkZip();
 
     });
 
+    // shows input field and hides weather data
     $("#changeZip").on("click", function (event) {
 
         $(".input-field").show();
@@ -86,6 +88,7 @@ $(document).ready(function () {
 
     });
 
+    // press enter key to submit zipcode
     $(document).on("keypress", function (ent) {
 
         if (ent.which === 13) {
@@ -133,6 +136,7 @@ $(document).ready(function () {
                 $(`div#${i}`).append($name, $a);
 
             }
+
         }
 
     });

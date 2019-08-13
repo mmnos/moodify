@@ -40,9 +40,25 @@ $(document).ready(function () {
 
     $("#submitZip").on("click", function(event) {
 
+        // holds user input
         userZip = $("#zipcode").val().trim();
-        console.log(userZip);
-        getWeather();
+
+        // "^" indicates the beginning of input
+        // "$" indicates the end of input
+        // "d{5}" wants the users input to be only 5 digits long, EX : 90210 or in the second statement after the "|",
+        // it allows 5 digits followed by a hyphen and 4 more digits, EX : 90210-1234
+        let regex = /^\d{5}$|^\d{5}-\d{4}$/;
+
+        // if user input is valid, it'll display the current weather and location of specified area
+        if (regex.test(userZip)) {
+
+            getWeather();
+
+        } else {
+
+            console.log("Please enter a valid zipcode");
+
+        }
 
     });
 

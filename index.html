@@ -33,8 +33,13 @@
 </head>
 
 <body>
-    <h1>m o o d i f y</h1>
-    <p>playlists based on the weather for your mood</p>
+
+    <div class="row center">
+        <div class="col s12">
+            <h1>m o o d i f y</h1>
+            <p>playlists based on the weather for your mood</p>
+        </div>
+    </div>
     <!-- NOTE: The app layout is a 40/60 split, where Weather takes 40% of the layout; Music is 60%.
     The 'weather' container is broken down to display the current weather by graphic 'weather-icon', as well as
     displaying the current temperature 'temperature' for the current city 'city'. -->
@@ -42,17 +47,23 @@
     <!-- IMPORTANT: The 'city' div will hold the zip code input field, which will then get replaced by the text of
     the city (DOM manipulation). -->
     <container id="weather">
-        <div id="weather-data">
-            <div id="weather-icon"></div>
-            <div id="temperature">temp:</div>
-            <div id="city">location:</div>
+        <div class="row">
+            <div class="col s12">
+                <div id="weather-data" class="center">
+                    <div id="temperature"></div>
+                    <div id="weather-icon"></div>
+                    <div id="weather-text"></div>
+                    <div id="city"></div>
+                    <a class="waves-effect waves-light btn btn-small" id="changeZip">Change Location</a>
+                </div>
+                <div class="input-field col s4 center offset-s4">
+                    <input id="zipcode" type="text" class="validate">
+                    <label for="zipcode">Enter your zipcode here</label>
+                    <span class="helper-text">Please enter a valid zipcode</span>
+                    <a class="waves-effect waves-light btn" id="submitZip">Submit</a>
+                </div>
+            </div>
         </div>
-        <div class="input-field col s6">
-            <input id="zipcode" type="text" class="validate">
-            <label for="zipcode">Enter your zipcode..</label>
-            <a class="waves-effect waves-light btn" id="submitZip">Submit</a>
-        </div>
-
     </container>
     <container id="music">
         <div id="playlist-data">
@@ -63,40 +74,40 @@
         <div id="artist-data">
             <div id="cover-art-carousel" class="nonloop owl-carousel">
                 <div class="item" id="0">
-                    <h4>1</h4>
+                    <h4></h4>
                 </div>
                 <div class="item" id="1">
-                    <h4>2</h4>
+                    <h4></h4>
                 </div>
                 <div class="item" id="2">
-                    <h4>3</h4>
+                    <h4></h4>
                 </div>
                 <div class="item" id="3">
-                    <h4>4</h4>
+                    <h4></h4>
                 </div>
                 <div class="item" id="4">
-                    <h4>5</h4>
+                    <h4></h4>
                 </div>
                 <div class="item">
-                    <h4>6</h4>
+                    <h4></h4>
                 </div>
                 <div class="item">
-                    <h4>7</h4>
+                    <h4></h4>
                 </div>
                 <div class="item">
-                    <h4>8</h4>
+                    <h4></h4>
                 </div>
                 <div class="item">
-                    <h4>9</h4>
+                    <h4></h4>
                 </div>
                 <div class="item">
-                    <h4>10</h4>
+                    <h4></h4>
                 </div>
                 <div class="item">
-                    <h4>11</h4>
+                    <h4></h4>
                 </div>
                 <div class="item">
-                    <h4>12</h4>
+                    <h4></h4>
                 </div>
             </div>
             <div id="artist-song"></div>
@@ -123,28 +134,28 @@
 
     <!-- owl script test START -->
     <script>
-    $('.loop').owlCarousel({
-    center: true,
-    items:2,
-    loop:true,
-    margin:10,
-    responsive:{
-        600:{
-            items:4
-        }
-    }
-});
-$('.nonloop').owlCarousel({
-    center: true,
-    items:2,
-    loop:false,
-    margin:10,
-    responsive:{
-        600:{
-            items:4
-        }
-    }
-});
+        $('.loop').owlCarousel({
+            center: true,
+            items: 2,
+            loop: true,
+            margin: 10,
+            responsive: {
+                600: {
+                    items: 4
+                }
+            }
+        });
+        $('.nonloop').owlCarousel({
+            center: true,
+            items: 2,
+            loop: false,
+            margin: 10,
+            responsive: {
+                600: {
+                    items: 4
+                }
+            }
+        });
     </script>
     <!-- owl script test END -->
 

@@ -1,12 +1,22 @@
 h1 {
+
     font-family: 'Comfortaa', cursive;
     padding: 10px;
     
 }
+
 body {
+
     color: white;
     background-color: darkslategrey;
     font-family: 'Hind Madurai', sans-serif;
     padding: 60px;
+
+}
+
+#submitZip,
+#changeZip {
+
+    margin-top: 15px;
 
 }

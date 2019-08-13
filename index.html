@@ -7,12 +7,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Moodify</title>
+    <title>moodify</title>
 
     <!-- CSS -->
+    <!-- NOTE: In order for all CSS to work, it should be in this current order - please advise before adding new links. -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="./assets/owlcarousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="./assets/owlcarousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./assets/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="./assets/owlcarousel/assets/owl.theme.default.min.css">
     <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Hind+Madurai&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/styles.css">
@@ -43,8 +44,13 @@
     <container id="weather">
         <div id="weather-data">
             <div id="weather-icon"></div>
-            <div id="temperature"></div>
-            <div id="city"></div>
+            <div id="temperature">temp:</div>
+            <div id="city">location:</div>
+        </div>
+        <div class="input-field col s6">
+            <input id="zipcode" type="text" class="validate">
+            <label for="zipcode">Enter your zipcode..</label>
+            <a class="waves-effect waves-light btn" id="submitZip">Submit</a>
         </div>
 
     </container>
@@ -57,42 +63,42 @@
         <div id="artist-data">
             <div id="cover-art-carousel" class="nonloop owl-carousel">
                 <div class="item" id="0">
-                  <h4>1</h4>
+                    <h4>1</h4>
                 </div>
                 <div class="item" id="1">
-                  <h4>2</h4>
+                    <h4>2</h4>
                 </div>
                 <div class="item" id="2">
-                  <h4>3</h4>
+                    <h4>3</h4>
                 </div>
                 <div class="item" id="3">
-                  <h4>4</h4>
+                    <h4>4</h4>
                 </div>
                 <div class="item" id="4">
-                  <h4>5</h4>
+                    <h4>5</h4>
                 </div>
                 <div class="item">
-                  <h4>6</h4>
+                    <h4>6</h4>
                 </div>
                 <div class="item">
-                  <h4>7</h4>
+                    <h4>7</h4>
                 </div>
                 <div class="item">
-                  <h4>8</h4>
+                    <h4>8</h4>
                 </div>
                 <div class="item">
-                  <h4>9</h4>
+                    <h4>9</h4>
                 </div>
                 <div class="item">
-                  <h4>10</h4>
+                    <h4>10</h4>
                 </div>
                 <div class="item">
-                  <h4>11</h4>
+                    <h4>11</h4>
                 </div>
                 <div class="item">
-                  <h4>12</h4>
+                    <h4>12</h4>
                 </div>
-              </div>
+            </div>
             <div id="artist-song"></div>
             <div id="artist-name"></div>
         </div>
@@ -108,13 +114,43 @@
 
     <div class="test"></div>
 
+    <!-- SCRIPTS -->
+    <!-- NOTE: In order for all JS to work, it should be in this current order - please advise before adding new script src. -->
+
     <!-- owl -->
     <script src="./assets/owlcarousel/jquery.min.js"></script>
     <script src="./assets/owlcarousel/owl.carousel.min.js"></script>
 
+    <!-- owl script test START -->
+    <script>
+    $('.loop').owlCarousel({
+    center: true,
+    items:2,
+    loop:true,
+    margin:10,
+    responsive:{
+        600:{
+            items:4
+        }
+    }
+});
+$('.nonloop').owlCarousel({
+    center: true,
+    items:2,
+    loop:false,
+    margin:10,
+    responsive:{
+        600:{
+            items:4
+        }
+    }
+});
+    </script>
+    <!-- owl script test END -->
+
     <!-- compiled and minified JavaScript (materialize) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-            
+
     <!-- spotify sdk -->
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
 

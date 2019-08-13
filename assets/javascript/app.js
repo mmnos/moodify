@@ -9,11 +9,12 @@ $(document).ready(function () {
 
   let getWeather = function () {
 
-    // queryURL = `api.openweathermap.org/data/2.5/weather?zip=${userZip}&APPID=01b094dd158ecf4fb77c7c5db98a6ad6`
-    let queryURL = `https://api.openweathermap.org/data/2.5/weather?zip=03053&APPID=01b094dd158ecf4fb77c7c5db98a6ad6`
+        // queryURL = `api.openweathermap.org/data/2.5/weather?zip=${userZip}&APPID=01b094dd158ecf4fb77c7c5db98a6ad6`
+        let queryURL = `https://api.openweathermap.org/data/2.5/weather?zip=${userZip}&APPID=01b094dd158ecf4fb77c7c5db98a6ad6`
 
-    $.get(queryURL).then(function (response) {
-      weatherData = response;
+        $.get(queryURL).then(function (response) {
+
+            weatherData = response;
 
       console.log(weatherData);
 
@@ -37,30 +38,16 @@ $(document).ready(function () {
 
   };
 
-  getWeather();
+    $("#submitZip").on("click", function(event) {
 
-  // builds query params
-  let queryParam = {
+        userZip = $("#zipcode").val().trim();
+        console.log(userZip);
+        getWeather();
 
-    client_id: "c7858a53b3d84a809aa7b91a80a80e08",
-    response_type: "code",
-    redirect_uri: "https://mmnos.github.io/Project1/",
-    q: "rihanna",
-    limit: 3,
-    scope: "playlist-read-private"
+    });
 
-  };
-
-  // converts the query param object to a string for the url
-  let queryParamString = $.param(queryParam);
-  console.log(queryParamString);
-
-  // var that holds the complete url with custom search results
-  // let completeSpotifyURL = spotifyURL + queryParamString;
-  // console.log(completeSpotifyURL);
-
-  // var to hold access token
-  let accessToken = "BQB3Eu4ZBp0o0XBB7cVkumZ1cjqJgnosuEfsiYBl_yB1VcaLFoEYpzuO81QNz_g6s_Oq8Ef5JP7ppHl2xHdscxNHRx6M8B8r8uRiHkgZkRJIQB5LRARFczoMqzrJMC1WdiYUl3HATv_8v-sOX-oyl4i0Ixnljx_4RbhqqWEyOKsGrPIXVSHkv5Wgr7Wee4ryDqNdO2im4h9_onc";
+    // var to hold access token
+    let accessToken = "BQDus3jIgKsGevd_DUzETFOF_dqM_jN7_6-OMQRjg6U3rardIRBX-tLkverWChstGBbTKO3ZhLDfHQlny-qSZap3HnNELY6KCtTuTg8KmSzMgD4E7VmYUKsNDw4SzLZmTtfEQPsgyxIm332EzRtIzZ11FOZWHdm0c_ddH9pNudV-ieGpUUChg1QlBQaYm4HLVd7Avv6TCpca6Gk";
 
   // makes an ajax request to search the spotify api with recommended playlists
   $.get({

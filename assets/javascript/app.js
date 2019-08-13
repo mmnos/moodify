@@ -40,14 +40,30 @@ $(document).ready(function () {
 
     $("#submitZip").on("click", function(event) {
 
+        // holds user input
         userZip = $("#zipcode").val().trim();
-        console.log(userZip);
-        getWeather();
+
+        // "^" indicates the beginning of input
+        // "$" indicates the end of input
+        // "d{5}" wants the users input to be only 5 digits long, EX : 90210 or in the second statement after the "|",
+        // it allows 5 digits followed by a hyphen and 4 more digits, EX : 90210-1234
+        let regex = /^\d{5}$|^\d{5}-\d{4}$/;
+
+        // if user input is valid, it'll display the current weather and location of specified area
+        if (regex.test(userZip)) {
+
+            getWeather();
+
+        } else {
+
+            console.log("Please enter a valid zipcode");
+
+        }
 
     });
 
     // var to hold access token
-    let accessToken = "BQAApIzM8UFXMi2OfqBi2KQE3zmJlk-INp40fSN3YlxRFmhL-N-Z5hiHsSzXJMDl0ml1PF4AfYjUAZvPFHKXujm42l8O5sN2fcC9QHb6yo6WvhPy1XDcTSzamwizvyOOFsLAZpeYXtznDhfp6BniB9eB8Nq8tC8lfoh0Iv4gnyHptO1L8zhxagKWZSefuvw1j_UHn4Iv5q7FtJg";
+    let accessToken = "BQD2F81CwEzh8Z7znYV_43VizWZuPUt_y6fK1xaK2j0g2jll6xHk4Y-gMY3u69j0eLxt04Ln05fpXXBJjLFrCaKYme6gTP2_X1bG4WA5RMhjq2HItxzGxRlzHI5M5EqzA2jQtL3tuUIduLIEWh3a2gCbySM-ShYPYcgzvB8QYeCgYBP5Q-VFIJk99ceA_rYDAr8Bvfsh67-x";
 
     // makes an ajax request to search the spotify api with recommended playlists
     $.get({

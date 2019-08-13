@@ -1,11 +1,6 @@
-let spotifyURL = "https://accounts.spotify.com/authorize?";
-
-// grabs the zipcode from user
-// let $search = $("#").val();
-
 $(document).ready(function () {
 
-    //weather variables
+    // weather variables
     let userZip,
         weatherData,
         cityName,
@@ -39,18 +34,22 @@ $(document).ready(function () {
             $("div#temperature").append(tempP)
 
         });
-    }
+
+    };
 
     getWeather();
 
     // builds query params
     let queryParam = {
-        client_id: "ff7637f2ebb2489d9a2c5a6dca7c208c",
+
+        client_id: "c7858a53b3d84a809aa7b91a80a80e08",
         response_type: "code",
         redirect_uri: "https://mmnos.github.io/Project1/",
         q: "rihanna",
-        limit: 3
-    }
+        limit: 3,
+        scope: "playlist-read-private"
+
+    };
 
     // converts the query param object to a string for the url
     let queryParamString = $.param(queryParam);
@@ -60,20 +59,22 @@ $(document).ready(function () {
     let completeSpotifyURL = spotifyURL + queryParamString;
     console.log(completeSpotifyURL);
 
-    // makes an AJAX request to get data from spotify
+    // var to hold access token
+    let accessToken = "BQCTvLBb7Ddm9WkgEwASseG7aHHx-cQnR23SyDBcT-Vr4GCzwQVsmC6KBK4AFzXS_JMlJQ8X9MVEvpRfzozt676UcWbtBMyNRToKk8sXhKH-YBSPKwi6vlZlYIpBYKy6xRNVTXwHr6BW1XAZH1naeZi8Fc3RtjgfUagQbox-nGEQQK8WpIXxm-OFeov2h0DXFkUhDpX7P784y1M";
+
+    // makes an ajax request to search the spotify api with recommended playlists
     $.get({
-        url: completeSpotifyURL
-    }).then(updatePage);
 
-    // updates the page with new playlists 
-    let updatePage = function (response) {
+        url: 'https://api.spotify.com/v1/search?q=rainy&type=playlist',
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
+        success: function (response) {
 
-        let $artist = $("<p>");
-        let $song = $("<p>");
+            console.log(response);
 
-        $(".test").append($artist);
-        $(".test").append($song);
+        }
 
-    }
+    });
 
 });

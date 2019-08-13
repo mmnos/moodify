@@ -7,12 +7,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Moodify</title>
+    <title>moodify</title>
 
     <!-- CSS -->
+    <!-- NOTE: In order for all CSS to work, it should be in this current order - please advise before adding new links. -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="./assets/owlcarousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="./assets/owlcarousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./assets/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="./assets/owlcarousel/assets/owl.theme.default.min.css">
     <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Hind+Madurai&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/styles.css">
@@ -43,8 +44,8 @@
     <container id="weather">
         <div id="weather-data">
             <div id="weather-icon"></div>
-            <div id="temperature"></div>
-            <div id="city"></div>
+            <div id="temperature">temp:</div>
+            <div id="city">location:</div>
         </div>
         <div class="input-field col s6">
             <input id="zipcode" type="text" class="validate">
@@ -113,9 +114,39 @@
 
     <div class="test"></div>
 
+    <!-- SCRIPTS -->
+    <!-- NOTE: In order for all JS to work, it should be in this current order - please advise before adding new script src. -->
+
     <!-- owl -->
     <script src="./assets/owlcarousel/jquery.min.js"></script>
     <script src="./assets/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- owl script test START -->
+    <script>
+    $('.loop').owlCarousel({
+    center: true,
+    items:2,
+    loop:true,
+    margin:10,
+    responsive:{
+        600:{
+            items:4
+        }
+    }
+});
+$('.nonloop').owlCarousel({
+    center: true,
+    items:2,
+    loop:false,
+    margin:10,
+    responsive:{
+        600:{
+            items:4
+        }
+    }
+});
+    </script>
+    <!-- owl script test END -->
 
     <!-- compiled and minified JavaScript (materialize) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

@@ -43,7 +43,6 @@ $(document).ready(function () {
             let tempP = $("<span>").text(temp + "°").addClass("updatedWeather").css("font-size", "50px");
             $("div#temperature").prepend(tempP.prepend(wIcon));
 
-            
             if (weatherIcon === "01d" || weatherIcon === "01n") {
                 search = "happy";
                 searchForPlaylist();
@@ -105,12 +104,12 @@ $(document).ready(function () {
 
         }
 
-        // clears input field after clicking submit
+        // clears input field after clicking search
         $("#zipcode").val('');
 
     }
 
-    // checks zipcode after clicking submit button
+    // checks zipcode after clicking search button
     $("#submitZip").on("click", function (event) {
 
         checkZip();
@@ -120,6 +119,7 @@ $(document).ready(function () {
     // shows input field and hides weather data
     $("#changeZip").on("click", function (event) {
 
+        $(".item").empty();
         $(".input-field").show();
         $("#weather-data").hide();
 
@@ -128,7 +128,7 @@ $(document).ready(function () {
     // press enter key to submit zipcode
     $(document).on("keypress", function (event) {
 
-        if (event.which === 13) {
+        if (event.key === "Enter") {
 
             checkZip();
 
@@ -137,7 +137,7 @@ $(document).ready(function () {
     });
 
     // var to hold access token
-    let accessToken = "BQDSOIqnszNaN89zpfcHEwr2JtzhZoBYsTgrOBrc5c1wlZYY0wOPG5bfFFVmz5MYsOo1G_0FNW4TlSDuggr41hPFIavuByKT8vuP0asq86Kv3_mzKul6HskhdtJLUeqatOBPyUTGrblfN_wbIUFmXPE323OA_udq82AUBvUdxVPpKleOoUD_isGZQJzIoO5dyZqMD_U9B_wZ";
+    let accessToken = "BQDEsj4CAWpMSGdz3FmDIcHt3j6cRFQoAOaW-x6DQYz30h91bif9ZzpO1JG1YEKHTo1jPiFDMcolnNd6Y2YTJE49yUNp4UnLZLAIZpjiBOIxYE4gGtOgTgV75d3DUShCG4cOpCIamm7WZV1okf1tLbMT6Eno95bVLGV6cznULjvG-POGyCs3E4yLw3JzDm8plfP00_GI6WG4";
 
     let searchForPlaylist = function () {
 
@@ -156,7 +156,6 @@ $(document).ready(function () {
 
                 console.log(playlists);
 
-
                 for (i = 0; i < playlists.length; i++) {
 
                     let playlistName = playlists[i].name;
@@ -171,6 +170,7 @@ $(document).ready(function () {
 
                     let $a = $("<a>")
                         .attr("href", `${redirect}`)
+                        .attr("target", "_blank")
                         .append($img);
 
                     $(`div#${i}`).append($name, $a);

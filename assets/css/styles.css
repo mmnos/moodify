@@ -6,13 +6,17 @@ h1 {
 }
 
 body {
-
     color: white;
-    background-color: darkslategrey;
+    background-image: url("../images/partly-cloudy.png");
     font-family: 'Hind Madurai', sans-serif;
-    padding: 60px;
+    /* padding: 60px; */
+ }
+ #music {
+    background-color: darkslategrey;
+    min-height: 50vh;
+ }
 
-}
+ 
 /* ---------------------Weather CSS---------------------- */
 #submitZip,
 #changeZip {

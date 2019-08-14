@@ -11,6 +11,7 @@ $(document).ready(function () {
 
     $("#weather-data").hide();
     $(".helper-text").hide();
+    $("#zipcode").focus();
 
     let getWeather = function () {
 
@@ -121,6 +122,7 @@ $(document).ready(function () {
 
         $(".item").empty();
         $(".input-field").show();
+        $("#zipcode").focus();
         $("#weather-data").hide();
 
     });
@@ -137,7 +139,7 @@ $(document).ready(function () {
     });
 
     // var to hold access token
-    let accessToken = "BQDEsj4CAWpMSGdz3FmDIcHt3j6cRFQoAOaW-x6DQYz30h91bif9ZzpO1JG1YEKHTo1jPiFDMcolnNd6Y2YTJE49yUNp4UnLZLAIZpjiBOIxYE4gGtOgTgV75d3DUShCG4cOpCIamm7WZV1okf1tLbMT6Eno95bVLGV6cznULjvG-POGyCs3E4yLw3JzDm8plfP00_GI6WG4";
+    let accessToken = "BQAmY_ojhEICImf5X2AwFAmBb2s_3I2R_6HWEH_1xhRVXf4CysyjuyAyP1xmmlxUpTyuUMpQ8mLRxOvxUnKhdBZA8TnEf5ZdfQ_R0Fhg4kOY0i6nlGaAfZ-mY81zvJmFYNI4_bzL14nO5XZKusrlZA8BhfCrrwV3ppvK3FfcIGZjiBp9jug1ov52m3uETKy8MvmBjHBir3u7";
 
     let searchForPlaylist = function () {
 

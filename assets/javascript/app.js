@@ -5,7 +5,9 @@ $(document).ready(function () {
         weatherData,
         cityName,
         temp,
-        weather
+        weather,
+        weatherIcon,
+        search
 
     $("#weather-data").hide();
     $(".helper-text").hide();
@@ -25,16 +27,51 @@ $(document).ready(function () {
             cityName = weatherData.name;
             let cityP = $("<span>").text(cityName).addClass("updatedWeather");
 
+            // declares weather icon
+            weatherIcon = weatherData.weather[0].icon;
+            let iconURL = `http://openweathermap.org/img/w/${weatherIcon}.png`;
+            let wIcon = $("<img>").attr('src', iconURL).addClass("weatherPic");
+
             // display weather
             weather = weatherData.weather[0].description;
             let weatherP = $("<span>").text(weather + " in ").addClass("updatedWeather");
             $("div#weather-text").append(weatherP, cityP);
 
-            // display temperature
+            // display weather icon + temperature
             temp = (parseInt(weatherData.main.temp) - 273.15) * 9 / 5 + 32;
             temp = Math.round(temp);
             let tempP = $("<span>").text(temp + "°").addClass("updatedWeather").css("font-size", "50px");
-            $("div#temperature").prepend(tempP);
+            $("div#temperature").prepend(tempP.prepend(wIcon));
+
+            
+            if (weatherIcon === "01d" || weatherIcon === "01n") {
+                search = "happy";
+                searchForPlaylist();
+            } else if (weatherIcon === "02d" || weatherIcon === "02n") {
+                search = "chill";
+                searchForPlaylist();
+            } else if (weatherIcon === "03d" || weatherIcon === "03n") {
+                search = "chill";
+                searchForPlaylist();
+            } else if (weatherIcon === "04d" || weatherIcon === "04n") {
+                search = "chill";
+                searchForPlaylist();
+            } else if (weatherIcon === "09d" || weatherIcon === "09n") {
+                search = "rainy";
+                searchForPlaylist();
+            } else if (weatherIcon === "10d" || weatherIcon === "10n") {
+                search = "rainy";
+                searchForPlaylist();
+            } else if (weatherIcon === "11d" || weatherIcon === "11n") {
+                search = "rainy";
+                searchForPlaylist();
+            } else if (weatherIcon === "13d" || weatherIcon === "13n") {
+                search = "rainy";
+                searchForPlaylist();
+            } else {
+                search = "focus";
+                searchForPlaylist();
+            }
 
         });
 
@@ -89,9 +126,9 @@ $(document).ready(function () {
     });
 
     // press enter key to submit zipcode
-    $(document).on("keypress", function (ent) {
+    $(document).on("keypress", function (event) {
 
-        if (ent.which === 13) {
+        if (event.which === 13) {
 
             checkZip();
 
@@ -100,45 +137,50 @@ $(document).ready(function () {
     });
 
     // var to hold access token
-    let accessToken = "BQAn1gI37gBIHteXExbd1AuLXUPveg1va-_u6Ddw4Gwf-t3fzwx3P52j9xOKKfVh917uzFZB9FSWEhxZ2PqT2xsVTsmfy2AZAI4my2fmL46xJA-dSf-dZXMHx2WJpQ1hxZUDLT9JbG9xXoWMf1Ik38OHN-JoC8DaOY6mNehAkKBsxqJXPk5W8pStH98duQnl1B6X9EaQkS3n";
+    let accessToken = "BQDSOIqnszNaN89zpfcHEwr2JtzhZoBYsTgrOBrc5c1wlZYY0wOPG5bfFFVmz5MYsOo1G_0FNW4TlSDuggr41hPFIavuByKT8vuP0asq86Kv3_mzKul6HskhdtJLUeqatOBPyUTGrblfN_wbIUFmXPE323OA_udq82AUBvUdxVPpKleOoUD_isGZQJzIoO5dyZqMD_U9B_wZ";
 
-    // makes an ajax request to search the spotify api with recommended playlists
-    $.get({
+    let searchForPlaylist = function () {
 
-        url: 'https://api.spotify.com/v1/search?q=rainy&type=playlist&limit=5',
-        headers: {
-            'Authorization': 'Bearer ' + accessToken
-        },
-        success: function (response) {
+        // makes an ajax request to search the spotify api with recommended playlists
+        $.get({
 
-            console.log(response);
-            let playlists = response.playlists.items
+            url: `https://api.spotify.com/v1/search?q=${search}&type=playlist&limit=5`,
+            headers: {
+                'Authorization': 'Bearer ' + accessToken
+            },
+            success: function (response) {
 
-            console.log(playlists);
+                console.log(response);
+
+                let playlists = response.playlists.items
+
+                console.log(playlists);
 
 
-            for (i = 0; i < playlists.length; i++) {
+                for (i = 0; i < playlists.length; i++) {
 
-                let playlistName = playlists[i].name;
-                let imgSrc = playlists[i].images[0].url;
-                let redirect = playlists[i].external_urls.spotify;
+                    let playlistName = playlists[i].name;
+                    let imgSrc = playlists[i].images[0].url;
+                    let redirect = playlists[i].external_urls.spotify;
 
-                let $name = $("<h4>").text(playlistName);
+                    let $name = $("<h4>").text(playlistName);
 
-                let $img = $("<img>")
-                    .attr("src", imgSrc)
-                    .css("cursor", "pointer");
+                    let $img = $("<img>")
+                        .attr("src", imgSrc)
+                        .css("cursor", "pointer");
 
-                let $a = $("<a>")
-                    .attr("href", `${redirect}`)
-                    .append($img);
+                    let $a = $("<a>")
+                        .attr("href", `${redirect}`)
+                        .append($img);
 
-                $(`div#${i}`).append($name, $a);
+                    $(`div#${i}`).append($name, $a);
+
+                }
 
             }
 
-        }
+        });
 
-    });
+    }
 
 });

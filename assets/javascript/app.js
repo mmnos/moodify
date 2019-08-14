@@ -164,7 +164,7 @@ $(document).ready(function () {
                     let imgSrc = playlists[i].images[0].url;
                     let redirect = playlists[i].external_urls.spotify;
 
-                    let $name = $("<h4>").text(playlistName);
+                    let $name = $("#playlist-data").text(playlistName);
 
                     let $img = $("<img>")
                         .attr("src", imgSrc)

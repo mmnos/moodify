@@ -137,7 +137,7 @@ $(document).ready(function () {
     });
 
     // var to hold access token
-    let accessToken = "BQDEsj4CAWpMSGdz3FmDIcHt3j6cRFQoAOaW-x6DQYz30h91bif9ZzpO1JG1YEKHTo1jPiFDMcolnNd6Y2YTJE49yUNp4UnLZLAIZpjiBOIxYE4gGtOgTgV75d3DUShCG4cOpCIamm7WZV1okf1tLbMT6Eno95bVLGV6cznULjvG-POGyCs3E4yLw3JzDm8plfP00_GI6WG4";
+    let accessToken = "BQAaosgDEN6WOmPUdGLcKqoljZBmZyUlS9DhGz4dWBGVxZPdN7JAA_RZzQwd3PmhCwanjSN5oO8aKZgvKJM9gRzI_r74MegGDFrzu8hLt8jfOlLPj7VvTFExqHKTHEpZSqphLm2TTrPO4A";
 
     let searchForPlaylist = function () {
 
@@ -162,7 +162,7 @@ $(document).ready(function () {
                     let imgSrc = playlists[i].images[0].url;
                     let redirect = playlists[i].external_urls.spotify;
 
-                    let $name = $("<h4>").text(playlistName);
+                    let $name = $("#playlist-data").text(playlistName);
 
                     let $img = $("<img>")
                         .attr("src", imgSrc)

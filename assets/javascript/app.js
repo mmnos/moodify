@@ -158,11 +158,11 @@ $(document).ready(function () {
 
                 for (i = 0; i < playlists.length; i++) {
 
-                    let playlistName = playlists[i].name;
+                    // let playlistName = playlists[i].name;
                     let imgSrc = playlists[i].images[0].url;
                     let redirect = playlists[i].external_urls.spotify;
 
-                    let $name = $("#playlist-data").text(playlistName);
+                    // let $name = $("<h4>").text(playlistName);
 
                     let $img = $("<img>")
                         .attr("src", imgSrc)
@@ -173,7 +173,7 @@ $(document).ready(function () {
                         .attr("target", "_blank")
                         .append($img);
 
-                    $(`div#${i}`).append($name, $a);
+                    $(`div#${i}`).append($a);
 
                 }
 

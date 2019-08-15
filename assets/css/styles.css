@@ -28,7 +28,7 @@ body {
 
 .weatherPic {
 
-    margin-right: 10px;
+    /* margin-right: 10px; */
 
 }
 
@@ -39,7 +39,7 @@ body {
 
 #playlist-data {
 
-    float: left;
+    /* float: left; */
     
 
 }
@@ -47,9 +47,15 @@ body {
 .music-cards {
 
     float: left;
-    padding-right: 30px; 
-    margin-left: 45px;
-    margin-bottom: 15px;
+    padding: 15px 0px 0px 200px; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+    /* position: center; */
+    margin-top: 40px;
+    /* margin-bottom: 15px;
+} */
 }
 
 

@@ -190,7 +190,7 @@ $(document).ready(function () {
         .attr("src", imgSrc)
         .css({
           "cursor": "pointer",
-          "width" : "100%"
+          "width" : "80%"
       });
   
       let $a = $("<a>")
@@ -205,7 +205,7 @@ $(document).ready(function () {
   }
 
   // var to hold access token
-  let accessToken = "BQCz2hby3epYYNOIQXk1AY1pDYQT5P96O2M33XxY4GfkE7XDOjaPpGb3To1o4rTMxfuuzd3XbktDH9rR7Xl2zWBHIEevk6uuaGZ2_HTy2OoYQoWCSB0BSqmXprxtc4oZ8TLmC3dreRcLNA25rAxddbhba0gDgZjTfLpdLBQW-XGlwMoqWmSBBrm-5kvUNENuWrZ0FqCOynVI";
+  let accessToken = "BQBoLSS1nIrn5oUiCfRSjzXv6uoY_Dgi255AURpMIf-u0RUf2SXA1lfwU1vwp3rLC2oJgTqvh0t-8Ig0G0BmNN2oruvGMF4L-36_n_nlv5kBqpdN9TUAa4Bq6gGi5F9dUqkLohF-EqJ2eptqEDZSSv0lIsm5eqT05kxCHjhWCEMqxMPMTD9KagR4u_r-dRlV_VKC99EU7Ml6brU-awewQEO6F7TZwanV75zofN3ZoQ";
 
   let searchForPlaylist = function () {
 

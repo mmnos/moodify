@@ -120,7 +120,7 @@ $(document).ready(function () {
     // shows input field and hides weather data
     $("#changeZip").on("click", function (event) {
 
-        $(".item").empty();
+        $(".music-cards").empty();
         $(".input-field").show();
         $("#zipcode").focus();
         $("#weather-data").hide();
@@ -139,7 +139,7 @@ $(document).ready(function () {
     });
 
     // var to hold access token
-    let accessToken = "BQAr-Nm2-efW4lujGBEaMeYhH0Rja6bWCiJ8MdT0CpKqNsI9gnkcZNuOrasROb1fG8RtXrlUoCJSz95-2arLMrfe2WhaUYIg17CiTc0Ug-VtjdSaIs_3m0tAXn_Yv545oV6RAgaxxfVNjw";
+    let accessToken = "BQCDuljbgR3bn6vNdemOastPXWvxFn06EmY4OuB1hgofFg3LtZlfY_r0zjavYJVtdWHlTbj-Lq-5JmAOoGZTmuWaWUeH8yDYcrQbJJJCLdXFblu3ujf1hZWTU_59A9hTny-mqYd3NbiTI5XiNaBRx6Opzh_WmAgEKjBuPrfpTR_RNRj6nsI_XGSeNd3sxtTlH_BYo1AkPRXZe7vmlmvWYAtAG6t7JUyVprgIk2Tblw";
 
     let searchForPlaylist = function () {
 

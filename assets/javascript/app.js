@@ -137,7 +137,7 @@ $(document).ready(function () {
     });
 
     // var to hold access token
-    let accessToken = "BQAmY_ojhEICImf5X2AwFAmBb2s_3I2R_6HWEH_1xhRVXf4CysyjuyAyP1xmmlxUpTyuUMpQ8mLRxOvxUnKhdBZA8TnEf5ZdfQ_R0Fhg4kOY0i6nlGaAfZ-mY81zvJmFYNI4_bzL14nO5XZKusrlZA8BhfCrrwV3ppvK3FfcIGZjiBp9jug1ov52m3uETKy8MvmBjHBir3u7";
+    let accessToken = "BQAr-Nm2-efW4lujGBEaMeYhH0Rja6bWCiJ8MdT0CpKqNsI9gnkcZNuOrasROb1fG8RtXrlUoCJSz95-2arLMrfe2WhaUYIg17CiTc0Ug-VtjdSaIs_3m0tAXn_Yv545oV6RAgaxxfVNjw";
 
     let searchForPlaylist = function () {
 

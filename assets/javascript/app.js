@@ -11,6 +11,7 @@ $(document).ready(function () {
 
     $("#weather-data").hide();
     $(".helper-text").hide();
+    $("#zipcode").focus();
 
     let getWeather = function () {
 
@@ -121,6 +122,7 @@ $(document).ready(function () {
 
         $(".item").empty();
         $(".input-field").show();
+        $("#zipcode").focus();
         $("#weather-data").hide();
 
     });

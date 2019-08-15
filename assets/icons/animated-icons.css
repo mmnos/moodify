@@ -1,25 +1,15 @@
-html { box-sizing: border-box; }
-html *,
-html *:before,
-html *:after { box-sizing: inherit; }
 
-body {
+.icon-body {
   max-width: 42em;
   padding: 2em;
   margin: 0 auto;
-  color: #161616;
   font-family: 'Roboto', sans-serif;
   text-align: center;
+  /* Note: Comment out following line "background-color" so background is transparent in order to overlay on Moodify app. */
+  color: #161616;
   background-color: currentColor;
 }
 
-h1 {
-  margin-bottom: 1.375em;
-  color: #fff;
-  font-weight: 100;
-  font-size: 2em;
-  text-transform: uppercase;
-}
 p,
 a {
   color: rgba(255,255,255,0.3);
@@ -218,7 +208,8 @@ p { margin: 1.375rem 0; }
   left: 50%;
   margin: -1.025em 0 0 -1.0125em;
   color: #fff;
-  list-height: 1em;
+  /* Note: The following line "list-height" was creating an unknown error.  May not need for animation. */
+  /* list-height: 1em; */
   opacity: 0.2;
   animation: spin 8s linear infinite reverse;
 }

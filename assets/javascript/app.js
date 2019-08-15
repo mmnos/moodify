@@ -188,7 +188,10 @@ $(document).ready(function () {
   
       let $img = $("<img>")
         .attr("src", imgSrc)
-        .css("cursor", "pointer");
+        .css({
+          "cursor": "pointer",
+          "width" : "100%"
+      });
   
       let $a = $("<a>")
         .attr("href", `${redirect}`)

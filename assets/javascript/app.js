@@ -14,6 +14,10 @@ $(document).ready(function () {
   let coldPlaylists = ["Winter Chills", "Winter Acoustics", "Winter Chill Deep House"],
       sunnyPlaylists = ["Happy Hits!", "Happy Tunes", "Happy Drive"],
       chillPlaylists = ["Chill Hits", "Mellow Classics", "Summer Chill"]
+      
+    $("#weather-data").hide();
+    $(".helper-text").hide();
+    $("#zipcode").focus();
 
 
   $("#weather-data").hide();
@@ -110,7 +114,10 @@ $(document).ready(function () {
         
   //     } else if (el.name === "Winter Chills") {
 
-  //     } else if (el.name === "Winter Acoustics") {
+        $(".item").empty();
+        $(".input-field").show();
+        $("#zipcode").focus();
+        $("#weather-data").hide();
 
   //     }
 

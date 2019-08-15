@@ -26,6 +26,10 @@ body {
 
 }
 
+#nested-icons {
+    display: none;
+}
+
 /* .weatherPic {
 
     margin-right: 10px;

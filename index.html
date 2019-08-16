@@ -16,6 +16,7 @@
     <!-- <link rel="stylesheet" href="./assets/owlcarousel/assets/owl.theme.default.min.css"> -->
     <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Hind+Madurai&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./assets/icons/animated-icons.css">
     <link rel="stylesheet" href="./assets/css/styles.css">
 
@@ -48,6 +49,21 @@
     <!-- NOTE: The app layout is a 40/60 split, where Weather takes 40% of the layout; Music is 60%.
     The 'weather' container is broken down to display the current weather by graphic 'weather-icon', as well as
     displaying the current temperature 'temperature' for the current city 'city'. -->
+
+    <!-- Modal Trigger -->
+  <a class="modal-trigger material-icons" href="#modal1">settings</a>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4 class="preferences">Preferences</h4>
+      <h6>How are you feeling?</h6>
+    </div>
+
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+
 
     <!-- IMPORTANT: The 'city' div will hold the zip code input field, which will then get replaced by the text of
     the city (DOM manipulation). -->

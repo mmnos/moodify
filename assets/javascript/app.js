@@ -8,14 +8,16 @@ $(document).ready(function () {
     weatherIcon,
     forecast,
     tempCond,
+    timeOfDay,
     params,
     search,
     playlists,
-    icon
+    icon;
+  let currentTime = moment();
+  let morningStart = moment("4:00", "HH:mm");
+  let dayStart = moment("10:30", "HH:mm");
+  let nightStart = moment("19:00", "HH:mm");
 
-  // let coldPlaylists = ["Winter Chills", "Winter Acoustics", "Winter Chill Deep House"],
-  //     sunnyPlaylists = ["Happy Hits!", "Happy Tunes", "Happy Drive"],
-  //     chillPlaylists = ["Chill Hits", "Mellow Classics", "Summer Chill"]
 
   let conditions = {
 
@@ -146,21 +148,43 @@ $(document).ready(function () {
         cloudy: {
 
           search: "evening,cozy"
-          
+
         },
         clear: {
+
           search: "chill"
+
         }
+
       }
+
     }
+
   }
+
   console.log(conditions)
   console.log(conditions.warm.morning.precip.search)
+
   $("#weather-data").hide();
   $(".helper-text").hide();
   $("#zipcode").focus();
-  $("#weather-data").hide();
-  $(".helper-text").hide();
+
+  //TIME SECTION
+  if (currentTime.isBetween(morningStart, dayStart)) {
+
+    timeOfDay = "morning";
+
+  } else if (currentTime.isBetween(dayStart, nightStart)) {
+
+    timeOfDay = "day";
+
+  } else {
+
+    timeOfDay = "evening";
+
+  }
+
+
   //WEATHER SECTION 
   //Retrieves weather from the api
   let getWeather = function () {
@@ -228,10 +252,7 @@ $(document).ready(function () {
       weatherSet();
     });
   }
-  $(".item").empty();
-  $(".input-field").show();
-  $("#zipcode").focus();
-  $("#weather-data").hide();
+
   // checks to make sure zip code user inputs is valid
   let checkZip = function () {
     $(".updatedWeather").empty();
@@ -273,13 +294,16 @@ $(document).ready(function () {
   //displays playlists on the page
   let appendPlaylists = (playlists) => {
     for (i = 0; i < 3; i++) {
+
       let playlistName = playlists[i].name;
       let imgSrc = playlists[i].images[0].url;
       let redirect = playlists[i].external_urls.spotify;
+
       let $name = $("<h4>")
         .text(playlistName)
         .css("display", "none")
         .addClass(`playlistName${i}`)
+
       let $img = $("<img>")
         .attr("src", imgSrc)
         .css({
@@ -294,7 +318,9 @@ $(document).ready(function () {
         .attr("href", `${redirect}`)
         .attr("target", "_blank")
         .append($img);
+
       $(`div#${i}`).append($a, $name);
+
     }
   }
   // var to hold access token
@@ -302,7 +328,7 @@ $(document).ready(function () {
   let searchForPlaylist = function () {
     // makes an ajax request to search the spotify api with recommended playlists
     $.get({
-      url: `https://api.spotify.com/v1/search?q=${conditions[tempCond].day[forecast].search}&type=playlist&limit=15`,
+      url: `https://api.spotify.com/v1/search?q=${conditions[tempCond][timeOfDay][forecast].search}&type=playlist&limit=15`,
       // url: `https://api.spotify.com/v1/search?q=winter,chill&type=playlist&limit=20`,
       headers: {
         'Authorization': 'Bearer ' + accessToken

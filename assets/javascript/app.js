@@ -9,7 +9,6 @@ $(document).ready(function () {
     forecast,
     tempCond,
     timeOfDay,
-    params,
     search,
     playlists,
     icon;
@@ -17,6 +16,8 @@ $(document).ready(function () {
   let morningStart = moment("4:00", "HH:mm");
   let dayStart = moment("10:30", "HH:mm");
   let nightStart = moment("19:00", "HH:mm");
+
+
 
 
   let conditions = {
@@ -343,22 +344,24 @@ $(document).ready(function () {
     });
   }
 
-  $("div.music-cards").on("mouseenter", "img", function() {
+  $("div.music-cards").on("mouseenter", "img", function () {
 
     $(this).css({
       "width": "85%",
     })
+
   })
-  $("div.music-cards").on("mouseleave", "img", function() {
+  $("div.music-cards").on("mouseleave", "img", function () {
 
     $(this).css({
       "width": "75%",
     })
+
   })
 
-  // $("div.music-cards").on("mouseenter mouseleave", "img", function(event) {
 
-  //   $(this).toggleClass("active");
-    
-  // })
+  $("a.modal-trigger").on("click", function() {
+    $('.modal').modal();
+  })
+
 });

@@ -11,10 +11,35 @@ body {
     font-family: 'Hind Madurai', sans-serif;
     /* padding: 60px; */
  }
+
  #music {
     background-color: darkslategrey;
     min-height: 50vh;
  }
+
+ /* modal styles */
+div.modal {
+    color: rgb(47, 79, 79);
+}
+
+h4.preferences {
+    border-bottom: 1px solid rgb(47, 79, 79);
+}
+
+a.modal-trigger {
+    color: rgb(47, 79, 79);
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+a#changeZip, a#submitZip{
+
+    background-color: rgb(47, 79, 79);
+}
+
+
+
 
  
 /* ---------------------Weather CSS---------------------- */

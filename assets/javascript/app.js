@@ -17,7 +17,7 @@ $(document).ready(function () {
   // let coldPlaylists = ["Winter Chills", "Winter Acoustics", "Winter Chill Deep House"],
   //     sunnyPlaylists = ["Happy Hits!", "Happy Tunes", "Happy Drive"],
   //     chillPlaylists = ["Chill Hits", "Mellow Classics", "Summer Chill"]
-      
+
   let conditions = {
 
     warm: {
@@ -25,15 +25,21 @@ $(document).ready(function () {
       morning: {
 
         precip: {
+
           search: "cozy"
+
         },
 
         cloudy: {
+
           search: "summer,acoustic"
+
         },
 
         clear: {
+
           search: "chill,summer"
+
         }
 
       },
@@ -41,15 +47,21 @@ $(document).ready(function () {
       day: {
 
         precip: {
+
           search: "chill,summer"
+
         },
 
         cloudy: {
+
           search: "happy"
+
         },
 
         clear: {
+
           search: "summer"
+
         }
 
       },
@@ -57,15 +69,21 @@ $(document).ready(function () {
       evening: {
 
         precip: {
+
           search: "summer,acoustic"
+
         },
 
         cloudy: {
+
           search: "summer,night"
+
         },
 
         clear: {
+
           search: "summer,vibe"
+
         }
 
       }
@@ -76,15 +94,21 @@ $(document).ready(function () {
       morning: {
 
         precip: {
+
           search: "chill,morning"
+
         },
 
         cloudy: {
+
           search: "cold,morning"
+
         },
 
         clear: {
+
           search: "coffee,cozy"
+
         }
 
       },
@@ -92,15 +116,21 @@ $(document).ready(function () {
       day: {
 
         precip: {
+
           search: "winter,chill"
+
         },
 
         cloudy: {
+
           search: "chill"
+
         },
 
         clear: {
+          
           search: "chill,hits"
+
         }
 
       },
@@ -108,15 +138,21 @@ $(document).ready(function () {
       evening: {
 
         precip: {
+
           search: "evening"
+
         },
 
         cloudy: {
+
           search: "evening,cozy"
+
         },
 
         clear: {
+
           search: "chill"
+          
         }
 
       }
@@ -128,9 +164,9 @@ $(document).ready(function () {
   console.log(conditions.warm.morning.precip.search)
 
 
-    $("#weather-data").hide();
-    $(".helper-text").hide();
-    $("#zipcode").focus();
+  $("#weather-data").hide();
+  $(".helper-text").hide();
+  $("#zipcode").focus();
 
 
   $("#weather-data").hide();
@@ -177,7 +213,7 @@ $(document).ready(function () {
 
         switch (true) {
 
-          case (weatherId < 233): 
+          case (weatherId < 233):
             forecast = "precip";
             icon = "t-storms";
             break;
@@ -212,7 +248,7 @@ $(document).ready(function () {
             break;
 
         };
-        
+
         searchForPlaylist();
       }
 
@@ -229,26 +265,13 @@ $(document).ready(function () {
     });
   }
 
-  // console.log(forecast)
 
-  // let coldPlaylist = () => {
+  $(".item").empty();
+  $(".input-field").show();
+  $("#zipcode").focus();
+  $("#weather-data").hide();
 
-  //   playlists.foreach(el => {
 
-  //     if (el.name === "Winter Chill Deep House") {
-        
-  //     } else if (el.name === "Winter Chills") {
-
-        $(".item").empty();
-        $(".input-field").show();
-        $("#zipcode").focus();
-        $("#weather-data").hide();
-
-  //     }
-
-  //   })
-
-  // }
 
   // checks to make sure zip code user inputs is valid
   let checkZip = function () {
@@ -315,40 +338,40 @@ $(document).ready(function () {
   let appendPlaylists = (playlists) => {
 
     for (i = 0; i < 3; i++) {
-  
+
       let playlistName = playlists[i].name;
       let imgSrc = playlists[i].images[0].url;
       let redirect = playlists[i].external_urls.spotify;
-  
+
       let $name = $("<h4>")
-                      .text(playlistName)
-                      .css("display", "none")
-                      .addClass(`playlistName${i}`)
-  
+        .text(playlistName)
+        .css("display", "none")
+        .addClass(`playlistName${i}`)
+
       let $img = $("<img>")
         .attr("src", imgSrc)
         .css({
           "cursor": "pointer",
-          "width" : "80%"
-      })
+          "width": "80%"
+        })
         .addClass("hoverable")
-        // .on("mouseenter", function() {
-        //   $(`h4.playlistName${i}`).show();
-        // });
-  
+      // .on("mouseenter", function() {
+      //   $(`h4.playlistName${i}`).show();
+      // });
+
       let $a = $("<a>")
         .attr("href", `${redirect}`)
         .attr("target", "_blank")
         .append($img);
-  
+
       $(`div#${i}`).append($a, $name);
-  
+
     }
 
   }
 
   // var to hold access token
-  let accessToken = "BQCb1oL4Jgi6KgGOdAnuMMwQybfTk1l9unRNpXnaHs1zHxhrBrDqNWIQ49AF9GowcT8wz-lHC7F8O2ayzlT2SKMex6exiFbMAbhoq7_Se85aU5gtbvkhS-nXBkK4BxD_waw5aWbL3_AUDQnuQavk-BbOEQEQK10Pgvh_QcQUjt-3sCSbkVYZni4viH82DThY8szZDfu7_IoDoX-mozITeNWOQ-xChy8oaJrwVRq-FQ"
+  let accessToken = "BQD72lThJGCai4zcMJvhxdthLCgYBM5g1nAlOOHIr2vP_Hz98FQUEpmr9Mbux3c0wuX2zUBGwp38a5UkcGBptnxsLRxLiOTCPdGqRWaUx9gDDsPvbZ1G9CiDgP7EkifozYyY0dRCudmE-_j6DzGuQQdfCX0FZhp3npBOFxTnJKgHCEN2emuTGAmmQiDWlH84Ua54eRE-cmwt_THqXXxV7KDkzGu95XU1WPwrPGn1zw"
   let searchForPlaylist = function () {
 
     // makes an ajax request to search the spotify api with recommended playlists

@@ -8,6 +8,7 @@ $(document).ready(function () {
     weather,
     weatherIcon,
     forecast,
+    tempCond,
     params,
     search,
     playlists,
@@ -211,11 +212,15 @@ $(document).ready(function () {
             break;
 
         };
-
-        console.log(forecast)
-        console.log(conditions.warm.morning[forecast].search)
         
         searchForPlaylist();
+      }
+
+      if (temp > 60) {
+        tempCond = "warm"
+      }
+      else {
+        tempCond = "cold"
       }
 
       $("#weather-data").show();
@@ -349,7 +354,7 @@ $(document).ready(function () {
     // makes an ajax request to search the spotify api with recommended playlists
     $.get({
 
-      url: `https://api.spotify.com/v1/search?q=${conditions.warm.day[forecast].search}&type=playlist&limit=15`,
+      url: `https://api.spotify.com/v1/search?q=${conditions[tempCond].day[forecast].search}&type=playlist&limit=15`,
       // url: `https://api.spotify.com/v1/search?q=winter,chill&type=playlist&limit=20`,
       headers: {
         'Authorization': 'Bearer ' + accessToken

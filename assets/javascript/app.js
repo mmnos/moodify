@@ -308,7 +308,8 @@ $(document).ready(function () {
         .attr("src", imgSrc)
         .css({
           "cursor": "pointer",
-          "width": "80%"
+          "width": "75%",
+          "transition": "width 1s"
         })
         .addClass("hoverable")
       // .on("mouseenter", function() {
@@ -324,7 +325,7 @@ $(document).ready(function () {
     }
   }
   // var to hold access token
-  let accessToken = "BQD72lThJGCai4zcMJvhxdthLCgYBM5g1nAlOOHIr2vP_Hz98FQUEpmr9Mbux3c0wuX2zUBGwp38a5UkcGBptnxsLRxLiOTCPdGqRWaUx9gDDsPvbZ1G9CiDgP7EkifozYyY0dRCudmE-_j6DzGuQQdfCX0FZhp3npBOFxTnJKgHCEN2emuTGAmmQiDWlH84Ua54eRE-cmwt_THqXXxV7KDkzGu95XU1WPwrPGn1zw"
+  let accessToken = "BQC-jbFtR1Ut58uPahpYFasQi5yHYtI_zlVzm2vpl5OLooU2pIH79wbw9muoCWecU3x6MV4fMRGjBgykF1lNloaq2o-uJMFRwsagTrugEFev03m8cQ69YfNWUgpLb52QaLX3tKz_eg6gViaKqZsxkl7Yx5k0BwnStaD6LqpPqGrwtfuNS1i2-I2S3wz9IWb37dYYbQNiQpjIJ_q9r-EW2O-1STzTUACF7AieW3gIKQ"
   let searchForPlaylist = function () {
     // makes an ajax request to search the spotify api with recommended playlists
     $.get({
@@ -341,4 +342,23 @@ $(document).ready(function () {
       }
     });
   }
+
+  $("div.music-cards").on("mouseenter", "img", function() {
+
+    $(this).css({
+      "width": "85%",
+    })
+  })
+  $("div.music-cards").on("mouseleave", "img", function() {
+
+    $(this).css({
+      "width": "75%",
+    })
+  })
+
+  // $("div.music-cards").on("mouseenter mouseleave", "img", function(event) {
+
+  //   $(this).toggleClass("active");
+    
+  // })
 });

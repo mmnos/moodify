@@ -12,74 +12,141 @@ $(document).ready(function () {
     search,
     playlists,
     icon
+
   // let coldPlaylists = ["Winter Chills", "Winter Acoustics", "Winter Chill Deep House"],
   //     sunnyPlaylists = ["Happy Hits!", "Happy Tunes", "Happy Drive"],
   //     chillPlaylists = ["Chill Hits", "Mellow Classics", "Summer Chill"]
+
   let conditions = {
+
     warm: {
+
       morning: {
+
         precip: {
+
           search: "cozy"
+
         },
+
         cloudy: {
+
           search: "summer,acoustic"
+
         },
+
         clear: {
+
           search: "chill,summer"
+
         }
+
       },
+
       day: {
+
         precip: {
+
           search: "chill,summer"
+
         },
+
         cloudy: {
+
           search: "happy"
+
         },
+
         clear: {
+
           search: "summer"
+
         }
+
       },
+
       evening: {
+
         precip: {
+
           search: "summer,acoustic"
+
         },
+
         cloudy: {
+
           search: "summer,night"
+
         },
+
         clear: {
+
           search: "summer,vibe"
+
         }
+
       }
+
     },
+
     cold: {
+
       morning: {
+
         precip: {
+
           search: "chill,morning"
+
         },
+
         cloudy: {
+
           search: "cold,morning"
+
         },
+
         clear: {
+
           search: "coffee,cozy"
+
         }
+
       },
+
       day: {
+
         precip: {
+
           search: "winter,chill"
+
         },
+
         cloudy: {
+
           search: "chill"
+
         },
+
         clear: {
+
           search: "chill,hits"
+
         }
+
       },
+
       evening: {
+
         precip: {
+
           search: "evening"
+
         },
+
         cloudy: {
+
           search: "evening,cozy"
+          
         },
         clear: {
           search: "chill"
@@ -154,8 +221,7 @@ $(document).ready(function () {
       }
       if (temp > 60) {
         tempCond = "warm"
-      }
-      else {
+      } else {
         tempCond = "cold"
       }
       $("#weather-data").show();

@@ -325,7 +325,7 @@ $(document).ready(function () {
     }
   }
   // var to hold access token
-  let accessToken = "BQC-jbFtR1Ut58uPahpYFasQi5yHYtI_zlVzm2vpl5OLooU2pIH79wbw9muoCWecU3x6MV4fMRGjBgykF1lNloaq2o-uJMFRwsagTrugEFev03m8cQ69YfNWUgpLb52QaLX3tKz_eg6gViaKqZsxkl7Yx5k0BwnStaD6LqpPqGrwtfuNS1i2-I2S3wz9IWb37dYYbQNiQpjIJ_q9r-EW2O-1STzTUACF7AieW3gIKQ"
+  let accessToken = "BQCiMcHfcRU5hIvW4PdYTPmnporKCpP3cLHOebicXhVM90RF2ZHnpozmO-dyqpObLQGKB0bu1NThYQ_EvrNMjsAk9aTgpgEUw_jMaoRxyG7EeN1CBrobzzu4wvi_GCJtD9H3IMd8kJ_dn0yDDZvxAH_UZcej49rn7ZzX_GtVVc5y6F0aZ7XmAVEAvVzBJOltwHYitZ-_zz52_gL475tl8h756R49tXcjsJgmxXC-tA"
   let searchForPlaylist = function () {
     // makes an ajax request to search the spotify api with recommended playlists
     $.get({

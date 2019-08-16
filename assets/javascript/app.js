@@ -7,11 +7,22 @@ $(document).ready(function () {
         temp,
         weather,
         weatherIcon,
-        search
+        search,
+        playlists,
+        icon,
+        j, i
+
+    let coldPlaylists = ["Winter Chills", "Winter Acoustics", "Winter Chill Deep House"],
+        sunnyPlaylists = ["Happy Hits!", "Happy Tunes", "Happy Drive"],
+        chillPlaylists = ["Chill Hits", "Mellow Classics", "Summer Chill"];
 
     $("#weather-data").hide();
     $(".helper-text").hide();
     $("#zipcode").focus();
+
+
+    $("#weather-data").hide();
+    $(".helper-text").hide();
 
     let getWeather = function () {
 
@@ -44,40 +55,71 @@ $(document).ready(function () {
             let tempP = $("<span>").text(temp + "°").addClass("updatedWeather").css("font-size", "50px");
             $("div#temperature").prepend(tempP.prepend(wIcon));
 
-            if (weatherIcon === "01d" || weatherIcon === "01n") {
-                search = "happy";
-                searchForPlaylist();
-            } else if (weatherIcon === "02d" || weatherIcon === "02n") {
-                search = "chill";
-                searchForPlaylist();
-            } else if (weatherIcon === "03d" || weatherIcon === "03n") {
-                search = "chill";
-                searchForPlaylist();
-            } else if (weatherIcon === "04d" || weatherIcon === "04n") {
-                search = "chill";
-                searchForPlaylist();
-            } else if (weatherIcon === "09d" || weatherIcon === "09n") {
-                search = "rainy";
-                searchForPlaylist();
-            } else if (weatherIcon === "10d" || weatherIcon === "10n") {
-                search = "rainy";
-                searchForPlaylist();
-            } else if (weatherIcon === "11d" || weatherIcon === "11n") {
-                search = "rainy";
-                searchForPlaylist();
-            } else if (weatherIcon === "13d" || weatherIcon === "13n") {
-                search = "rainy";
-                searchForPlaylist();
-            } else {
-                search = "focus";
+            let weatherId = parseInt(weatherData.weather[0].id);
+            console.log(weatherId);
+
+            let weatherSearch = () => {
+
+                switch (true) {
+
+                    case (weatherId < 233):
+                        search = coldPlaylists;
+                        icon = "t-storms";
+                        break;
+
+                    case (weatherId < 550):
+                        search = coldPlaylists;
+                        icon = "rain";
+                        break;
+
+                    case (weatherId < 623):
+                        search = coldPlaylists;
+                        icon = "snowy";
+                        break;
+
+                    case (weatherId < 782):
+                        search = chillPlaylists;
+                        icon = "cloudy";
+                        break;
+
+                    case (weatherId < 804):
+                        search = sunnyPlaylists;
+                        icon = "sunny";
+                        break;
+
+                    case (weatherId === 804):
+                        search = chillPlaylists;
+                        icon = "cloudy";
+                        break;
+
+                    default:
+                        search = chillPlaylists;
+                        break;
+
+                };
+
                 searchForPlaylist();
             }
 
+            $("#weather-data").show();
+            weatherSearch();
+
         });
+    }
 
-        $("#weather-data").show();
+    // let coldPlaylist = () => {
 
-    };
+    //   playlists.foreach(el => {
+
+    //     if (el.name === "Winter Chill Deep House") {
+
+    //     } else if (el.name === "Winter Chills") {
+
+    //     }
+
+    //   })
+
+    // }
 
     let checkZip = function () {
 
@@ -138,50 +180,64 @@ $(document).ready(function () {
 
     });
 
+    let appendPlaylists = (playlists) => {
+
+        for (i = 0; i < 3; i++) {
+
+            // let playlistName = playlists[i].name;
+            let imgSrc = playlists[i].images[0].url;
+            let redirect = playlists[i].external_urls.spotify;
+
+            // let $name = $("<h4>").text(playlistName);
+
+            let $img = $("<img>")
+                .attr("src", imgSrc)
+                .css({
+                    "cursor": "pointer",
+                    "width": "80%"
+                });
+
+            let $a = $("<a>")
+                .attr("href", `${redirect}`)
+                .attr("target", "_blank")
+                .append($img);
+
+            $(`div#${i}`).append($a);
+
+        }
+
+    }
+
     // var to hold access token
-    let accessToken = "BQCDuljbgR3bn6vNdemOastPXWvxFn06EmY4OuB1hgofFg3LtZlfY_r0zjavYJVtdWHlTbj-Lq-5JmAOoGZTmuWaWUeH8yDYcrQbJJJCLdXFblu3ujf1hZWTU_59A9hTny-mqYd3NbiTI5XiNaBRx6Opzh_WmAgEKjBuPrfpTR_RNRj6nsI_XGSeNd3sxtTlH_BYo1AkPRXZe7vmlmvWYAtAG6t7JUyVprgIk2Tblw";
+    let accessToken = "BQDWT8oq6y2R24W8g6kp0OkZJMB3nFfcpcgICFnKhRU7aKw31K325y6CrKmNAe2qoTxAHw2zeNXlp0OPYn7N4eyEccEEJYhC10rDTS0BqexwEVWSMRLraCuDtuZlY1XZpy33w_tnj06_Wxp619FbuwFfEzkozPybBbqy1ArtazE1Y25hrsSh2IHWhe3pYYjhw-XA6BCcMmkzGOVJxk_L5_YGvqPHksm6bGk0JQ63GQ";
 
     let searchForPlaylist = function () {
 
-        // makes an ajax request to search the spotify api with recommended playlists
-        $.get({
+        for (j = 0; j < 3; j++) {
 
-            url: `https://api.spotify.com/v1/search?q=${search}&type=playlist&limit=5`,
-            headers: {
-                'Authorization': 'Bearer ' + accessToken
-            },
-            success: function (response) {
+            // makes an ajax request to search the spotify api with recommended playlists
+            $.get({
 
-                console.log(response);
+                url: `https://api.spotify.com/v1/search?q=${search[j]}&type=playlist&limit=1`,
+                headers: {
+                    'Authorization': 'Bearer ' + accessToken
+                },
+                success: function (response) {
 
-                let playlists = response.playlists.items
+                    console.log(response);
 
-                console.log(playlists);
+                    playlists = response.playlists.items;
 
-                for (i = 0; i < playlists.length; i++) {
+                    console.log(playlists);
 
-                    // let playlistName = playlists[i].name;
-                    let imgSrc = playlists[i].images[0].url;
-                    let redirect = playlists[i].external_urls.spotify;
+                    appendPlaylists(playlists);
 
-                    // let $name = $("<h4>").text(playlistName);
-
-                    let $img = $("<img>")
-                        .attr("src", imgSrc)
-                        .css("cursor", "pointer");
-
-                    let $a = $("<a>")
-                        .attr("href", `${redirect}`)
-                        .attr("target", "_blank")
-                        .append($img);
-
-                    $(`div#${i}`).append($a);
 
                 }
 
-            }
+            });
 
-        });
+        }
 
     }
 

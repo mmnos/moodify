@@ -36,6 +36,14 @@ body {
 
 } */
 
+container#weather {
+    background: url('https://image.freepik.com/free-photo/blue-sky-with-cloud-clean-energy-power-clear-weather-background_43284-844.jpg') no-repeat center center;
+    /* -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; */
+}
+
 
 
 
@@ -60,6 +68,10 @@ body {
     margin-top: 40px;
     /* margin-bottom: 15px;
 } */
+}
+
+div.playlist {
+    float: left;
 }
 
 

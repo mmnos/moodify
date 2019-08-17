@@ -31,15 +31,51 @@ div.modal {
 
 h4.preferences {
     border-bottom: 1px solid rgb(47, 79, 79);
+    text-align: center;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 a.modal-trigger {
     color: rgb(47, 79, 79);
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 10px;
+    top: 10px;
 }
 
+#searchPref {
+
+    color: rgba(4, 41, 41, .8);    
+
+}
+
+/* inner radio button color */
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:after {
+
+    background-color: rgba(4, 41, 41, .8);
+
+}
+
+/* outer radio button color */
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:before, [type="radio"].with-gap:checked+span:after {
+
+    border: 2px solid rgba(4, 41, 41, .8);
+
+}
+
+/* checkbox button color */
+[type="checkbox"]:checked+span:not(.lever):before {
+
+    border-bottom: 2px solid rgba(4, 41, 41, .8);
+    border-right : 2px solid rgba(4, 41, 41, .8);
+
+}
+
+a#changeZip, a#submitZip{
+
+    background-color: rgb(47, 79, 79);
+}
+ 
 a#changeZip, a#submitZip {
     background-color: rgb(47, 79, 79);
 }

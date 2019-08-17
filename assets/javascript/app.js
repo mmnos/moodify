@@ -1,7 +1,10 @@
 $(document).ready(function () {
+
+  // localStorage.getItem("Location");
+
   // weather variables
-  let userZip,
-    weatherData,
+  let userZip = localStorage.getItem("Location");
+  let weatherData,
     cityName,
     temp,
     weather,
@@ -11,14 +14,40 @@ $(document).ready(function () {
     timeOfDay,
     search,
     playlists,
-    icon;
+    icon,
+    userGenre,
+    userMood;
   let currentTime = moment();
   let morningStart = moment("4:00", "HH:mm");
   let dayStart = moment("10:30", "HH:mm");
   let nightStart = moment("19:00", "HH:mm");
 
+  console.log(userZip);
 
 
+  $("#searchPref").on("click", function () {
+
+    localStorage.clear();
+
+    if ($(".mood").is(":checked")) {
+
+      console.log($("input[type='radio']").val());
+      userMood = $("input[type='radio']").val();
+
+      localStorage.setItem("Mood", userMood);
+
+    }
+
+    if ($('.genre').is(":checked")) {
+
+      console.log($("input[type='checkbox']").val());
+      userGenre = $("input[type='checkbox']").val();
+
+      localStorage.setItem("Genre", userGenre);
+
+    }
+
+  });
 
   let conditions = {
 
@@ -254,26 +283,38 @@ $(document).ready(function () {
     });
   }
 
+  if (userZip) {
+
+    getWeather();
+    $("#submitZip").hide();
+    $(".input-field").hide();
+    $("#changeZip").focus();
+    
+  }
+
   // checks to make sure zip code user inputs is valid
   let checkZip = function () {
     $(".updatedWeather").empty();
-    // holds user input
-    userZip = $("#zipcode").val().trim();
-    // "^" indicates the beginning of input
-    // "$" indicates the end of input
-    // "d{5}" wants the users input to be only 5 digits long, EX : 90210 or in the second statement after the "|",
-    // it allows 5 digits followed by a hyphen and 4 more digits, EX : 90210-1234
-    let regex = /^\d{5}$|^\d{5}-\d{4}$/;
-    // if user input is valid, it'll display the current weather and location of specified area
-    if (regex.test(userZip)) {
-      getWeather();
-      $(".helper-text").hide();
-      $(".input-field").hide();
-    } else {
-      $(".helper-text").show();
-    }
-    // clears input field after clicking search
-    $("#zipcode").val('');
+
+      // holds user input
+      userZip = $("#zipcode").val().trim();
+      localStorage.setItem("Location", userZip);
+      // "^" indicates the beginning of input
+      // "$" indicates the end of input
+      // "d{5}" wants the users input to be only 5 digits long, EX : 90210 or in the second statement after the "|",
+      // it allows 5 digits followed by a hyphen and 4 more digits, EX : 90210-1234
+      let regex = /^\d{5}$|^\d{5}-\d{4}$/;
+      // if user input is valid, it'll display the current weather and location of specified area
+      if (regex.test(userZip)) {
+        getWeather();
+        $(".helper-text").hide();
+        $(".input-field").hide();
+      } else {
+        $(".helper-text").show();
+      }
+      // clears input field after clicking search
+      $("#zipcode").val('');
+
   }
   // checks zipcode after clicking search button
   $("#submitZip").on("click", function (event) {
@@ -326,7 +367,7 @@ $(document).ready(function () {
     }
   }
   // var to hold access token
-  let accessToken = "BQCiMcHfcRU5hIvW4PdYTPmnporKCpP3cLHOebicXhVM90RF2ZHnpozmO-dyqpObLQGKB0bu1NThYQ_EvrNMjsAk9aTgpgEUw_jMaoRxyG7EeN1CBrobzzu4wvi_GCJtD9H3IMd8kJ_dn0yDDZvxAH_UZcej49rn7ZzX_GtVVc5y6F0aZ7XmAVEAvVzBJOltwHYitZ-_zz52_gL475tl8h756R49tXcjsJgmxXC-tA"
+  let accessToken = "BQBZkvfcKnK8PsehTU5yuIV9kXCdpobSBX37wj7eZeXHFLh7EeD9O_WukRLbbXKRmhEX8dNbP8ZK03CRU19rBHcM0aJakDEqRh-U-UKSq12KQqo-GSgIjHCZNGiAQWwtscESUT5mw3IzStz358zuVi5plgUxr5wEPGqwzrTNPiEoLRmd70hUAR0YXAtteN4DTA1e6I5HqNzrh4oWPzdO-2UyoI_tDqaogIcIKaRKbw"
   let searchForPlaylist = function () {
     // makes an ajax request to search the spotify api with recommended playlists
     $.get({
@@ -360,7 +401,7 @@ $(document).ready(function () {
   })
 
 
-  $("a.modal-trigger").on("click", function() {
+  $("a.modal-trigger").on("click", function () {
     $('.modal').modal();
   })
 

@@ -148,7 +148,7 @@ p { margin: 1.375rem 0; }
 
 .bolt {
   position: absolute;
-  top: 50%;
+  top: -10%;
   left: 50%;
   margin: -0.25em 0 0 -0.125em;
   color: #fff;
@@ -204,7 +204,7 @@ p { margin: 1.375rem 0; }
 .flake:after {
   content: '\2744';
   position: absolute;
-  top: 50%;
+  top: -20%;
   left: 50%;
   margin: -1.025em 0 0 -1.0125em;
   color: #fff;

@@ -22,6 +22,7 @@ $(document).ready(function () {
   let dayStart = moment("10:30", "HH:mm");
   let nightStart = moment("19:00", "HH:mm");
 
+  
   console.log(userZip);
 
   $("#searchPref").on("click", function () {
@@ -290,7 +291,7 @@ $(document).ready(function () {
             forecast = "clear";
             icon = "sunny";
             break;
-          case (weatherId === 804):
+          case (weatherId == 804):
             forecast = "cloudy";
             icon = "cloudy";
             break;
@@ -423,7 +424,7 @@ $(document).ready(function () {
   }
 
   // var to hold access token
-  let accessToken = "BQDBz5aZD6ORvyb-zIqGJYFLaEeN6F1voAMthmjcfskmiq7iIji520ITJg2sKBC6Tp88Vqm55ZQgr-iPbxhUYKHTpjLp8mxABQ01CDydnpmFhgw9Lq7-kj48KPboNN4e_jY0qT_d1UW7DTkjqeqvMb7gYUdNWQ9wzQokJponWSKgtNOeexA-rzrNFzTWrV7-7G__TqcWAkfIrPbcitzwNuQ4-kolkXCsnsWgklDAZQ"
+  let accessToken = "BQBqRvu5nJRLQM9Q4OZoGW2TUvPkjUsh5UaUb717konoRoC0ZrUD-OzyjRkmhS7Fd0Mq9Rs1wpMzYWXSzwEgNCj0P8bU7nbCqncbuVtt7SuQ4_PZM61Oc7j_Ok4T7echs0H_tyDmbYY6ucs_VDQ9aiERRszz2Zd6tFyuarJtgd3Roesgk3zSzUseoH7yFg-WHnriNkl_aqB-co0EXAeVWy5TK06-Vo6pj61TP_wrVQ"
   let searchForPlaylist = function () {
 
     // makes an ajax request to search the spotify api with recommended playlists

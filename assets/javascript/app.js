@@ -58,7 +58,7 @@ $(document).ready(function () {
         console.log(response);
         playlists = response.playlists.items;
         console.log(playlists);
-        appendPlaylists(playlists)
+        appendPlaylists(playlists);
       }
 
     });
@@ -351,8 +351,7 @@ $(document).ready(function () {
       $(".helper-text").hide();
       $(".input-field").hide();
 
-    }
-    else {
+    } else {
       $(".helper-text").show();
     }
     // clears input field after clicking search
@@ -363,6 +362,9 @@ $(document).ready(function () {
   // checks zipcode after clicking search button
   $("#submitZip").on("click", function (event) {
 
+    if (error) {
+      alert("error")
+    } else
     checkZip();
     $("section#music").fadeIn("slow");
 
@@ -423,7 +425,7 @@ $(document).ready(function () {
   }
 
   // var to hold access token
-  let accessToken = "BQDBz5aZD6ORvyb-zIqGJYFLaEeN6F1voAMthmjcfskmiq7iIji520ITJg2sKBC6Tp88Vqm55ZQgr-iPbxhUYKHTpjLp8mxABQ01CDydnpmFhgw9Lq7-kj48KPboNN4e_jY0qT_d1UW7DTkjqeqvMb7gYUdNWQ9wzQokJponWSKgtNOeexA-rzrNFzTWrV7-7G__TqcWAkfIrPbcitzwNuQ4-kolkXCsnsWgklDAZQ"
+  let accessToken = "BQBqRvu5nJRLQM9Q4OZoGW2TUvPkjUsh5UaUb717konoRoC0ZrUD-OzyjRkmhS7Fd0Mq9Rs1wpMzYWXSzwEgNCj0P8bU7nbCqncbuVtt7SuQ4_PZM61Oc7j_Ok4T7echs0H_tyDmbYY6ucs_VDQ9aiERRszz2Zd6tFyuarJtgd3Roesgk3zSzUseoH7yFg-WHnriNkl_aqB-co0EXAeVWy5TK06-Vo6pj61TP_wrVQ"
   let searchForPlaylist = function () {
 
     // makes an ajax request to search the spotify api with recommended playlists

@@ -3,6 +3,14 @@ h1 {
     padding: 10px;
 }
 
+h1.mainHeader {
+    font-size: 6em;
+}
+
+p.site-description {
+    font-size: 1em;
+}
+
 body {
     color: white;
     background: url("../images/main.jpg") no-repeat center center fixed;
@@ -43,21 +51,32 @@ a.modal-trigger {
     top: 10px;
 }
 
+a#changeZip {
+    color: rgb(47, 79, 79);
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 45px;
+}
+
 #searchPref {
 
-    color: rgba(4, 41, 41, .8);    
+    color: rgba(4, 41, 41, .8);
 
 }
 
 /* inner radio button color */
-[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:after {
+[type="radio"]:checked+span:after,
+[type="radio"].with-gap:checked+span:after {
 
     background-color: rgba(4, 41, 41, .8);
 
 }
 
 /* outer radio button color */
-[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:before, [type="radio"].with-gap:checked+span:after {
+[type="radio"]:checked+span:after,
+[type="radio"].with-gap:checked+span:before,
+[type="radio"].with-gap:checked+span:after {
 
     border: 2px solid rgba(4, 41, 41, .8);
 
@@ -67,37 +86,41 @@ a.modal-trigger {
 [type="checkbox"]:checked+span:not(.lever):before {
 
     border-bottom: 2px solid rgba(4, 41, 41, .8);
-    border-right : 2px solid rgba(4, 41, 41, .8);
+    border-right: 2px solid rgba(4, 41, 41, .8);
 
 }
 
-a#changeZip, a#submitZip{
+a#submitZip {
 
     background-color: rgb(47, 79, 79);
 }
- 
-a#changeZip, a#submitZip {
-    background-color: rgb(47, 79, 79);
-}
+
 
 /* ---------------------Weather CSS---------------------- */
 
-  /* label color */
-  /* .input-field label {
-    color: #000;
-  } */
-  /* label focus color */
-  div.input-field input#zipcode:focus + label {
-    color: rgba(1, 12, 12, 0.5);
-  }
-  /* label underline focus color */
-  div.input-field input#zipcode:focus {
-    border-bottom: 1px solid rgba(1, 12, 12, 0.5);
-    box-shadow: 0 1px 0 0 rgba(1, 12, 12, 0.5);
-  }
+/* label color */
+.input-field label {
+    color: rgba(255, 255, 255, .6);
+}
+
+/* label underline color */
+.input-field input[type=text] {
+    border-bottom: 1px solid rgba(255, 255, 255, .6);
+}
+
+/* label focus color */
+div.input-field input#zipcode:focus+label {
+    color: rgba(255, 255, 255, .8);
+}
+
+/* label underline focus color */
+div.input-field input#zipcode:focus {
+    border-bottom: 1px solid rgba(255, 255, 255, .8);
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, .8);
+}
 
 
-#submitZip, #changeZip {
+#submitZip {
     margin-top: 15px;
     margin-bottom: 15px;
 }

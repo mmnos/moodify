@@ -107,8 +107,39 @@
         <div class="row">
             <div class="col s12">
                 <div id="weather-data" class="center">
-                    <div id="temperature"></div>
-                    <div id="weather-icon"></div>
+                    <div class="d-inline" id="weather-icon">
+                        <div class="icon-body icon cloudy hide">
+                            <div class="cloud"></div>
+                            <div class="cloud"></div>
+                        </div>
+                        <div class="icon-body icon thunder-storm hide">
+                            <div class="cloud"></div>
+                            <div class="lightning">
+                                <div class="bolt"></div>
+                                <div class="bolt"></div>
+                            </div>
+                        </div>
+              
+                        <div class="icon-body icon flurries hide">
+                            <div class="cloud"></div>
+                            <div class="snow">
+                                <div class="flake"></div>
+                                <div class="flake"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="icon-body icon sunny hide">
+                            <div class="sun">
+                                <div class="rays"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="icon-body icon rainy hide">
+                            <div class="cloud"></div>
+                            <div class="rain"></div>
+                        </div>
+                    </div>
+                    <div class="d-inline" id="temperature"></div>
                     <div id="weather-text"></div>
                     <div id="city"></div>
                   </div>
@@ -126,37 +157,7 @@
     <section>
         <div id="nested-icons">
               
-              <div class="icon-body icon thunder-storm hide">
-                <div class="cloud"></div>
-                <div class="lightning">
-                  <div class="bolt"></div>
-                  <div class="bolt"></div>
-                </div>
-              </div>
               
-              <div class="icon-body icon cloudy hide">
-                <div class="cloud"></div>
-                <div class="cloud"></div>
-              </div>
-              
-              <div class="icon-body icon flurries hide">
-                <div class="cloud"></div>
-                <div class="snow">
-                  <div class="flake"></div>
-                  <div class="flake"></div>
-                </div>
-              </div>
-              
-              <div class="icon-body icon sunny hide">
-                <div class="sun">
-                  <div class="rays"></div>
-                </div>
-              </div>
-              
-              <div class="icon-body icon rainy hide">
-                <div class="cloud"></div>
-                <div class="rain"></div>
-              </div>
         </div>
     </section>
 
@@ -165,6 +166,10 @@
 
             <div class="col s12" id="playlist-data">
                 <div class="row">
+
+                  <div class="col 12">
+                    <h2>No results found</h2>
+                  </div>
 
                     <div class="music-cards col s8 m4 l3 offset-s2 offset-m2 center" id="0"></div>
                     <div class="music-cards col s8 m4 l3 offset-s2 center" id="1"></div>
@@ -176,97 +181,10 @@
             </div>
 
         </div>
-        <!-- <div id="artist-data">
-            <div id="cover-art-carousel" class="loop owl-carousel">
-                <div class="item" id="0">
-                    <h4></h4>
-                </div>
-                <div class="item" id="1">
-                    <h4></h4>
-                </div>
-                <div class="item" id="2">
-                    <h4></h4>
-                </div>
-                 <div class="item" id="3">
-                    <h4></h4>
-                </div>
-                <div class="item" id="4">
-                    <h4></h4>
-                </div> 
-                 <div class="item">
-                    <h4></h4>
-                </div>
-                <div class="item">
-                    <h4></h4>
-                </div>
-                <div class="item">
-                    <h4></h4>
-                </div>
-                <div class="item">
-                    <h4></h4>
-                </div>
-                <div class="item">
-                    <h4></h4>
-                </div>
-                <div class="item">
-                    <h4></h4>
-                </div>
-                <div class="item">
-                    <h4></h4>
-                </div>
-            </div> --> 
-            <!--NOTE: When playing track is enabled enable the following the code -->
-            <!-- <div id="artist-song"></div>
-            <div id="artist-name"></div> -->
-        <!-- </div> -->
-        <!-- <div id="play-controls">
-            <div id="previous-button"></div>
-            <div id="play-pause-button"></div>
-            <div id="next-button"></div>
-        </div> -->
-
-        
-       
 
     </section>
 
-
-
     <div class="test"></div>
-
-    <!-- SCRIPTS -->
-    <!-- NOTE: In order for all JS to work, it should be in this current order - please advise before adding new script src. -->
-
-    <!-- owl -->
-    <!-- <script src="./assets/owlcarousel/jquery.min.js"></script> -->
-    <!-- <script src="./assets/owlcarousel/owl.carousel.min.js"></script> -->
-
-    <!-- owl script test START -->
-    <!-- <script>
-        $('.loop').owlCarousel({
-            center: true,
-            items: 2,
-            loop: true,
-            margin: 10,
-            responsive: {
-                600: {
-                    items: 4
-                }
-            }
-        });
-        $('.nonloop').owlCarousel({
-            center: true,
-            items: 2,
-            loop: false,
-            margin: 10,
-            responsive: {
-                600: {
-                    items: 4
-                }
-            }
-        });
-    </script> -->
-    <!-- owl script test END -->
 
     <!-- compiled and minified JavaScript (materialize) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

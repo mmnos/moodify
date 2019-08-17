@@ -23,6 +23,15 @@ p.site-description {
     color: rgb(255, 255, 255, .8);
 }
 
+p.error-message {
+    display: none;
+}
+
+p.error {
+    margin-top: 50px;
+    font-size: 2em;
+}
+
 .d-inline {
     display: inline-block;
 }

@@ -142,8 +142,8 @@
                     <div class="d-inline" id="temperature"></div>
                     <div id="weather-text"></div>
                     <div id="city"></div>
-                    <a class="material-icons" id="changeZip">location_on</a>
                 </div>
+                <a class="material-icons" id="changeZip">location_on</a>
                 <div class="input-field col s8 center offset-s2 m4 offset-m4">
                     <input id="zipcode" type="text" class="validate">
                     <label for="zipcode">Enter your zipcode here</label>
@@ -159,6 +159,11 @@
 
             <div class="col s12" id="playlist-data">
                 <div class="row">
+
+                    <div class="col s12 center">
+                        <p class="weather-error error">No Results Found For Current Zip</p>
+                        <p class="music-error error">No Results Found. Please Refresh Access Token</p>
+                    </div>
 
                     <div class="music-cards col s8 m4 l3 offset-s2 offset-m2 center" id="0"></div>
                     <div class="music-cards col s8 m4 l3 offset-s2 center" id="1"></div>

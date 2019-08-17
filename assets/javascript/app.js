@@ -275,7 +275,9 @@ $(document).ready(function () {
         temp = (parseInt(weatherData.main.temp) - 273.15) * 9 / 5 + 32;
         temp = Math.round(temp);
 
-        let tempP = $("<span>").text(temp + "°").addClass("updatedWeather").css("font-size", "50px");
+        let tempP = $("<span>").text(temp + "°")
+                              .addClass("updatedWeather")
+                              .css("font-size", "70px");
         $("div#temperature").prepend(tempP);
         let weatherId = parseInt(weatherData.weather[0].id);
 
@@ -447,7 +449,7 @@ $(document).ready(function () {
   }
 
   // var to hold access token
-  let accessToken = "BQBqRvu5nJRLQM9Q4OZoGW2TUvPkjUsh5UaUb717konoRoC0ZrUD-OzyjRkmhS7Fd0Mq9Rs1wpMzYWXSzwEgNCj0P8bU7nbCqncbuVtt7SuQ4_PZM61Oc7j_Ok4T7echs0H_tyDmbYY6ucs_VDQ9aiERRszz2Zd6tFyuarJtgd3Roesgk3zSzUseoH7yFg-WHnriNkl_aqB-co0EXAeVWy5TK06-Vo6pj61TP_wrVQ"
+  let accessToken = "BQDWs91XFQoVvAgm5I7CGnS4rJYvZuuv3aJ1NGgLC7OD9IZlrdgnHvRWryUWInddE6bPGEqylrak9OC_Uh_WMRHRFTB4FlVy-b4ez_m0RfFLElOCUuwCrWVXkdqWxjy_B0Mu5hd755Q-Wgm9n7WBNPZa25GhUgEZjKGRIixzVb_EtEFfCyqhFszwnS39WEt0iu02BDnDwGoo46nRSg3COlm7q0m-rIIT6uxvCDGiFw"
   let searchForPlaylist = function () {
 
     // makes an ajax request to search the spotify api with recommended playlists

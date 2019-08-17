@@ -107,8 +107,39 @@
         <div class="row">
             <div class="col s12">
                 <div id="weather-data" class="center">
-                    <div id="temperature"></div>
-                    <div id="weather-icon"></div>
+                    <div class="d-inline" id="weather-icon">
+                        <div class="icon-body icon cloudy hide">
+                            <div class="cloud"></div>
+                            <div class="cloud"></div>
+                        </div>
+                        <div class="icon-body icon thunder-storm hide">
+                            <div class="cloud"></div>
+                            <div class="lightning">
+                                <div class="bolt"></div>
+                                <div class="bolt"></div>
+                            </div>
+                        </div>
+              
+                        <div class="icon-body icon flurries hide">
+                            <div class="cloud"></div>
+                            <div class="snow">
+                                <div class="flake"></div>
+                                <div class="flake"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="icon-body icon sunny hide">
+                            <div class="sun">
+                                <div class="rays"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="icon-body icon rainy hide">
+                            <div class="cloud"></div>
+                            <div class="rain"></div>
+                        </div>
+                    </div>
+                    <div class="d-inline" id="temperature"></div>
                     <div id="weather-text"></div>
                     <div id="city"></div>
                     <a class="material-icons" id="changeZip">location_on</a>
@@ -126,37 +157,7 @@
     <section>
         <div id="nested-icons">
               
-              <div class="icon-body icon thunder-storm hide">
-                <div class="cloud"></div>
-                <div class="lightning">
-                  <div class="bolt"></div>
-                  <div class="bolt"></div>
-                </div>
-              </div>
               
-              <div class="icon-body icon cloudy hide">
-                <div class="cloud"></div>
-                <div class="cloud"></div>
-              </div>
-              
-              <div class="icon-body icon flurries hide">
-                <div class="cloud"></div>
-                <div class="snow">
-                  <div class="flake"></div>
-                  <div class="flake"></div>
-                </div>
-              </div>
-              
-              <div class="icon-body icon sunny hide">
-                <div class="sun">
-                  <div class="rays"></div>
-                </div>
-              </div>
-              
-              <div class="icon-body icon rainy hide">
-                <div class="cloud"></div>
-                <div class="rain"></div>
-              </div>
         </div>
     </section>
 

@@ -27,7 +27,8 @@ $(document).ready(function () {
 
   $("#searchPref").on("click", function () {
 
-    localStorage.clear();
+    localStorage.removeItem("Mood");
+    localStorage.removeItem("Genre");
 
     if ($(".mood").is(":checked")) {
 
@@ -275,7 +276,9 @@ $(document).ready(function () {
         temp = (parseInt(weatherData.main.temp) - 273.15) * 9 / 5 + 32;
         temp = Math.round(temp);
 
-        let tempP = $("<span>").text(temp + "°").addClass("updatedWeather").css("font-size", "70px");
+        let tempP = $("<span>").text(temp + "°")
+                              .addClass("updatedWeather")
+                              .css("font-size", "70px");
         $("div#temperature").prepend(tempP);
         let weatherId = parseInt(weatherData.weather[0].id);
 

@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One&display=swap');
+
+body {
+    color: white;
+    background: url("../images/main.jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Julius Sans One', sans-serif;
+    /* padding: 60px; */
+}
+
+/* title screen styling */
 h1 {
     font-family: 'Comfortaa', cursive;
     padding: 10px;
@@ -9,20 +20,11 @@ h1.mainHeader {
 
 p.site-description {
     font-size: 1em;
-}
-
-body {
-    color: white;
-    background: url("../images/main.jpg") no-repeat center center fixed;
-    background-size: cover;
-    font-family: 'Hind Madurai', sans-serif;
-    /* padding: 60px; */
-}
-
-p.site-description {
     color: rgb(255, 255, 255, .8);
 }
 
+
+/* error message styling */
 p.error-message {
     display: none;
 }
@@ -32,24 +34,15 @@ p.error {
     font-size: 2em;
 }
 
+
 .d-inline {
     display: inline-block;
 }
 
-#music {
-    position: relative;
-    bottom: -30px;
-    background-color: rgba(1, 12, 12, 0.75);
-    background-color: rgba(1, 12, 12, 0.75);
-    min-height: 50vh;
-}
 
-div.bottom-music {
-    padding-top: 100px;
-}
+
 
 /* modal styles */
-
 div.modal {
     color: rgb(47, 79, 79);
 }
@@ -68,6 +61,8 @@ a.modal-trigger {
     top: 10px;
 }
 
+
+/* button styling */
 a#changeZip {
     color: rgb(47, 79, 79);
     cursor: pointer;
@@ -77,38 +72,38 @@ a#changeZip {
 }
 
 #searchPref {
-
+    
     color: rgba(4, 41, 41, .8);
-
+    
 }
 
 /* inner radio button color */
 [type="radio"]:checked+span:after,
 [type="radio"].with-gap:checked+span:after {
-
+    
     background-color: rgba(4, 41, 41, .8);
-
+    
 }
 
 /* outer radio button color */
 [type="radio"]:checked+span:after,
 [type="radio"].with-gap:checked+span:before,
 [type="radio"].with-gap:checked+span:after {
-
+    
     border: 2px solid rgba(4, 41, 41, .8);
-
+    
 }
 
 /* checkbox button color */
 [type="checkbox"]:checked+span:not(.lever):before {
-
+    
     border-bottom: 2px solid rgba(4, 41, 41, .8);
     border-right: 2px solid rgba(4, 41, 41, .8);
-
+    
 }
 
 a#submitZip {
-
+    
     background-color: rgb(47, 79, 79);
 }
 
@@ -141,35 +136,19 @@ div.input-field input#zipcode:focus {
     margin-bottom: 15px;
 }
 
-/* #nested-icons {
-    display: none;
-} */
-
-/* .weatherPic {
-
-    margin-right: 10px;
-
-} */
-
-container#weather {
-    background: url('https://image.freepik.com/free-photo/blue-sky-with-cloud-clean-energy-power-clear-weather-background_43284-844.jpg') no-repeat center center;
-    /* -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover; */
+span#updatedWeather {
+    font-size: 4rem;
 }
 
 /* ---------------------Playlist CSS---------------------- */
 
-/* #playlist-data {
-
-    float: left;
-    
-
-} */
-
 section#music {
     display: none;
+    position: relative;
+    bottom: -30px;
+    background-color: rgba(1, 12, 12, 0.75);
+    background-color: rgba(1, 12, 12, 0.75);
+    min-height: 50vh;
 }
 
 .music-cards {
@@ -194,9 +173,11 @@ div.playlist {
     float: left;
 }
 
-@media screen and (max-width: 640px) {
-    h1.mainHeader {
-        font-size: 3rem;
-    }
 
+@media screen and (max-width: 640px) {
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
 }

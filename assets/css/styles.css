@@ -1,23 +1,30 @@
 h1 {
-
     font-family: 'Comfortaa', cursive;
     padding: 10px;
-    
 }
 
 body {
     color: white;
-    background-image: url("../images/partly-cloudy.png");
+    background: url("../images/main.jpg") no-repeat center center fixed;
+    background-size: cover;
     font-family: 'Hind Madurai', sans-serif;
     /* padding: 60px; */
- }
+}
 
- #music {
-    background-color: darkslategrey;
+p.site-description {
+    color: rgb(255, 255, 255, .8);
+}
+
+#music {
+    position: relative;
+    bottom: -30px;
+    background-color: rgba(1, 12, 12, 0.75);
+    background-color: rgba(1, 12, 12, 0.75);
     min-height: 50vh;
- }
+}
 
- /* modal styles */
+/* modal styles */
+
 div.modal {
     color: rgb(47, 79, 79);
 }
@@ -69,13 +76,30 @@ a#changeZip, a#submitZip{
     background-color: rgb(47, 79, 79);
 }
  
-/* ---------------------Weather CSS---------------------- */
-#submitZip,
-#changeZip {
+a#changeZip, a#submitZip {
+    background-color: rgb(47, 79, 79);
+}
 
+/* ---------------------Weather CSS---------------------- */
+
+  /* label color */
+  /* .input-field label {
+    color: #000;
+  } */
+  /* label focus color */
+  div.input-field input#zipcode:focus + label {
+    color: rgba(1, 12, 12, 0.5);
+  }
+  /* label underline focus color */
+  div.input-field input#zipcode:focus {
+    border-bottom: 1px solid rgba(1, 12, 12, 0.5);
+    box-shadow: 0 1px 0 0 rgba(1, 12, 12, 0.5);
+  }
+
+
+#submitZip, #changeZip {
     margin-top: 15px;
     margin-bottom: 15px;
-
 }
 
 #nested-icons {
@@ -96,9 +120,6 @@ container#weather {
     background-size: cover; */
 }
 
-
-
-
 /* ---------------------Playlist CSS---------------------- */
 
 /* #playlist-data {
@@ -108,10 +129,13 @@ container#weather {
 
 } */
 
-.music-cards {
+section#music {
+    display: none;
+}
 
+.music-cards {
     float: left;
-    padding: 15px 0px 0px 200px; 
+    padding: 15px 0px 0px 200px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -126,14 +150,9 @@ div.playlist {
     float: left;
 }
 
-
-
 @media screen and (max-width: 640px) {
-
     h1 {
-
         font-size: 2rem;
-        
     }
 
 }

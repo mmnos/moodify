@@ -113,7 +113,7 @@ $(document).ready(function () {
 
         clear: {
 
-          search: "summer,vibe"
+          search: "summer,night"
 
         }
 
@@ -289,6 +289,7 @@ $(document).ready(function () {
     $("#submitZip").hide();
     $(".input-field").hide();
     $("#changeZip").focus();
+    $("section#music").fadeIn("slow");
     
   }
 
@@ -319,9 +320,11 @@ $(document).ready(function () {
   // checks zipcode after clicking search button
   $("#submitZip").on("click", function (event) {
     checkZip();
+    $("section#music").fadeIn("slow");
   });
   // shows input field and hides weather data
   $("#changeZip").on("click", function (event) {
+    $("section#music").fadeOut("slow");
     $("div.music-cards").empty();
     $(".input-field").show();
     $("#weather-data").hide();
@@ -330,6 +333,7 @@ $(document).ready(function () {
   $(document).on("keypress", function (event) {
     if (event.key === "Enter") {
       checkZip();
+      $("section#music").fadeIn("slow");
     }
   });
   //MUSIC SECTION
@@ -367,7 +371,7 @@ $(document).ready(function () {
     }
   }
   // var to hold access token
-  let accessToken = "BQBZkvfcKnK8PsehTU5yuIV9kXCdpobSBX37wj7eZeXHFLh7EeD9O_WukRLbbXKRmhEX8dNbP8ZK03CRU19rBHcM0aJakDEqRh-U-UKSq12KQqo-GSgIjHCZNGiAQWwtscESUT5mw3IzStz358zuVi5plgUxr5wEPGqwzrTNPiEoLRmd70hUAR0YXAtteN4DTA1e6I5HqNzrh4oWPzdO-2UyoI_tDqaogIcIKaRKbw"
+  let accessToken = "BQBu2tKkNlXZfkvPG4djjLivJTKAmjON556K8D9qn4_c58-_PizYys2T12y2f5cybDQr3sQoU_D3rGVhzyElKZ_oOIV2jQZssRVFQ-7JJvImIyJfoa-E_N8BwMPmu52IFtMWz2Kc17x7NvkJ3hr2Fkwyi9c3wet5gKnPwPuqAoRrEIcfITW-6lx927sVikctjnEdOxKgQY_xkOb3g82Xy3bEnk2AeVvigtZcx6guMQ"
   let searchForPlaylist = function () {
     // makes an ajax request to search the spotify api with recommended playlists
     $.get({

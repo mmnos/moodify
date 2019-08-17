@@ -31,6 +31,10 @@ p.site-description {
     min-height: 50vh;
 }
 
+div.bottom-music {
+    padding-top: 100px;
+}
+
 /* modal styles */
 
 div.modal {
@@ -119,15 +123,14 @@ div.input-field input#zipcode:focus {
     box-shadow: 0 1px 0 0 rgba(255, 255, 255, .8);
 }
 
-
 #submitZip {
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
-#nested-icons {
+/* #nested-icons {
     display: none;
-}
+} */
 
 /* .weatherPic {
 
@@ -157,16 +160,21 @@ section#music {
 }
 
 .music-cards {
-    float: left;
     padding: 15px 0px 0px 200px;
-    display: block;
     margin-left: auto;
     margin-right: auto;
     width: 25%;
-    /* position: center; */
     margin-top: 40px;
-    /* margin-bottom: 15px;
-} */
+} 
+
+div.music-cards img {
+    cursor: pointer;
+    width: 75%;
+}
+
+div.music-cards img:hover {
+    transform: scale(1.25,1.25);
+    transition: transform 1s
 }
 
 div.playlist {

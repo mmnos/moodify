@@ -333,12 +333,12 @@ $(document).ready(function () {
 
   // checks to make sure zip code user inputs is valid
   let checkZip = function () {
+
     $(".updatedWeather").empty();
 
     // holds user input
     userZip = $("#zipcode").val().trim();
     localStorage.setItem("Location", userZip);
-
     // "^" indicates the beginning of input
     // "$" indicates the end of input
     // "d{5}" wants the users input to be only 5 digits long, EX : 90210 or in the second statement after the "|",
@@ -350,11 +350,11 @@ $(document).ready(function () {
       getWeather();
       $(".helper-text").hide();
       $(".input-field").hide();
-    } else {
-      $(".helper-text").show();
 
     }
-
+    else {
+      $(".helper-text").show();
+    }
     // clears input field after clicking search
     $("#zipcode").val('');
 
@@ -392,7 +392,6 @@ $(document).ready(function () {
   //MUSIC SECTION
   //displays playlists on the page
   let appendPlaylists = (playlists) => {
-
     for (i = 0; i < 4; i++) {
 
       let playlistName = playlists[i].name;
@@ -406,11 +405,6 @@ $(document).ready(function () {
 
       let $img = $("<img>")
         .attr("src", imgSrc)
-        .css({
-          "cursor": "pointer",
-          "width": "75%",
-          "transition": "width 1s"
-        })
         .addClass("hoverable")
 
       // .on("mouseenter", function() {
@@ -450,22 +444,6 @@ $(document).ready(function () {
     });
 
   }
-
-  $("div.music-cards").on("mouseenter", "img", function () {
-
-    $(this).css({
-      "width": "85%",
-    })
-
-  })
-
-  $("div.music-cards").on("mouseleave", "img", function () {
-
-    $(this).css({
-      "width": "75%",
-    })
-
-  })
 
   $("a.modal-trigger").on("click", function () {
 

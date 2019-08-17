@@ -223,24 +223,30 @@ $(document).ready(function () {
     $.get(queryURL).then(function (response) {
       weatherData = response;
       console.log(weatherData);
+
       // display location
       cityName = weatherData.name;
       let cityP = $("<span>").text(cityName).addClass("updatedWeather");
+
       // declares weather icon
       weatherIcon = weatherData.weather[0].icon;
       let iconURL = `http://openweathermap.org/img/w/${weatherIcon}.png`;
       let wIcon = $("<img>").attr('src', iconURL).addClass("weatherPic");
+
       // display weather
       weather = weatherData.weather[0].description;
       let weatherP = $("<span>").text(weather + " in ").addClass("updatedWeather");
       $("div#weather-text").append(weatherP, cityP);
+
       // display weather icon + temperature
       temp = (parseInt(weatherData.main.temp) - 273.15) * 9 / 5 + 32;
       temp = Math.round(temp);
       let tempP = $("<span>").text(temp + "°").addClass("updatedWeather").css("font-size", "50px");
       $("div#temperature").prepend(tempP.prepend(wIcon));
+
       let weatherId = parseInt(weatherData.weather[0].id);
       console.log(weatherId);
+
       let weatherSet = () => {
         switch (true) {
           case (weatherId < 233):
@@ -273,6 +279,7 @@ $(document).ready(function () {
         };
         searchForPlaylist();
       }
+
       if (temp > 60) {
         tempCond = "warm"
       } else {
@@ -280,7 +287,9 @@ $(document).ready(function () {
       }
       $("#weather-data").show();
       weatherSet();
+
     });
+
   }
 
   if (userZip) {
@@ -290,31 +299,35 @@ $(document).ready(function () {
     $(".input-field").hide();
     $("#changeZip").focus();
     $("section#music").fadeIn("slow");
-    
+
   }
 
   // checks to make sure zip code user inputs is valid
   let checkZip = function () {
+
     $(".updatedWeather").empty();
 
-      // holds user input
-      userZip = $("#zipcode").val().trim();
-      localStorage.setItem("Location", userZip);
-      // "^" indicates the beginning of input
-      // "$" indicates the end of input
-      // "d{5}" wants the users input to be only 5 digits long, EX : 90210 or in the second statement after the "|",
-      // it allows 5 digits followed by a hyphen and 4 more digits, EX : 90210-1234
-      let regex = /^\d{5}$|^\d{5}-\d{4}$/;
-      // if user input is valid, it'll display the current weather and location of specified area
-      if (regex.test(userZip)) {
-        getWeather();
-        $(".helper-text").hide();
-        $(".input-field").hide();
-      } else {
-        $(".helper-text").show();
-      }
-      // clears input field after clicking search
-      $("#zipcode").val('');
+    // holds user input
+    userZip = $("#zipcode").val().trim();
+    localStorage.setItem("Location", userZip);
+    // "^" indicates the beginning of input
+    // "$" indicates the end of input
+    // "d{5}" wants the users input to be only 5 digits long, EX : 90210 or in the second statement after the "|",
+    // it allows 5 digits followed by a hyphen and 4 more digits, EX : 90210-1234
+    let regex = /^\d{5}$|^\d{5}-\d{4}$/;
+    // if user input is valid, it'll display the current weather and location of specified area
+    if (regex.test(userZip)) {
+
+      getWeather();
+      $(".helper-text").hide();
+      $(".input-field").hide();
+
+    }
+    else {
+      $(".helper-text").show();
+    }
+    // clears input field after clicking search
+    $("#zipcode").val('');
 
   }
   // checks zipcode after clicking search button
@@ -322,6 +335,7 @@ $(document).ready(function () {
     checkZip();
     $("section#music").fadeIn("slow");
   });
+
   // shows input field and hides weather data
   $("#changeZip").on("click", function (event) {
     $("section#music").fadeOut("slow");
@@ -329,6 +343,7 @@ $(document).ready(function () {
     $(".input-field").show();
     $("#weather-data").hide();
   });
+
   // press enter key to submit zipcode
   $(document).on("keypress", function (event) {
     if (event.key === "Enter") {
@@ -336,10 +351,11 @@ $(document).ready(function () {
       $("section#music").fadeIn("slow");
     }
   });
+
   //MUSIC SECTION
   //displays playlists on the page
   let appendPlaylists = (playlists) => {
-    for (i = 0; i < 3; i++) {
+    for (i = 0; i < 4; i++) {
 
       let playlistName = playlists[i].name;
       let imgSrc = playlists[i].images[0].url;
@@ -352,11 +368,6 @@ $(document).ready(function () {
 
       let $img = $("<img>")
         .attr("src", imgSrc)
-        .css({
-          "cursor": "pointer",
-          "width": "75%",
-          "transition": "width 1s"
-        })
         .addClass("hoverable")
       // .on("mouseenter", function() {
       //   $(`h4.playlistName${i}`).show();
@@ -371,7 +382,7 @@ $(document).ready(function () {
     }
   }
   // var to hold access token
-  let accessToken = "BQBu2tKkNlXZfkvPG4djjLivJTKAmjON556K8D9qn4_c58-_PizYys2T12y2f5cybDQr3sQoU_D3rGVhzyElKZ_oOIV2jQZssRVFQ-7JJvImIyJfoa-E_N8BwMPmu52IFtMWz2Kc17x7NvkJ3hr2Fkwyi9c3wet5gKnPwPuqAoRrEIcfITW-6lx927sVikctjnEdOxKgQY_xkOb3g82Xy3bEnk2AeVvigtZcx6guMQ"
+  let accessToken = "BQDBz5aZD6ORvyb-zIqGJYFLaEeN6F1voAMthmjcfskmiq7iIji520ITJg2sKBC6Tp88Vqm55ZQgr-iPbxhUYKHTpjLp8mxABQ01CDydnpmFhgw9Lq7-kj48KPboNN4e_jY0qT_d1UW7DTkjqeqvMb7gYUdNWQ9wzQokJponWSKgtNOeexA-rzrNFzTWrV7-7G__TqcWAkfIrPbcitzwNuQ4-kolkXCsnsWgklDAZQ"
   let searchForPlaylist = function () {
     // makes an ajax request to search the spotify api with recommended playlists
     $.get({
@@ -389,24 +400,11 @@ $(document).ready(function () {
     });
   }
 
-  $("div.music-cards").on("mouseenter", "img", function () {
-
-    $(this).css({
-      "width": "85%",
-    })
-
-  })
-  $("div.music-cards").on("mouseleave", "img", function () {
-
-    $(this).css({
-      "width": "75%",
-    })
-
-  })
-
 
   $("a.modal-trigger").on("click", function () {
+
     $('.modal').modal();
+
   })
 
 });

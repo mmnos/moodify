@@ -231,6 +231,17 @@ $(document).ready(function () {
 
   }
 
+// Toggle Animated Icons Div Visible/Invisible
+let togglevisibility = function (selector) {
+    if ($(selector).hasClass("hide")) {
+        $(selector).removeClass("hide");
+        // console.log("We are hidden.");
+    }
+    else {
+        $(selector).addClass("hide");
+    }
+}
+
   //WEATHER SECTION 
   //Retrieves weather from the api
   let getWeather = function () {
@@ -249,9 +260,8 @@ $(document).ready(function () {
 
       // declares weather icon
       weatherIcon = weatherData.weather[0].icon;
-      let iconURL = `http://openweathermap.org/img/w/${weatherIcon}.png`;
-      let wIcon = $("<img>").attr('src', iconURL).addClass("weatherPic");
-
+    //   let iconURL = `http://openweathermap.org/img/w/${weatherIcon}.png`;
+    //   let wIcon = $("<img>").attr('src', iconURL).addClass("weatherPic");
       // display weather
       weather = weatherData.weather[0].description;
       let weatherP = $("<span>").text(weather + " in ").addClass("updatedWeather");
@@ -262,41 +272,47 @@ $(document).ready(function () {
       temp = Math.round(temp);
 
       let tempP = $("<span>").text(temp + "°").addClass("updatedWeather").css("font-size", "50px");
-      $("div#temperature").prepend(tempP.prepend(wIcon));
-
+      $("div#temperature").prepend(tempP);
       let weatherId = parseInt(weatherData.weather[0].id);
 
       console.log(weatherId);
 
       let weatherSet = () => {
-
+        $("div.icon-body").addClass("hide");
         switch (true) {
           case (weatherId < 233):
             forecast = "precip";
             icon = "t-storms";
+            togglevisibility("div.thunder-storm");
             break;
           case (weatherId < 550):
             forecast = "precip";
             icon = "rain";
+            togglevisibility("div.rainy");
             break;
           case (weatherId < 623):
             forecast = "precip";
             icon = "snowy";
+            togglevisibility("div.flurries");
             break;
           case (weatherId < 782):
             forecast = "cloudy";
             icon = "cloudy";
+            togglevisibility("div.cloudy");
             break;
           case (weatherId < 804):
             forecast = "clear";
             icon = "sunny";
+            togglevisibility("div.sunny");
             break;
           case (weatherId == 804):
             forecast = "cloudy";
             icon = "cloudy";
+            togglevisibility("div.cloudy");
             break;
           default:
             forecast = "clear";
+            togglevisibility("div.sunny");
             break;
 
         };
@@ -363,7 +379,6 @@ $(document).ready(function () {
 
   // checks zipcode after clicking search button
   $("#submitZip").on("click", function (event) {
-
     checkZip();
     $("section#music").fadeIn("slow");
 

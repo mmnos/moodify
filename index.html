@@ -42,7 +42,7 @@
 
     <div class="row center">
         <div class="col s12">
-            <h1>m o o d i f y</h1>
+            <h1 class="mainHeader">m o o d i f y</h1>
             <p class="site-description">playlists based on the weather for your mood</p>
         </div>
     </div>
@@ -55,24 +55,24 @@
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
     <div class="modal-content">
-      <h4 class="preferences">Customize this for you</h4>
+      <h4 class="preferences">Customize it to you</h4>
       <h6>How are you feeling?</h6>
       <p>
         <label>
-          <input name="mood" class="mood with-gap" type="radio" class="prefMood" value="happy" />
+          <input name="mood" class="mood with-gap" type="radio" value="happy" />
           <span>Happy</span>
         </label>
       </p>
       <p>
         <label>
-          <input name="mood" class="mood with-gap" type="radio" class="prefMood" value="sad" />
+          <input name="mood" class="mood with-gap" type="radio" value="sad" />
           <span>Sad</span>
         </label>
       </p>
       <h6>What kind of music do you like? (Choose one)</h6>
       <p>
         <label>
-          <input type="checkbox" class="genre" name="genre" class="prefGenre" value="pop" />
+          <input type="checkbox" name="genre" class="prefGenre" value="pop" />
           <span>Pop</span>
         </label>
       </p>
@@ -84,7 +84,7 @@
       </p>
       <p>
         <label>
-          <input type="checkbox" name="genre" class="prefGenre" value="hip hop" />
+          <input type="checkbox" name="genre" class="prefGenre" value="hip-hop" />
           <span>Hip Hop</span>
         </label>
       </p>
@@ -100,7 +100,6 @@
       <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="searchPref">Search</a>
     </div>
   </div>
-
 
     <!-- IMPORTANT: The 'city' div will hold the zip code input field, which will then get replaced by the text of
     the city (DOM manipulation). -->
@@ -143,7 +142,7 @@
                     <div class="d-inline" id="temperature"></div>
                     <div id="weather-text"></div>
                     <div id="city"></div>
-                    <a class="waves-effect waves-light btn btn-small" id="changeZip">Change Location</a>
+                    <a class="material-icons" id="changeZip">location_on</a>
                 </div>
                 <div class="input-field col s8 center offset-s2 m4 offset-m4">
                     <input id="zipcode" type="text" class="validate">
@@ -168,9 +167,10 @@
             <div class="col s12" id="playlist-data">
                 <div class="row">
 
-                    <div class="music-cards col s8 m4 l3 offset-s2 offset-l1 center" id="0"></div>
+                    <div class="music-cards col s8 m4 l3 offset-s2 offset-m2 center" id="0"></div>
                     <div class="music-cards col s8 m4 l3 offset-s2 center" id="1"></div>
-                    <div class="music-cards col s8 m4 l3 offset-s2 center" id="2"></div>
+                    <div class="music-cards col s8 m4 l3 offset-s2 offset-m2 center bottom-music" id="2"></div>
+                    <div class="music-cards col s8 m4 l3 offset-s2 center bottom-music" id="3"></div>
 
                 </div>
 

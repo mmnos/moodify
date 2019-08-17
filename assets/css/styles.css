@@ -15,6 +15,10 @@ p.site-description {
     color: rgb(255, 255, 255, .8);
 }
 
+.d-inline {
+    display: inline-block;
+}
+
 #music {
     position: relative;
     bottom: -30px;

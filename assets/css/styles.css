@@ -61,6 +61,18 @@ a.modal-trigger {
     top: 10px;
 }
 
+span.settings-label {
+    display: none;
+    color: rgba(255, 255, 255, .8);
+    position: absolute;
+    right: 40px;
+    top: 10px
+}
+
+a.modal-trigger:hover span {
+    display: inline-block;
+}
+
 
 /* button styling */
 a#changeZip {

@@ -398,7 +398,7 @@ $(document).ready(function () {
   $("#changeZip").on("click", function (event) {
 
     $("section#music").fadeOut("slow");
-    $("div.music-cards").empty();
+    $("div.music-cards a").remove();
     $(".input-field").show();
     $("#weather-data").hide();
     $("#submitZip").show();
@@ -449,7 +449,7 @@ $(document).ready(function () {
   }
 
   // var to hold access token
-  let accessToken = "BQBfKBOdWE4N239GSk2yTG7PNvRpSqPSturBGMl3lolnC6GN5B2BmYa5-zOu_-Sou9Si2hVmp4PDpoTvMvKC9Ms3USAXbzyqUwYcLzDvsaoy7tzHkmO4wlD5AN5X9b_32sD9QKbBnmcBFUqYcPb8_P7fBqvJOUpMlMjP8hgjA4w6it2ly97WIzRuTC6BBY-Y06YfxuNBB63_u5RWDih0ppu3CBUt2tzNPS9jRkGb3g"
+  let accessToken = "BQD2PCJhewrW0K4uEnhJhAbyyExnDdLFVV9zV8_6lEx_4vJUxikkMIRM5mg5Nq-YRZfw5vLIC51ublVxGMqe5r13lvmLzTkVfgQLfXU_czFciKWphOqwYk8xsAQaHxqclt7AP3GJNPTBq1-KyjVUZKT0f2WeWzr8JsfbNO2lVEzBmvatYAH1OG8LjADBJNjF_QQq16c-Ru-d0ZV85dL7Bjb-qWSfoErTmbn_QssFfQ"
   let searchForPlaylist = function () {
 
     // makes an ajax request to search the spotify api with recommended playlists
@@ -479,6 +479,19 @@ $(document).ready(function () {
   $("a.modal-trigger").on("click", function () {
 
     $('.modal').modal();
+
+  })
+
+  $("a.modal-trigger").on("mouseenter", function () {
+    
+    $("span.settings-label").addClass("fadeInRight");
+
+  })
+
+  $("a.modal-trigger").on("mouseleave", function () {
+
+    $("span.settings-label").removeClass("fadeInRight");
+    $("span.settings-label").addClass("fadeOutRight");
 
   })
 

@@ -1,5 +1,11 @@
 $(document).ready(function () {
 
+  $(".carousel").carousel();
+
+  $('.carousel.carousel-slider').carousel({
+    fullWidth: true
+  });
+
   // localStorage.getItem("Location");
 
   // weather variables
@@ -16,12 +22,29 @@ $(document).ready(function () {
     playlists,
     icon,
     userGenre,
-    userMood;
+    userMood,
+    bgImage;
   let currentTime = moment();
   let morningStart = moment("4:00", "HH:mm");
   let dayStart = moment("10:30", "HH:mm");
   let nightStart = moment("19:00", "HH:mm");
 
+  let bgImageArray = [
+
+    "./assets/images/wmprecip.jpg", "./assets/images/wmcloudy.jpg", "./assets/images/wmclear.jpg", 
+    "./assets/images/wdprecip.jpg", "./assets/images/wdcloudy.jpg", "./assets/images/wdclear.jpg", 
+    "./assets/images/weprecip.jpg", "./assets/images/wecloudy.jpg", "./assets/images/weclear.jpg", 
+    "./assets/images/cmprecip.jpg", "./assets/images/cmcloudy.jpg", "./assets/images/cmclear.jpg", 
+    "./assets/images/cdprecip.jpg", "./assets/images/cdcloudy.jpg", "./assets/images/cdclear.jpg",
+    "./assets/images/ceprecip.jpg", "./assets/images/cecloudy.jpg", "./assets/images/ceclear.jpg"
+
+  ];
+
+  bgImageArray.forEach(function (img) {
+
+    new Image().src = img;
+
+  })
 
   console.log(userZip);
 
@@ -51,7 +74,7 @@ $(document).ready(function () {
     // makes an ajax request to search the spotify api with recommended playlists
     $.get({
 
-      url: `https://api.spotify.com/v1/search?q=${userMood, userGenre}&type=playlist&limit=15`,
+      url: `https://api.spotify.com/v1/search?q=${userMood},${userGenre}&type=playlist&limit=15`,
       // url: `https://api.spotify.com/v1/search?q=winter,chill&type=playlist&limit=20`,
       headers: {
         'Authorization': 'Bearer ' + accessToken
@@ -75,19 +98,21 @@ $(document).ready(function () {
 
         precip: {
 
-          search: "cozy"
+          search: "cozy",
+          background: `${bgImageArray[0]}`
 
         },
 
         cloudy: {
 
-          search: "summer,acoustic"
-
+          search: "summer,acoustic",
+          background: `${bgImageArray[1]}`
         },
 
         clear: {
 
-          search: "chill,summer"
+          search: "chill,summer",
+          background: `${bgImageArray[2]}`
 
         }
 
@@ -97,19 +122,22 @@ $(document).ready(function () {
 
         precip: {
 
-          search: "chill,summer"
+          search: "chill,summer",
+          background: `${bgImageArray[3]}`
 
         },
 
         cloudy: {
 
-          search: "happy"
+          search: "happy",
+          background: `${bgImageArray[4]}`
 
         },
 
         clear: {
 
-          search: "summer"
+          search: "summer",
+          background: `${bgImageArray[5]}`
 
         }
 
@@ -119,19 +147,22 @@ $(document).ready(function () {
 
         precip: {
 
-          search: "summer,acoustic"
+          search: "summer,acoustic",
+          background: `${bgImageArray[6]}`
 
         },
 
         cloudy: {
 
-          search: "summer,night"
+          search: "summer,night",
+          background: `${bgImageArray[7]}`
 
         },
 
         clear: {
 
-          search: "summer,night"
+          search: "summer,night",
+          background: `${bgImageArray[8]}`
 
         }
 
@@ -145,19 +176,22 @@ $(document).ready(function () {
 
         precip: {
 
-          search: "chill,morning"
+          search: "chill,morning",
+          background: `${bgImageArray[9]}`
 
         },
 
         cloudy: {
 
-          search: "cold,morning"
+          search: "cold,morning",
+          background: `${bgImageArray[10]}`
 
         },
 
         clear: {
 
-          search: "coffee,cozy"
+          search: "coffee,cozy",
+          background: `${bgImageArray[11]}`
 
         }
 
@@ -167,19 +201,22 @@ $(document).ready(function () {
 
         precip: {
 
-          search: "winter,chill"
+          search: "winter,chill",
+          background: `${bgImageArray[12]}`
 
         },
 
         cloudy: {
 
-          search: "chill"
+          search: "chill",
+          background: `${bgImageArray[13]}`
 
         },
 
         clear: {
 
-          search: "chill,hits"
+          search: "chill,hits",
+          background: `${bgImageArray[14]}`
 
         }
 
@@ -189,18 +226,21 @@ $(document).ready(function () {
 
         precip: {
 
-          search: "evening"
+          search: "evening",
+          background: `${bgImageArray[15]}`
 
         },
 
         cloudy: {
 
-          search: "evening,cozy"
+          search: "evening,cozy",
+          background: `${bgImageArray[16]}`
 
         },
         clear: {
 
-          search: "chill"
+          search: "chill",
+          background: `${bgImageArray[17]}`
 
         }
 
@@ -277,8 +317,8 @@ $(document).ready(function () {
         temp = Math.round(temp);
 
         let tempP = $("<span>").text(temp + "°")
-                              .addClass("updatedWeather")
-                              .css("font-size", "70px");
+          .addClass("updatedWeather")
+          .css("font-size", "70px");
         $("div#temperature").prepend(tempP);
         let weatherId = parseInt(weatherData.weather[0].id);
 
@@ -340,6 +380,7 @@ $(document).ready(function () {
 
         $("#weather-data").show();
         weatherSet();
+        changeBG();
 
       },
       error: function (error) {
@@ -348,6 +389,15 @@ $(document).ready(function () {
     })
 
   };
+
+  let changeBG = function() {
+
+    $("body").css({
+      "background": `url(${conditions[tempCond][timeOfDay][forecast].background}) no-repeat center center fixed`,
+      "background-size": "cover"
+  });
+
+  }
 
   if (userZip) {
 
@@ -449,7 +499,7 @@ $(document).ready(function () {
   }
 
   // var to hold access token
-  let accessToken = "BQDWs91XFQoVvAgm5I7CGnS4rJYvZuuv3aJ1NGgLC7OD9IZlrdgnHvRWryUWInddE6bPGEqylrak9OC_Uh_WMRHRFTB4FlVy-b4ez_m0RfFLElOCUuwCrWVXkdqWxjy_B0Mu5hd755Q-Wgm9n7WBNPZa25GhUgEZjKGRIixzVb_EtEFfCyqhFszwnS39WEt0iu02BDnDwGoo46nRSg3COlm7q0m-rIIT6uxvCDGiFw"
+  let accessToken = "BQD2PCJhewrW0K4uEnhJhAbyyExnDdLFVV9zV8_6lEx_4vJUxikkMIRM5mg5Nq-YRZfw5vLIC51ublVxGMqe5r13lvmLzTkVfgQLfXU_czFciKWphOqwYk8xsAQaHxqclt7AP3GJNPTBq1-KyjVUZKT0f2WeWzr8JsfbNO2lVEzBmvatYAH1OG8LjADBJNjF_QQq16c-Ru-d0ZV85dL7Bjb-qWSfoErTmbn_QssFfQ"
   let searchForPlaylist = function () {
 
     // makes an ajax request to search the spotify api with recommended playlists
@@ -465,12 +515,11 @@ $(document).ready(function () {
         console.log(response);
         playlists = response.playlists.items;
         console.log(playlists);
-        appendPlaylists(playlists)
+        appendPlaylists(playlists);
       },
       error: function (error) {
         $("p.music-error").show();
       }
-
 
     });
 

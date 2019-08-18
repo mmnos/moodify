@@ -5,7 +5,7 @@ body {
     background: url("../images/main.jpg") no-repeat center center fixed;
     background-size: cover;
     font-family: 'Julius Sans One', sans-serif;
-    /* padding: 60px; */
+    transition: 3s;
 }
 
 /* title screen styling */
@@ -39,9 +39,6 @@ p.error {
     display: inline-block;
 }
 
-
-
-
 /* modal styles */
 div.modal {
     color: rgb(47, 79, 79);
@@ -55,7 +52,7 @@ h4.preferences {
 }
 
 a.modal-trigger {
-    color: rgb(47, 79, 79);
+    color: rgba(255, 255, 255, .8);
     position: absolute;
     right: 10px;
     top: 10px;
@@ -64,7 +61,7 @@ a.modal-trigger {
 
 /* button styling */
 a#changeZip {
-    color: rgb(47, 79, 79);
+    color: rgba(255, 255, 255, .8);
     cursor: pointer;
     position: absolute;
     right: 10px;

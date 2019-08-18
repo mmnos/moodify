@@ -1,13 +1,5 @@
 $(document).ready(function () {
 
-  $(".carousel").carousel();
-
-  $('.carousel.carousel-slider').carousel({
-    fullWidth: true
-  });
-
-  // localStorage.getItem("Location");
-
   // weather variables
   let userZip = localStorage.getItem("Location");
   let weatherData,
@@ -24,17 +16,22 @@ $(document).ready(function () {
     userGenre,
     userMood,
     bgImage;
+
   let currentTime = moment();
   let morningStart = moment("4:00", "HH:mm");
   let dayStart = moment("10:30", "HH:mm");
   let nightStart = moment("19:00", "HH:mm");
 
+  $("#weather-data").hide();
+  $(".helper-text").hide();
+  $("#zipcode").focus();
+
   let bgImageArray = [
 
-    "./assets/images/wmprecip.jpg", "./assets/images/wmcloudy.jpg", "./assets/images/wmclear.jpg", 
-    "./assets/images/wdprecip.jpg", "./assets/images/wdcloudy.jpg", "./assets/images/wdclear.jpg", 
-    "./assets/images/weprecip.jpg", "./assets/images/wecloudy.jpg", "./assets/images/weclear.jpg", 
-    "./assets/images/cmprecip.jpg", "./assets/images/cmcloudy.jpg", "./assets/images/cmclear.jpg", 
+    "./assets/images/wmprecip.jpg", "./assets/images/wmcloudy.jpg", "./assets/images/wmclear.jpg",
+    "./assets/images/wdprecip.jpg", "./assets/images/wdcloudy.jpg", "./assets/images/wdclear.jpg",
+    "./assets/images/weprecip.jpg", "./assets/images/wecloudy.jpg", "./assets/images/weclear.jpg",
+    "./assets/images/cmprecip.jpg", "./assets/images/cmcloudy.jpg", "./assets/images/cmclear.jpg",
     "./assets/images/cdprecip.jpg", "./assets/images/cdcloudy.jpg", "./assets/images/cdclear.jpg",
     "./assets/images/ceprecip.jpg", "./assets/images/cecloudy.jpg", "./assets/images/ceclear.jpg"
 
@@ -43,50 +40,6 @@ $(document).ready(function () {
   bgImageArray.forEach(function (img) {
 
     new Image().src = img;
-
-  })
-
-  console.log(userZip);
-
-  $("#searchPref").on("click", function () {
-
-    localStorage.removeItem("Mood");
-    localStorage.removeItem("Genre");
-
-    if ($(".mood").is(":checked")) {
-
-      console.log($("input[type='radio']:checked").val());
-      userMood = $("input[type='radio']:checked").val();
-
-      localStorage.setItem("Mood", userMood);
-
-    }
-
-    if ($('.prefGenre').is(":checked")) {
-
-      console.log($("input[type='checkbox']:checked").val());
-      userGenre = $("input[type='checkbox']:checked").val();
-
-      localStorage.setItem("Genre", userGenre);
-
-    }
-
-    // makes an ajax request to search the spotify api with recommended playlists
-    $.get({
-
-      url: `https://api.spotify.com/v1/search?q=${userMood},${userGenre}&type=playlist&limit=15`,
-      // url: `https://api.spotify.com/v1/search?q=winter,chill&type=playlist&limit=20`,
-      headers: {
-        'Authorization': 'Bearer ' + accessToken
-      },
-      success: function (response) {
-        console.log(response);
-        playlists = response.playlists.items;
-        console.log(playlists);
-        appendPlaylists(playlists);
-      }
-
-    });
 
   });
 
@@ -250,25 +203,12 @@ $(document).ready(function () {
 
   }
 
-  console.log(conditions)
-  console.log(conditions.warm.morning.precip.search)
+  let changeBG = function () {
 
-  $("#weather-data").hide();
-  $(".helper-text").hide();
-  $("#zipcode").focus();
-
-  //TIME SECTION
-  if (currentTime.isBetween(morningStart, dayStart)) {
-
-    timeOfDay = "morning";
-
-  } else if (currentTime.isBetween(dayStart, nightStart)) {
-
-    timeOfDay = "day";
-
-  } else {
-
-    timeOfDay = "evening";
+    $("body").css({
+      "background": `url(${conditions[tempCond][timeOfDay][forecast].background}) no-repeat center center fixed`,
+      "background-size": "cover"
+    });
 
   }
 
@@ -283,8 +223,23 @@ $(document).ready(function () {
     }
   }
 
-  //WEATHER SECTION 
-  //Retrieves weather from the api
+  // TIME SECTION
+  if (currentTime.isBetween(morningStart, dayStart)) {
+
+    timeOfDay = "morning";
+
+  } else if (currentTime.isBetween(dayStart, nightStart)) {
+
+    timeOfDay = "day";
+
+  } else {
+
+    timeOfDay = "evening";
+
+  }
+
+  // WEATHER SECTION 
+  // Retrieves weather from the api
   let getWeather = function () {
 
     // queryURL = `api.openweathermap.org/data/2.5/weather?zip=${userZip}&APPID=01b094dd158ecf4fb77c7c5db98a6ad6`
@@ -390,15 +345,6 @@ $(document).ready(function () {
 
   };
 
-  let changeBG = function() {
-
-    $("body").css({
-      "background": `url(${conditions[tempCond][timeOfDay][forecast].background}) no-repeat center center fixed`,
-      "background-size": "cover"
-  });
-
-  }
-
   if (userZip) {
 
     getWeather();
@@ -417,6 +363,7 @@ $(document).ready(function () {
     // holds user input
     userZip = $("#zipcode").val().trim();
     localStorage.setItem("Location", userZip);
+    
     // "^" indicates the beginning of input
     // "$" indicates the end of input
     // "d{5}" wants the users input to be only 5 digits long, EX : 90210 or in the second statement after the "|",
@@ -439,6 +386,7 @@ $(document).ready(function () {
 
   // checks zipcode after clicking search button
   $("#submitZip").on("click", function (event) {
+
     checkZip();
     $("section#music").fadeIn("slow");
 
@@ -452,6 +400,7 @@ $(document).ready(function () {
     $(".input-field").show();
     $("#weather-data").hide();
     $("#submitZip").show();
+    $("#zipcode").focus();
 
   });
 
@@ -465,34 +414,69 @@ $(document).ready(function () {
 
   });
 
-  //MUSIC SECTION
-  //displays playlists on the page
+  // adds preference data to local storage 
+  $("#searchPref").on("click", function () {
+
+    localStorage.removeItem("Mood");
+    localStorage.removeItem("Genre");
+
+    if ($(".mood").is(":checked")) {
+
+      console.log($("input[type='radio']:checked").val());
+      userMood = $("input[type='radio']:checked").val();
+
+      localStorage.setItem("Mood", userMood);
+
+    }
+
+    if ($('.prefGenre').is(":checked")) {
+
+      console.log($("input[type='checkbox']:checked").val());
+      userGenre = $("input[type='checkbox']:checked").val();
+
+      localStorage.setItem("Genre", userGenre);
+
+    }
+
+    // makes an ajax request to search the spotify api with recommended playlists
+    $.get({
+
+      url: `https://api.spotify.com/v1/search?q=${userMood}+${userGenre}&type=playlist&limit=15`,
+      // url: `https://api.spotify.com/v1/search?q=winter,chill&type=playlist&limit=20`,
+      headers: {
+        'Authorization': 'Bearer ' + accessToken
+      },
+      success: function (response) {
+        console.log(response);
+        playlists = response.playlists.items;
+        console.log(playlists);
+        appendPlaylists(playlists);
+      }
+
+    });
+
+  });
+
+  // MUSIC SECTION
+  // displays playlists on the page
   let appendPlaylists = (playlists) => {
+
     for (i = 0; i < 4; i++) {
 
       let playlistName = playlists[i].name;
       let imgSrc = playlists[i].images[0].url;
       let redirect = playlists[i].external_urls.spotify;
 
-      let $name = $("<h4>")
-        .text(playlistName)
-        .css("display", "none")
-        .addClass(`playlistName${i}`)
-
       let $img = $("<img>")
         .attr("src", imgSrc)
         .addClass("hoverable")
-
-      // .on("mouseenter", function() {
-      //   $(`h4.playlistName${i}`).show();
-      // });
 
       let $a = $("<a>")
         .attr("href", `${redirect}`)
         .attr("target", "_blank")
         .append($img);
 
-      $(`div#${i}`).append($a, $name);
+      $(`div#${i}`).append($a);
 
     }
 

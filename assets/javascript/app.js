@@ -17,6 +17,13 @@ $(document).ready(function () {
     userMood,
     bgImage;
 
+  // jquery variables;
+  let $modalTrigger = $("a.modal-trigger"),
+      $settingsLabel = $("span.settings-label"),
+      $changeZip = $("a#changeZip"),
+      $locationLabel = $("span.location-label")
+
+
   let currentTime = moment();
   let morningStart = moment("4:00", "HH:mm");
   let dayStart = moment("10:30", "HH:mm");
@@ -509,23 +516,38 @@ $(document).ready(function () {
 
   }
 
-  $("a.modal-trigger").on("click", function () {
+  $modalTrigger.on("click", function () {
 
     $('.modal').modal();
 
   })
 
-  $("a.modal-trigger").on("mouseenter", function () {
-    
-    $("span.settings-label").addClass("fadeInRight");
+  $modalTrigger.on("mouseenter", function () {
+    $settingsLabel.removeClass("fadeOutRight");    
+    $settingsLabel.fadeIn().addClass("fadeInRight");
 
   })
 
-  $("a.modal-trigger").on("mouseleave", function () {
+  $modalTrigger.on("mouseleave", function () {
 
-    $("span.settings-label").removeClass("fadeInRight");
-    $("span.settings-label").addClass("fadeOutRight");
+    $settingsLabel.removeClass("fadeInRight");
+    $settingsLabel.fadeOut().addClass("fadeOutRight");
 
   })
+
+
+  $changeZip.on("mouseenter", function () {
+    $locationLabel.removeClass("fadeOutRight");    
+    $locationLabel.fadeIn().addClass("fadeInRight");
+
+  })
+
+  $changeZip.on("mouseleave", function () {
+
+    $locationLabel.removeClass("fadeInRight");
+    $locationLabel.fadeOut().addClass("fadeOutRight");
+
+  })
+
 
 });

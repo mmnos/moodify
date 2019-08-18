@@ -86,6 +86,7 @@ span.settings-label {
     top: 10px
 }
 
+
 a.modal-trigger:hover span {
     display: inline-block;
 }
@@ -100,6 +101,15 @@ a#changeZip {
     right: 10px;
     top: 45px;
 
+}
+
+
+span.location-label {
+    display: none;
+    color: rgba(255, 255, 255, .8);
+    position: absolute;
+    right: 40px;
+    top: 45px;
 }
 
 #searchPref {

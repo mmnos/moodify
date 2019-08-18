@@ -4,200 +4,207 @@
 
 <head>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>moodify</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>moodify</title>
 
-  <!-- CSS -->
-  <!-- NOTE: In order for all CSS to work, it should be in this current order - please advise before adding new links. -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Hind+Madurai&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="./assets/icons/animated-icons.css">
-  <link rel="stylesheet" href="./assets/css/styles.css">
+    <!-- CSS -->
+    <!-- NOTE: In order for all CSS to work, it should be in this current order - please advise before adding new links. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Hind+Madurai&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-database.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="./assets/icons/animated-icons.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
 
-  <script src="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.css" />
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-database.js"></script>
 
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.css" />
 
-  <!-- momentjs -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+        </script>
+
+    <!-- momentjs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 
 </head>
 
 <body>
 
-  <div class="row center">
-    <div class="col s12">
-      <h1 class="mainHeader">m o o d i f y</h1>
-      <p class="site-description">playlists based on the weather for your mood</p>
+    <div class="row center">
+        <div class="col s12">
+            <h1 class="mainHeader">m o o d i f y</h1>
+            <p class="site-description">playlists based on the weather for your mood</p>
+        </div>
     </div>
-  </div>
 
-  <!-- NOTE: The app layout is a 40/60 split, where Weather takes 40% of the layout; Music is 60%.
+    <!-- NOTE: The app layout is a 40/60 split, where Weather takes 40% of the layout; Music is 60%.
     The 'weather' container is broken down to display the current weather by graphic 'weather-icon', as well as
     displaying the current temperature 'temperature' for the current city 'city'. -->
 
-  <!-- Modal Trigger -->
-  <a class="modal-trigger material-icons" href="#modal1">settings</a>
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4 class="preferences">Customize it to you</h4>
-      <h6>How are you feeling?</h6>
-      <p>
-        <label>
-          <input name="mood" class="mood with-gap" type="radio" value="happy" />
-          <span>Happy</span>
-        </label>
-      </p>
-      <p>
-        <label>
-          <input name="mood" class="mood with-gap" type="radio" value="sad" />
-          <span>Sad</span>
-        </label>
-      </p>
-      <h6>What kind of music do you like? (Choose one)</h6>
-      <p>
-        <label>
-          <input type="checkbox" name="genre" class="prefGenre" value="pop" />
-          <span>Pop</span>
-        </label>
-      </p>
-      <p>
-        <label>
-          <input type="checkbox" name="genre" class="prefGenre" value="rock" />
-          <span>Rock</span>
-        </label>
-      </p>
-      <p>
-        <label>
-          <input type="checkbox" name="genre" class="prefGenre" value="hip-hop" />
-          <span>Hip Hop</span>
-        </label>
-      </p>
-      <p>
-        <label>
-          <input type="checkbox" name="genre" class="prefGenre" value="country" />
-          <span>Country</span>
-        </label>
-      </p>
+    <!-- Modal Trigger -->
+    <span class="settings-label animated">preferences</span>
+    <a class="modal-trigger material-icons" href="#modal1">settings</a>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4 class="preferences">Customize it to you</h4>
+            <h6>How are you feeling?</h6>
+            <p>
+                <label>
+                    <input name="mood" class="mood with-gap" type="radio" value="happy" />
+                    <span>Happy</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input name="mood" class="mood with-gap" type="radio" value="sad" />
+                    <span>Sad</span>
+                </label>
+            </p>
+            <h6>What kind of music do you like? (Choose one)</h6>
+            <p>
+                <label>
+                    <input type="checkbox" name="genre" class="prefGenre" value="pop" />
+                    <span>Pop</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input type="checkbox" name="genre" class="prefGenre" value="rock" />
+                    <span>Rock</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input type="checkbox" name="genre" class="prefGenre" value="hip-hop" />
+                    <span>Hip Hop</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input type="checkbox" name="genre" class="prefGenre" value="country" />
+                    <span>Country</span>
+                </label>
+            </p>
+        </div>
+
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="searchPref">Search</a>
+        </div>
     </div>
 
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="searchPref">Search</a>
-    </div>
-  </div>
-
-  <!-- IMPORTANT: The 'city' div will hold the zip code input field, which will then get replaced by the text of
+    <!-- IMPORTANT: The 'city' div will hold the zip code input field, which will then get replaced by the text of
     the city (DOM manipulation). -->
-  <section id="weather">
-    <div class="row">
-      <div class="col s12">
-        <div id="weather-data" class="center">
-          <div class="d-inline" id="weather-icon">
-            <div class="icon-body icon cloudy hide">
-              <div class="cloud"></div>
-              <div class="cloud"></div>
-            </div>
-            <div class="icon-body icon thunder-storm hide">
-              <div class="cloud"></div>
-              <div class="lightning">
-                <div class="bolt"></div>
-                <div class="bolt"></div>
-              </div>
-            </div>
-
-            <div class="icon-body icon flurries hide">
-              <div class="cloud"></div>
-              <div class="snow">
-                <div class="flake"></div>
-                <div class="flake"></div>
-              </div>
-            </div>
-
-            <div class="icon-body icon sunny hide">
-              <div class="sun">
-                <div class="rays"></div>
-              </div>
-            </div>
-
-            <div class="icon-body icon rainy hide">
-              <div class="cloud"></div>
-              <div class="rain"></div>
-            </div>
-          </div>
-          <div class="d-inline" id="temperature"></div>
-          <div id="weather-text"></div>
-          <div id="city"></div>
-        </div>
-        <a class="material-icons" id="changeZip">location_on</a>
-        <div class="input-field col s8 center offset-s2 m4 offset-m4">
-          <input id="zipcode" type="text" class="validate">
-          <label for="zipcode">Enter your zipcode here</label>
-          <span class="helper-text">Please enter a valid zipcode</span>
-          <a class="waves-effect waves-light btn" id="submitZip">Search</a>
-        </div>
-      </div> 
-    </div>
-  </section>
-  <section id="music">
-
-    <div class="row music">
-
-      <div class="col s12" id="playlist-data">
-
+    <section id="weather">
         <div class="row">
+            <div class="col s12">
+                <div id="weather-data" class="center">
+                    <div class="d-inline" id="weather-icon">
+                        <div class="icon-body icon cloudy hide">
+                            <div class="cloud"></div>
+                            <div class="cloud"></div>
+                        </div>
+                        <div class="icon-body icon thunder-storm hide">
+                            <div class="cloud"></div>
+                            <div class="lightning">
+                                <div class="bolt"></div>
+                                <div class="bolt"></div>
+                            </div>
+                        </div>
 
-          <div class="col s12 center">
-            <p class="weather-error error">No Results Found For Current Zip</p>
-            <p class="music-error error">No Results Found. Please Refresh Access Token</p>
-          </div>
+                        <div class="icon-body icon flurries hide">
+                            <div class="cloud"></div>
+                            <div class="snow">
+                                <div class="flake"></div>
+                                <div class="flake"></div>
+                            </div>
+                        </div>
 
-          <div class="music-cards col s8 m4 l3 offset-s2 offset-m2 center" id="0">
-            <i class="material-icons hide-on-small-only small left-arrow">arrow_back</i>
-          </div>
-          <div class="music-cards col s8 m4 l3 offset-s2 center" id="1"></div>
-          <div class="music-cards col s8 m4 l3 offset-s2 offset-m2 center" id="2"></div>
-          <div class="music-cards col s8 m4 l3 offset-s2 center" id="3">
-            <i class="material-icons hide-on-small-only small right-arrow">arrow_forward</i>
-          </div>
+                        <div class="icon-body icon sunny hide">
+                            <div class="sun">
+                                <div class="rays"></div>
+                            </div>
+                        </div>
+
+                        <div class="icon-body icon rainy hide">
+                            <div class="cloud"></div>
+                            <div class="rain"></div>
+                        </div>
+                    </div>
+                    <div class="d-inline" id="temperature"></div>
+                    <div id="weather-text"></div>
+                    <div id="city"></div>
+                </div>
+
+                <!-- change location button -->
+                <span class="location-label animated">change location</span>
+                <a class="material-icons" id="changeZip">location_on</a>
+
+                <div class="input-field col s8 center offset-s2 m4 offset-m4">
+                    <input id="zipcode" type="text" class="validate">
+                    <label for="zipcode">Enter your zipcode here</label>
+                    <span class="helper-text">Please enter a valid zipcode</span>
+                    <a class="waves-effect waves-light btn" id="submitZip">Search</a>
+                </div>
+            </div> 
+        </div>
+    </section>
+    <section id="music">
+
+        <div class="row music">
+
+            <div class="col s12" id="playlist-data">
+
+                <div class="row">
+
+                    <div class="col s12 center">
+                        <p class="weather-error error">No Results Found For Current Zip</p>
+                        <p class="music-error error">No Results Found. Please Refresh Access Token</p>
+                    </div>
+
+                    <div class="music-cards col s8 m4 l3 offset-s2 offset-m2 center" id="0">
+                        <i class="material-icons hide-on-small-only small left-arrow">arrow_back</i>
+                    </div>
+                    <div class="music-cards col s8 m4 l3 offset-s2 center" id="1"></div>
+                    <div class="music-cards col s8 m4 l3 offset-s2 offset-m2 center" id="2"></div>
+                    <div class="music-cards col s8 m4 l3 offset-s2 center" id="3">
+                        <i class="material-icons hide-on-small-only small right-arrow">arrow_forward</i>
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
-      </div>
+    </section>
 
-    </div>
+    <div class="test"></div>
 
-  </section>
+    <!-- compiled and minified JavaScript (materialize) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-  <div class="test"></div>
+    <!-- spotify sdk -->
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
 
-  <!-- compiled and minified JavaScript (materialize) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- will execute once the sdk has successfully been loaded -->
+    <script>
+        window.onSpotifyWebPlaybackSDKReady = () => {
+            // You can now initialize Spotify.Player and use the SDK
+        };
+    </script>
 
-  <!-- spotify sdk -->
-  <script src="https://sdk.scdn.co/spotify-player.js"></script>
-
-  <!-- will execute once the sdk has successfully been loaded -->
-  <script>
-    window.onSpotifyWebPlaybackSDKReady = () => {
-      // You can now initialize Spotify.Player and use the SDK
-    };
-  </script>
-
-  <!-- app file -->
-  <script src="./assets/javascript/app.js"></script>
+    <!-- app file -->
+    <script src="./assets/javascript/app.js"></script>
 
 </body>
 

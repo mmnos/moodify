@@ -17,6 +17,13 @@ $(document).ready(function () {
     userMood,
     bgImage;
 
+  // jquery variables;
+  let $modalTrigger = $("a.modal-trigger"),
+      $settingsLabel = $("span.settings-label"),
+      $changeZip = $("a#changeZip"),
+      $locationLabel = $("span.location-label")
+
+
   let currentTime = moment();
   let morningStart = moment("4:00", "HH:mm");
   let dayStart = moment("10:30", "HH:mm");
@@ -396,7 +403,7 @@ $(document).ready(function () {
   $("#changeZip").on("click", function (event) {
 
     $("section#music").fadeOut("slow");
-    $("div.music-cards").empty();
+    $("div.music-cards a").remove();
     $(".input-field").show();
     $("#weather-data").hide();
     $("#submitZip").show();
@@ -509,10 +516,38 @@ $(document).ready(function () {
 
   }
 
-  $("a.modal-trigger").on("click", function () {
+  $modalTrigger.on("click", function () {
 
     $('.modal').modal();
 
   })
+
+  $modalTrigger.on("mouseenter", function () {
+    $settingsLabel.removeClass("fadeOutRight");    
+    $settingsLabel.fadeIn().addClass("fadeInRight");
+
+  })
+
+  $modalTrigger.on("mouseleave", function () {
+
+    $settingsLabel.removeClass("fadeInRight");
+    $settingsLabel.fadeOut().addClass("fadeOutRight");
+
+  })
+
+
+  $changeZip.on("mouseenter", function () {
+    $locationLabel.removeClass("fadeOutRight");    
+    $locationLabel.fadeIn().addClass("fadeInRight");
+
+  })
+
+  $changeZip.on("mouseleave", function () {
+
+    $locationLabel.removeClass("fadeInRight");
+    $locationLabel.fadeOut().addClass("fadeOutRight");
+
+  })
+
 
 });

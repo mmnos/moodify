@@ -1,74 +1,93 @@
 @import url('https://fonts.googleapis.com/css?family=Julius+Sans+One&display=swap');
 
 body {
+
     color: white;
     background: url("../images/main.jpg") no-repeat center center fixed;
     background-size: cover;
     font-family: 'Julius Sans One', sans-serif;
-    /* padding: 60px; */
+    transition: 3s;
+
 }
 
 /* title screen styling */
 h1 {
+
     font-family: 'Comfortaa', cursive;
     padding: 10px;
+
 }
 
 h1.mainHeader {
+
     font-size: 6em;
+
 }
 
 p.site-description {
+
     font-size: 1em;
     color: rgb(255, 255, 255, .8);
+
 }
 
 
 /* error message styling */
 p.error-message {
+
     display: none;
+
 }
 
 p.error {
+    
     margin-top: 50px;
     font-size: 2em;
+
 }
 
 
 .d-inline {
+
     display: inline-block;
+
 }
-
-
-
 
 /* modal styles */
 div.modal {
+
     color: rgb(47, 79, 79);
+
 }
 
 h4.preferences {
+
     border-bottom: 1px solid rgb(47, 79, 79);
     text-align: center;
     padding-bottom: 15px;
     margin-bottom: 25px;
+
 }
 
 a.modal-trigger {
-    color: rgb(47, 79, 79);
+
+    color: rgba(255, 255, 255, .8);
     position: absolute;
     right: 10px;
     top: 10px;
+
 }
 
 
 /* button styling */
 a#changeZip {
-    color: rgb(47, 79, 79);
+
+    color: rgba(255, 255, 255, .8);
     cursor: pointer;
     position: absolute;
     right: 10px;
     top: 45px;
+
 }
 
 #searchPref {
@@ -105,87 +124,121 @@ a#changeZip {
 a#submitZip {
     
     background-color: rgb(47, 79, 79);
+
 }
 
 
 /* ---------------------Weather CSS---------------------- */
 
 /* label color */
+
+input#zipcode {
+
+    color: rgba(255, 255, 255, .8);
+
+}
+
 .input-field label {
+    
     color: rgba(255, 255, 255, .6);
+
 }
 
 /* label underline color */
 .input-field input[type=text] {
+
     border-bottom: 1px solid rgba(255, 255, 255, .6);
+
 }
 
 /* label focus color */
 div.input-field input#zipcode:focus+label {
+
     color: rgba(255, 255, 255, .8);
+
 }
 
 /* label underline focus color */
 div.input-field input#zipcode:focus {
+
     border-bottom: 1px solid rgba(255, 255, 255, .8);
     box-shadow: 0 1px 0 0 rgba(255, 255, 255, .8);
+
 }
 
 #submitZip {
+
     margin-top: 15px;
     margin-bottom: 15px;
+
 }
 
 span#updatedWeather {
+
     font-size: 4rem;
+
 }
 
 /* ---------------------Playlist CSS---------------------- */
 
 section#music {
+
     display: none;
     position: relative;
     bottom: -30px;
     background-color: rgba(1, 12, 12, 0.75);
     background-color: rgba(1, 12, 12, 0.75);
     min-height: 50vh;
+
 }
 
 
 div.music-cards {
+
     padding: 15px 0px 0px 200px;
     margin-left: auto;
     margin-right: auto;
     width: 25%;
     margin-top: 40px;
+
 } 
 
 div.music-cards img {
+
     cursor: pointer;
     width: 75%;
+
 }
 
 div.music-cards img:hover {
+
     transform: scale(1.25,1.25);
-    transition: transform 1s
+    transition: transform 1s;
+
 }
 
 div.playlist {
+
     float: left;
+
 }
 
 i.left-arrow {
+
     cursor: pointer;
     position: absolute;
     bottom: 250px;
     left: 20px;
+
 }
 
 i.right-arrow {
+
     cursor: pointer;
     position: absolute;
     bottom: 250px;
     right: 20px;
+
 }
 
 
@@ -216,4 +269,5 @@ i.right-arrow {
         right: 10px;
         bottom: 160px;
     }
+
 }

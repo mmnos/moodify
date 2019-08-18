@@ -18,9 +18,9 @@ $(document).ready(function () {
 
   // jquery variables;
   let $modalTrigger = $("a.modal-trigger"),
-      $settingsLabel = $("span.settings-label"),
-      $changeZip = $("a#changeZip"),
-      $locationLabel = $("span.location-label")
+    $settingsLabel = $("span.settings-label"),
+    $changeZip = $("a#changeZip"),
+    $locationLabel = $("span.location-label")
 
 
   let currentTime = moment();
@@ -345,6 +345,8 @@ $(document).ready(function () {
           };
 
           searchForPlaylist();
+          setPreferences();
+          getMoodPlaylists();
 
         }
 
@@ -442,6 +444,12 @@ $(document).ready(function () {
   // adds preference data to local storage 
   $("#searchPref").on("click", function () {
 
+    setPreferences();
+
+  });
+
+  let setPreferences = () => {
+
     localStorage.removeItem("Mood");
     localStorage.removeItem("Genre");
 
@@ -463,7 +471,9 @@ $(document).ready(function () {
 
     }
 
-    // makes an ajax request to search the spotify api with recommended playlists
+  }
+
+  let getMoodPlaylists = () => {
     $.get({
 
       url: `https://api.spotify.com/v1/search?q=${userMood}+${userGenre}&type=playlist&limit=15`,
@@ -475,15 +485,14 @@ $(document).ready(function () {
         console.log(response);
         playlists = response.playlists.items;
         console.log(playlists);
-        appendPlaylists(playlists);
+        appendMoodPlaylists(playlists);
       },
       error: function (error) {
         $("p.music-error").show();
       }
 
     });
-
-  });
+  }
 
   // MUSIC SECTION
   // displays playlists on the page
@@ -505,6 +514,29 @@ $(document).ready(function () {
         .addClass("");
 
       $(`div#${i}`).append($a);
+
+    }
+
+  }
+
+  let appendMoodPlaylists = (playlists) => {
+
+    for (i = 0; i < 4; i++) {
+
+      let imgSrc = playlists[i].images[0].url;
+      let redirect = playlists[i].external_urls.spotify;
+
+      let $img = $("<img>")
+        .attr("src", imgSrc)
+        .addClass("hoverable")
+
+      let $a = $("<a>")
+        .attr("href", `${redirect}`)
+        .attr("target", "_blank")
+        .append($img)
+        .addClass("mood-playlist");
+
+      $(`div#${i + 4}`).append($a);
 
     }
 
@@ -544,7 +576,7 @@ $(document).ready(function () {
   })
 
   $modalTrigger.on("mouseenter", function () {
-    $settingsLabel.removeClass("fadeOutRight");    
+    $settingsLabel.removeClass("fadeOutRight");
     $settingsLabel.fadeIn().addClass("fadeInRight");
 
   })
@@ -558,7 +590,7 @@ $(document).ready(function () {
 
 
   $changeZip.on("mouseenter", function () {
-    $locationLabel.removeClass("fadeOutRight");    
+    $locationLabel.removeClass("fadeOutRight");
     $locationLabel.fadeIn().addClass("fadeInRight");
 
   })

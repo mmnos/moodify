@@ -50,52 +50,52 @@
     The 'weather' container is broken down to display the current weather by graphic 'weather-icon', as well as
     displaying the current temperature 'temperature' for the current city 'city'. -->
 
-  <!-- Modal Trigger -->
-  <span class="settings-label animated">preferences</span>
-  <a class="modal-trigger material-icons" href="#modal1">settings</a>
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4 class="preferences">Customize it to you</h4>
-      <h6>How are you feeling?</h6>
-      <p>
-        <label>
-          <input name="mood" id="happy" class="mood with-gap" type="radio" value="happy" />
-          <span>Happy</span>
-        </label>
-      </p>
-      <p>
-        <label>
-          <input name="mood" id="sad" class="mood with-gap" type="radio" value="sad" />
-          <span>Sad</span>
-        </label>
-      </p>
-      <h6>What kind of music do you like? (Choose one)</h6>
-      <p>
-        <label>
-          <input type="checkbox" name="genre" id="pop" class="prefGenre" value="pop" />
-          <span>Pop</span>
-        </label>
-      </p>
-      <p>
-        <label>
-          <input type="checkbox" name="genre" id="rock" class="prefGenre" value="rock" />
-          <span>Rock</span>
-        </label>
-      </p>
-      <p>
-        <label>
-          <input type="checkbox" name="genre" id="hiphop" class="prefGenre" value="hip-hop" />
-          <span>Hip Hop</span>
-        </label>
-      </p>
-      <p>
-        <label>
-          <input type="checkbox" name="genre" id="country" class="prefGenre" value="country" />
-          <span>Country</span>
-        </label>
-      </p>
-    </div>
+    <!-- Modal Trigger -->
+    <span class="settings-label animated">preferences</span>
+    <a class="modal-trigger material-icons" href="#modal1">settings</a>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4 class="preferences">Customize it to you</h4>
+            <h6>How are you feeling?</h6>
+            <p>
+                <label>
+                    <input name="mood" id="happy" class="mood with-gap" type="radio" value="happy" />
+                    <span>Happy</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input name="mood" id="sad" class="mood with-gap" type="radio" value="sad" />
+                    <span>Sad</span>
+                </label>
+            </p>
+            <h6>What kind of music do you like? (Choose one)</h6>
+            <p>
+                <label>
+                    <input type="checkbox" name="genre" id="pop" class="prefGenre" value="pop" />
+                    <span>Pop</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input type="checkbox" name="genre" id="rock" class="prefGenre" value="rock" />
+                    <span>Rock</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input type="checkbox" name="genre" id="hiphop" class="prefGenre" value="hip-hop" />
+                    <span>Hip Hop</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input type="checkbox" name="genre" id="country" class="prefGenre" value="country" />
+                    <span>Country</span>
+                </label>
+            </p>
+        </div>
 
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="searchPref">Search</a>
@@ -171,6 +171,10 @@
                         <p class="music-error error">No Results Found. Please Refresh Access Token</p>
                     </div>
 
+                </div>
+
+                <div class="row first-row">
+
                     <div class="music-cards col s8 m4 l3 offset-s2 offset-m2 center" id="0">
                         <i class="material-icons hide-on-small-only small left-arrow">arrow_back</i>
                     </div>
@@ -181,6 +185,19 @@
                     </div>
 
                 </div>
+                <div class="row second-row">
+
+                    <div class="music-cards col s8 m4 l3 offset-s2 offset-m2 center" id="4">
+                        <i class="material-icons hide-on-small-only small left-arrow">arrow_back</i>
+                    </div>
+                    <div class="music-cards col s8 m4 l3 offset-s2 center" id="5"></div>
+                    <div class="music-cards col s8 m4 l3 offset-s2 offset-m2 center" id="6"></div>
+                    <div class="music-cards col s8 m4 l3 offset-s2 center" id="7">
+                        <i class="material-icons hide-on-small-only small right-arrow">arrow_forward</i>
+                    </div>
+
+                </div>
+
 
             </div>
 

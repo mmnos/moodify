@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-  // localStorage.getItem("Location");
-
   // weather variables
   let userZip = localStorage.getItem("Location");
   let weatherData,
@@ -16,53 +14,32 @@ $(document).ready(function () {
     playlists,
     icon,
     userGenre,
-    userMood;
+    userMood,
+    bgImage;
+
   let currentTime = moment();
   let morningStart = moment("4:00", "HH:mm");
   let dayStart = moment("10:30", "HH:mm");
   let nightStart = moment("19:00", "HH:mm");
 
+  $("#weather-data").hide();
+  $(".helper-text").hide();
+  $("#zipcode").focus();
 
-  console.log(userZip);
+  let bgImageArray = [
 
-  $("#searchPref").on("click", function () {
+    "./assets/images/wmprecip.jpg", "./assets/images/wmcloudy.jpg", "./assets/images/wmclear.jpg",
+    "./assets/images/wdprecip.jpg", "./assets/images/wdcloudy.jpg", "./assets/images/wdclear.jpg",
+    "./assets/images/weprecip.jpg", "./assets/images/wecloudy.jpg", "./assets/images/weclear.jpg",
+    "./assets/images/cmprecip.jpg", "./assets/images/cmcloudy.jpg", "./assets/images/cmclear.jpg",
+    "./assets/images/cdprecip.jpg", "./assets/images/cdcloudy.jpg", "./assets/images/cdclear.jpg",
+    "./assets/images/ceprecip.jpg", "./assets/images/cecloudy.jpg", "./assets/images/ceclear.jpg"
 
-    localStorage.clear();
+  ];
 
-    if ($(".mood").is(":checked")) {
+  bgImageArray.forEach(function (img) {
 
-      console.log($("input[type='radio']:checked").val());
-      userMood = $("input[type='radio']:checked").val();
-
-      localStorage.setItem("Mood", userMood);
-
-    }
-
-    if ($('.prefGenre').is(":checked")) {
-
-      console.log($("input[type='checkbox']:checked").val());
-      userGenre = $("input[type='checkbox']:checked").val();
-
-      localStorage.setItem("Genre", userGenre);
-
-    }
-
-    // makes an ajax request to search the spotify api with recommended playlists
-    $.get({
-
-      url: `https://api.spotify.com/v1/search?q=${userMood}+${userGenre}&type=playlist&limit=15`,
-      // url: `https://api.spotify.com/v1/search?q=winter,chill&type=playlist&limit=20`,
-      headers: {
-        'Authorization': 'Bearer ' + accessToken
-      },
-      success: function (response) {
-        console.log(response);
-        playlists = response.playlists.items;
-        console.log(playlists);
-        appendPlaylists(playlists)
-      }
-
-    });
+    new Image().src = img;
 
   });
 
@@ -74,19 +51,21 @@ $(document).ready(function () {
 
         precip: {
 
-          search: "cozy"
+          search: "cozy",
+          background: `${bgImageArray[0]}`
 
         },
 
         cloudy: {
 
-          search: "summer,acoustic"
-
+          search: "summer,acoustic",
+          background: `${bgImageArray[1]}`
         },
 
         clear: {
 
-          search: "chill,summer"
+          search: "chill,summer",
+          background: `${bgImageArray[2]}`
 
         }
 
@@ -96,19 +75,22 @@ $(document).ready(function () {
 
         precip: {
 
-          search: "chill,summer"
+          search: "chill,summer",
+          background: `${bgImageArray[3]}`
 
         },
 
         cloudy: {
 
-          search: "happy"
+          search: "happy",
+          background: `${bgImageArray[4]}`
 
         },
 
         clear: {
 
-          search: "summer"
+          search: "summer",
+          background: `${bgImageArray[5]}`
 
         }
 
@@ -118,19 +100,22 @@ $(document).ready(function () {
 
         precip: {
 
-          search: "summer,acoustic"
+          search: "summer,acoustic",
+          background: `${bgImageArray[6]}`
 
         },
 
         cloudy: {
 
-          search: "summer,night"
+          search: "summer,night",
+          background: `${bgImageArray[7]}`
 
         },
 
         clear: {
 
-          search: "summer,night"
+          search: "summer,night",
+          background: `${bgImageArray[8]}`
 
         }
 
@@ -144,19 +129,22 @@ $(document).ready(function () {
 
         precip: {
 
-          search: "chill,morning"
+          search: "chill,morning",
+          background: `${bgImageArray[9]}`
 
         },
 
         cloudy: {
 
-          search: "cold,morning"
+          search: "cold,morning",
+          background: `${bgImageArray[10]}`
 
         },
 
         clear: {
 
-          search: "coffee,cozy"
+          search: "coffee,cozy",
+          background: `${bgImageArray[11]}`
 
         }
 
@@ -166,19 +154,22 @@ $(document).ready(function () {
 
         precip: {
 
-          search: "winter,chill"
+          search: "winter,chill",
+          background: `${bgImageArray[12]}`
 
         },
 
         cloudy: {
 
-          search: "chill"
+          search: "chill",
+          background: `${bgImageArray[13]}`
 
         },
 
         clear: {
 
-          search: "chill,hits"
+          search: "chill,hits",
+          background: `${bgImageArray[14]}`
 
         }
 
@@ -188,18 +179,21 @@ $(document).ready(function () {
 
         precip: {
 
-          search: "evening"
+          search: "evening",
+          background: `${bgImageArray[15]}`
 
         },
 
         cloudy: {
 
-          search: "evening,cozy"
+          search: "evening,cozy",
+          background: `${bgImageArray[16]}`
 
         },
         clear: {
 
-          search: "chill"
+          search: "chill",
+          background: `${bgImageArray[17]}`
 
         }
 
@@ -209,25 +203,12 @@ $(document).ready(function () {
 
   }
 
-  console.log(conditions)
-  console.log(conditions.warm.morning.precip.search)
+  let changeBG = function () {
 
-  $("#weather-data").hide();
-  $(".helper-text").hide();
-  $("#zipcode").focus();
-
-  //TIME SECTION
-  if (currentTime.isBetween(morningStart, dayStart)) {
-
-    timeOfDay = "morning";
-
-  } else if (currentTime.isBetween(dayStart, nightStart)) {
-
-    timeOfDay = "day";
-
-  } else {
-
-    timeOfDay = "evening";
+    $("body").css({
+      "background": `url(${conditions[tempCond][timeOfDay][forecast].background}) no-repeat center center fixed`,
+      "background-size": "cover"
+    });
 
   }
 
@@ -242,8 +223,23 @@ $(document).ready(function () {
     }
   }
 
-  //WEATHER SECTION 
-  //Retrieves weather from the api
+  // TIME SECTION
+  if (currentTime.isBetween(morningStart, dayStart)) {
+
+    timeOfDay = "morning";
+
+  } else if (currentTime.isBetween(dayStart, nightStart)) {
+
+    timeOfDay = "day";
+
+  } else {
+
+    timeOfDay = "evening";
+
+  }
+
+  // WEATHER SECTION 
+  // Retrieves weather from the api
   let getWeather = function () {
 
     // queryURL = `api.openweathermap.org/data/2.5/weather?zip=${userZip}&APPID=01b094dd158ecf4fb77c7c5db98a6ad6`
@@ -276,8 +272,8 @@ $(document).ready(function () {
         temp = Math.round(temp);
 
         let tempP = $("<span>").text(temp + "°")
-                              .addClass("updatedWeather")
-                              .css("font-size", "70px");
+          .addClass("updatedWeather")
+          .css("font-size", "70px");
         $("div#temperature").prepend(tempP);
         let weatherId = parseInt(weatherData.weather[0].id);
 
@@ -339,6 +335,7 @@ $(document).ready(function () {
 
         $("#weather-data").show();
         weatherSet();
+        changeBG();
 
       },
       error: function (error) {
@@ -366,6 +363,7 @@ $(document).ready(function () {
     // holds user input
     userZip = $("#zipcode").val().trim();
     localStorage.setItem("Location", userZip);
+    
     // "^" indicates the beginning of input
     // "$" indicates the end of input
     // "d{5}" wants the users input to be only 5 digits long, EX : 90210 or in the second statement after the "|",
@@ -378,8 +376,7 @@ $(document).ready(function () {
       $(".helper-text").hide();
       $(".input-field").hide();
 
-    }
-    else {
+    } else {
       $(".helper-text").show();
     }
     // clears input field after clicking search
@@ -389,6 +386,7 @@ $(document).ready(function () {
 
   // checks zipcode after clicking search button
   $("#submitZip").on("click", function (event) {
+
     checkZip();
     $("section#music").fadeIn("slow");
 
@@ -402,6 +400,7 @@ $(document).ready(function () {
     $(".input-field").show();
     $("#weather-data").hide();
     $("#submitZip").show();
+    $("#zipcode").focus();
 
   });
 
@@ -415,34 +414,69 @@ $(document).ready(function () {
 
   });
 
-  //MUSIC SECTION
-  //displays playlists on the page
+  // adds preference data to local storage 
+  $("#searchPref").on("click", function () {
+
+    localStorage.removeItem("Mood");
+    localStorage.removeItem("Genre");
+
+    if ($(".mood").is(":checked")) {
+
+      console.log($("input[type='radio']:checked").val());
+      userMood = $("input[type='radio']:checked").val();
+
+      localStorage.setItem("Mood", userMood);
+
+    }
+
+    if ($('.prefGenre').is(":checked")) {
+
+      console.log($("input[type='checkbox']:checked").val());
+      userGenre = $("input[type='checkbox']:checked").val();
+
+      localStorage.setItem("Genre", userGenre);
+
+    }
+
+    // makes an ajax request to search the spotify api with recommended playlists
+    $.get({
+
+      url: `https://api.spotify.com/v1/search?q=${userMood}+${userGenre}&type=playlist&limit=15`,
+      // url: `https://api.spotify.com/v1/search?q=winter,chill&type=playlist&limit=20`,
+      headers: {
+        'Authorization': 'Bearer ' + accessToken
+      },
+      success: function (response) {
+        console.log(response);
+        playlists = response.playlists.items;
+        console.log(playlists);
+        appendPlaylists(playlists);
+      }
+
+    });
+
+  });
+
+  // MUSIC SECTION
+  // displays playlists on the page
   let appendPlaylists = (playlists) => {
+
     for (i = 0; i < 4; i++) {
 
       let playlistName = playlists[i].name;
       let imgSrc = playlists[i].images[0].url;
       let redirect = playlists[i].external_urls.spotify;
 
-      let $name = $("<h4>")
-        .text(playlistName)
-        .css("display", "none")
-        .addClass(`playlistName${i}`)
-
       let $img = $("<img>")
         .attr("src", imgSrc)
         .addClass("hoverable")
-
-      // .on("mouseenter", function() {
-      //   $(`h4.playlistName${i}`).show();
-      // });
 
       let $a = $("<a>")
         .attr("href", `${redirect}`)
         .attr("target", "_blank")
         .append($img);
 
-      $(`div#${i}`).append($a, $name);
+      $(`div#${i}`).append($a);
 
     }
 
@@ -465,12 +499,11 @@ $(document).ready(function () {
         console.log(response);
         playlists = response.playlists.items;
         console.log(playlists);
-        appendPlaylists(playlists)
+        appendPlaylists(playlists);
       },
       error: function (error) {
         $("p.music-error").show();
       }
-
 
     });
 

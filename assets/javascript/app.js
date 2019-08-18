@@ -14,8 +14,7 @@ $(document).ready(function () {
     playlists,
     icon,
     userGenre,
-    userMood,
-    bgImage;
+    userMood;
 
   // jquery variables;
   let $modalTrigger = $("a.modal-trigger"),
@@ -28,6 +27,25 @@ $(document).ready(function () {
   let morningStart = moment("4:00", "HH:mm");
   let dayStart = moment("10:30", "HH:mm");
   let nightStart = moment("19:00", "HH:mm");
+
+  let checkMood = localStorage.getItem('Mood');
+  let checkGenre = localStorage.getItem('Genre');
+
+  if (checkMood === "happy") {
+    $("#happy").attr("checked", "checked");
+  } else {
+    $("#sad").attr("checked", "checked");
+  }
+
+  if (checkGenre == "pop") {
+    $("#pop").attr("checked", "checked");
+  } else if (checkGenre == "rock") {
+    $("#rock").attr("checked", "checked");
+  } else if (checkGenre == "hip-hop") {
+    $("#hiphop").attr("checked", "checked");
+  } else {
+    $("#country").attr("checked", "checked");
+  }
 
   $("#weather-data").hide();
   $(".helper-text").hide();
@@ -370,7 +388,7 @@ $(document).ready(function () {
     // holds user input
     userZip = $("#zipcode").val().trim();
     localStorage.setItem("Location", userZip);
-    
+
     // "^" indicates the beginning of input
     // "$" indicates the end of input
     // "d{5}" wants the users input to be only 5 digits long, EX : 90210 or in the second statement after the "|",

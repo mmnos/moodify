@@ -458,6 +458,9 @@ $(document).ready(function () {
         playlists = response.playlists.items;
         console.log(playlists);
         appendPlaylists(playlists);
+      },
+      error: function (error) {
+        $("p.music-error").show();
       }
 
     });
@@ -470,7 +473,6 @@ $(document).ready(function () {
 
     for (i = 0; i < 4; i++) {
 
-      let playlistName = playlists[i].name;
       let imgSrc = playlists[i].images[0].url;
       let redirect = playlists[i].external_urls.spotify;
 
@@ -481,7 +483,8 @@ $(document).ready(function () {
       let $a = $("<a>")
         .attr("href", `${redirect}`)
         .attr("target", "_blank")
-        .append($img);
+        .append($img)
+        .addClass("");
 
       $(`div#${i}`).append($a);
 
@@ -490,7 +493,7 @@ $(document).ready(function () {
   }
 
   // var to hold access token
-  let accessToken = "BQD2PCJhewrW0K4uEnhJhAbyyExnDdLFVV9zV8_6lEx_4vJUxikkMIRM5mg5Nq-YRZfw5vLIC51ublVxGMqe5r13lvmLzTkVfgQLfXU_czFciKWphOqwYk8xsAQaHxqclt7AP3GJNPTBq1-KyjVUZKT0f2WeWzr8JsfbNO2lVEzBmvatYAH1OG8LjADBJNjF_QQq16c-Ru-d0ZV85dL7Bjb-qWSfoErTmbn_QssFfQ"
+  let accessToken = "BQBYWWk4rUfApt7KvU7GPxqRRXhVrqaLCpApdR_6o5UI33L2KLUZq7trycoT_9jQcig9qhAdTvGxQPzHsmxYygEiQKWpX-ZCQFiPY8ifFHV-p0Naco2F9NYKSPakXXXU1PgnppL4L0rimx5RgRRSj1e1c2T6bxzqBwG8nw1gJrn5XIqsfnndvqf7r-4kHDldP7WMA8nw8sdasMe9GiyDuTCFbhO8GF4uu4tzwRlJjA"
   let searchForPlaylist = function () {
 
     // makes an ajax request to search the spotify api with recommended playlists

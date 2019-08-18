@@ -14,13 +14,31 @@ $(document).ready(function () {
     playlists,
     icon,
     userGenre,
-    userMood,
-    bgImage;
+    userMood;
 
   let currentTime = moment();
   let morningStart = moment("4:00", "HH:mm");
   let dayStart = moment("10:30", "HH:mm");
   let nightStart = moment("19:00", "HH:mm");
+
+  let checkMood = localStorage.getItem('Mood');
+  let checkGenre = localStorage.getItem('Genre');
+
+  if (checkMood === "happy") {
+    $("#happy").attr("checked", "checked");
+  } else {
+    $("#sad").attr("checked", "checked");
+  }
+
+  if (checkGenre == "pop") {
+    $("#pop").attr("checked", "checked");
+  } else if (checkGenre == "rock") {
+    $("#rock").attr("checked", "checked");
+  } else if (checkGenre == "hip-hop") {
+    $("#hiphop").attr("checked", "checked");
+  } else {
+    $("#country").attr("checked", "checked");
+  }
 
   $("#weather-data").hide();
   $(".helper-text").hide();
@@ -363,7 +381,7 @@ $(document).ready(function () {
     // holds user input
     userZip = $("#zipcode").val().trim();
     localStorage.setItem("Location", userZip);
-    
+
     // "^" indicates the beginning of input
     // "$" indicates the end of input
     // "d{5}" wants the users input to be only 5 digits long, EX : 90210 or in the second statement after the "|",
@@ -483,7 +501,7 @@ $(document).ready(function () {
   }
 
   // var to hold access token
-  let accessToken = "BQD2PCJhewrW0K4uEnhJhAbyyExnDdLFVV9zV8_6lEx_4vJUxikkMIRM5mg5Nq-YRZfw5vLIC51ublVxGMqe5r13lvmLzTkVfgQLfXU_czFciKWphOqwYk8xsAQaHxqclt7AP3GJNPTBq1-KyjVUZKT0f2WeWzr8JsfbNO2lVEzBmvatYAH1OG8LjADBJNjF_QQq16c-Ru-d0ZV85dL7Bjb-qWSfoErTmbn_QssFfQ"
+  let accessToken = "BQChK0eifoH9Xr4U4jafqgOBc2o4vXLitXxAKDVKFOO0hfiV0TdJppyaJdiahwB-qY2W_328z0Wo9fep3wjnzUUPCmzKKqIGfFyjSJ0Oy_1faqiut-iV62tmvlxoVBxD63uy5F3qGM189txgQyhYEceHA_5e9g4vg6CU3LMUvMq9H5rStcq5vp_6skYIaCkDAmCRngSXQYmeEaODGTAY_vum_12dpca2zpYeAEFfQQ"
   let searchForPlaylist = function () {
 
     // makes an ajax request to search the spotify api with recommended playlists

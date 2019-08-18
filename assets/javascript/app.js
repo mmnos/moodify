@@ -50,7 +50,7 @@ $(document).ready(function () {
     // makes an ajax request to search the spotify api with recommended playlists
     $.get({
 
-      url: `https://api.spotify.com/v1/search?q=${userMood, userGenre}&type=playlist&limit=15`,
+      url: `https://api.spotify.com/v1/search?q=${userMood}+${userGenre}&type=playlist&limit=15`,
       // url: `https://api.spotify.com/v1/search?q=winter,chill&type=playlist&limit=20`,
       headers: {
         'Authorization': 'Bearer ' + accessToken
@@ -449,7 +449,7 @@ $(document).ready(function () {
   }
 
   // var to hold access token
-  let accessToken = "BQDWs91XFQoVvAgm5I7CGnS4rJYvZuuv3aJ1NGgLC7OD9IZlrdgnHvRWryUWInddE6bPGEqylrak9OC_Uh_WMRHRFTB4FlVy-b4ez_m0RfFLElOCUuwCrWVXkdqWxjy_B0Mu5hd755Q-Wgm9n7WBNPZa25GhUgEZjKGRIixzVb_EtEFfCyqhFszwnS39WEt0iu02BDnDwGoo46nRSg3COlm7q0m-rIIT6uxvCDGiFw"
+  let accessToken = "BQBfKBOdWE4N239GSk2yTG7PNvRpSqPSturBGMl3lolnC6GN5B2BmYa5-zOu_-Sou9Si2hVmp4PDpoTvMvKC9Ms3USAXbzyqUwYcLzDvsaoy7tzHkmO4wlD5AN5X9b_32sD9QKbBnmcBFUqYcPb8_P7fBqvJOUpMlMjP8hgjA4w6it2ly97WIzRuTC6BBY-Y06YfxuNBB63_u5RWDih0ppu3CBUt2tzNPS9jRkGb3g"
   let searchForPlaylist = function () {
 
     // makes an ajax request to search the spotify api with recommended playlists

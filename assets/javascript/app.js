@@ -18,7 +18,7 @@ $(document).ready(function () {
   let $modalTrigger = $("a.modal-trigger"),
     $settingsLabel = $("span.settings-label"),
     $changeZip = $("a#changeZip"),
-    $locationLabel = $("span.location-label")
+    $locationLabel = $("span.location-label");
 
   let currentTime = moment();
   let morningStart = moment("4:00", "HH:mm");
@@ -458,7 +458,7 @@ $(document).ready(function () {
   });
 
   // MUSIC SECTION
-  
+
   // displays playlists on the page
   let appendMoodPlaylists = (playlists, offset) => {
 

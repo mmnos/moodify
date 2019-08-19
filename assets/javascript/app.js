@@ -31,6 +31,17 @@ $(document).ready(function () {
   let checkMood = localStorage.getItem('Mood');
   let checkGenre = localStorage.getItem('Genre');
 
+  console.log(checkMood);
+  console.log(checkGenre);
+
+  if (checkMood == null) {
+    $('input[type=radio]').prop('checked', false);
+  }
+  
+  if (checkGenre == null) {
+    $('input[type=checkbox]').prop('checked', false);
+  }
+
   if (checkMood === "happy") {
     $("#happy").attr("checked", "checked");
   } else {
@@ -554,6 +565,47 @@ $(document).ready(function () {
 
   }
 
+  let getMoodPlaylists = () => {
+    console.log(!userMood)
+    console.log(userGenre)
+    if (!userMood && !userGenre) {
+      search = ""
+    }
+    else if (!userMood) {
+      search = `${userGenre}`
+    }
+    else if (!userGenre) {
+      search = `${userMood}`
+    }
+    else {
+      search = `${userMood}+${userGenre}`
+    }
+
+    console.log(search);
+
+    if (search) {
+
+      $.get({
+
+        url: `https://api.spotify.com/v1/search?q=${search}&type=playlist&limit=15`,
+        headers: {
+          'Authorization': 'Bearer ' + accessToken
+        },
+        success: function (response) {
+          console.log(response);
+          playlists = response.playlists.items;
+          console.log(playlists);
+          appendMoodPlaylists(playlists, 4);
+        },
+        error: function (error) {
+          $("p.music-error").show();
+        }
+
+      });
+    }
+  }
+
+
   $modalTrigger.on("click", function () {
 
     $('.modal').modal();
@@ -586,6 +638,52 @@ $(document).ready(function () {
     $locationLabel.fadeOut().addClass("fadeOutRight");
 
   })
+
+  // checks zipcode after clicking search button
+  $("#submitZip").on("click", function (event) {
+
+    checkZip();
+    $("section#music").fadeIn("slow");
+
+  });
+
+  // shows input field and hides weather data
+  $("#changeZip").on("click", function (event) {
+
+    $("section#music").fadeOut("slow");
+    $("div.music-cards a").remove();
+    $(".input-field").show();
+    $("#weather-data").hide();
+    $("#submitZip").show();
+    $("#zipcode").focus();
+
+  });
+
+  // press enter key to submit zipcode
+  $(document).on("keypress", function (event) {
+
+    if (event.key === "Enter") {
+      checkZip();
+      $("section#music").fadeIn("slow");
+    }
+
+  });
+
+  // adds preference data to local storage 
+  $("#searchPref").on("click", function () {
+
+    $("div.second-row a").remove();
+    setPreferences();
+    getMoodPlaylists();
+
+  });
+
+  $("#clearPref").on("click", function () {
+
+    localStorage.removeItem("Mood");
+    localStorage.removeItem("Genre");
+
+  });
 
 
 

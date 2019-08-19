@@ -18,7 +18,7 @@ $(document).ready(function () {
   let $modalTrigger = $("a.modal-trigger"),
     $settingsLabel = $("span.settings-label"),
     $changeZip = $("a#changeZip"),
-    $locationLabel = $("span.location-label")
+    $locationLabel = $("span.location-label");
 
   let currentTime = moment();
   let morningStart = moment("4:00", "HH:mm");
@@ -458,7 +458,7 @@ $(document).ready(function () {
   });
 
   // MUSIC SECTION
-  
+
   // displays playlists on the page
   let appendMoodPlaylists = (playlists, offset) => {
 
@@ -484,7 +484,7 @@ $(document).ready(function () {
   }
 
   // var to hold access token
-  let accessToken = "BQBKRnhMMehwgw4falR-KGDkXfDrbulgPTha3H-XplIr0EGkAyYnD1Sj-Mi2wdawZ8L4Q_CuV_36HjQlN7xqD8tsGnqYuxYE1L4vtPHVHE3ELgKdBkumfVzFvk2bjC7S_t6wEUi4Q7HdiWI8KuSgKFP6x5iSdRBgVOBvivIuYp_3BpnKkyVHBhJQhvV-Oa-FiBbkDq3lcn8CzH4gNI5hSDKZUr94vZ3JrZzdDZ-4rw"
+  let accessToken = "BQAclI4Dn3_zaFfIK3YLA2YME5EWC3w0I163zf9cdcgI7oWLT4TjJfOntfvZetXqVVv4MpDgDgIJtoXrDC2FpreTVOR86aDtYs1l5yBvyAtdhuiwJDSSS2W2u5-l2USsE1kAb-81iSq1QdR6MGKTiElZFzEU6N4kODZLDpgRHeE6yTXsBNhvKCgCbPHN14ytbn_BffFm4dD0DXZdNiOW4L75NxhGIMRzp0322ANefQ"
   let searchForPlaylist = function () {
 
     // makes an ajax request to search the spotify api with recommended playlists

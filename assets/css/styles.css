@@ -229,13 +229,13 @@ div.music-cards img {
 
     cursor: pointer;
     width: 75%;
+    transition: transform 1s;
 
 }
 
 div.music-cards img:hover {
 
     transform: scale(1.25,1.25);
-    transition: transform 1s;
 
 }
 

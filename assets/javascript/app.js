@@ -517,20 +517,22 @@ $(document).ready(function () {
   }
 
   let getMoodPlaylists = () => {
-    console.log(userMood === true)
+    console.log(!userMood)
     console.log(userGenre)
-    if (userMood && userGenre) {
-      search = `${userMood}+${userGenre}`
-    }
-    else if (userMood && !userGenre) {
-      search = `${userMood}`
-    }
-    else if (!userMood && userGenre) {
-      search = `${userGenre}`
-    }
-    else {
+    if (!userMood && !userGenre) {
       search = ""
     }
+    else if (!userMood) {
+      search = `${userGenre}`
+    }
+    else if (!userGenre) {
+      search = `${userMood}`
+    }
+    else {
+      search = `${userMood}+${userGenre}`
+    }
+
+    console.log(search);
 
     if (search) {
 

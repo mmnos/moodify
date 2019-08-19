@@ -527,7 +527,7 @@ $(document).ready(function () {
 
     console.log(!userMood)
     console.log(userGenre)
-    
+
     if (!userMood && !userGenre) {
 
       search = ""
@@ -662,7 +662,7 @@ $(document).ready(function () {
 
     checkZip();
     $("section#music").fadeIn("slow");
-
+    switchToWeatherPlaylists();
   });
 
   // shows input field and hides weather data

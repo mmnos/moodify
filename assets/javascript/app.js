@@ -358,6 +358,7 @@ $(document).ready(function () {
       },
       error: function (error) {
         $("p.weather-error").show();
+        $("i.up-arrow").hide();
       }
     })
 
@@ -484,7 +485,7 @@ $(document).ready(function () {
   }
 
   // var to hold access token
-  let accessToken = "BQDLCoxn51vqiYAhWCuE3FMdx57sOnbBQ_iQd2GyYajzc7aKFnx-GtQW0HhqA3F2XiSMKSMl7MNCcbKxTl5lOi6rMhrybbr0GT1V8U9ABNd-4T2WlIljSWDfIa-r0D3vbdkkwVB-po9jPVaBBieXWvv3TBn05p6-NJcevWKqy9lmHdMg4T4slK-3EdkYPjtIEBv6esitjdt7kHLifXQocMMDi2vNQmOlEzmi-BFZGw"
+  let accessToken = "BQBStZqKb6_wINiB0b611bnaxGI2erSFYjbAD6ImT3qG3hnHOE21tXgnU6KVSWeDSOkgTalP8y3WXHPJwe3pZMW-q2HIk-PkRZn0mWgT_NkVMtkbZcGzZKk1cATjEQRkbTKmwxtaKM519j72njF4AZ7boeKhLegO1apEKeUKzJW2b82OEmXN6-kXKe2AeiMAu6PwTEWse42PxK166oc27DSX7s25Wxa0AGs_VuAv8A"
   let searchForPlaylist = function () {
 
     // makes an ajax request to search the spotify api with recommended playlists
@@ -507,6 +508,7 @@ $(document).ready(function () {
       },
       error: function (error) {
         $("p.music-error").show();
+        $("i.up-arrow").hide();
       }
 
     });
@@ -560,13 +562,14 @@ $(document).ready(function () {
           $("div.first-row").hide().removeClass("fadeInUp");
           $("div.second-row i").show();
           $("div.second-row").hide().removeClass("fadeInUp");
-        
+
           appendMoodPlaylists(playlists, 4);
           $("div.second-row").fadeIn("slow").addClass("fadeInUp");
 
         },
         error: function (error) {
           $("p.music-error").show();
+          $("i.up-arrow").hide();
         }
 
       });
@@ -671,7 +674,8 @@ $(document).ready(function () {
 
     $("body").css({
       "background": "url('./assets/images/main.jpg') no-repeat center center fixed",
-      "background-size": "cover"})
+      "background-size": "cover"
+    })
 
     $(".input-field").show();
     $("#weather-data").hide();

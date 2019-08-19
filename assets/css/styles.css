@@ -33,14 +33,9 @@ p.site-description {
 
 
 /* error message styling */
-p.error-message {
-
-    display: none;
-
-}
-
-p.error {
+p.weather-error, p.music-error {
     
+    display: none;
     margin-top: 50px;
     font-size: 2em;
 

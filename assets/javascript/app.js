@@ -6,13 +6,11 @@ $(document).ready(function () {
     cityName,
     temp,
     weather,
-    weatherIcon,
     forecast,
     tempCond,
     timeOfDay,
     search,
     playlists,
-    icon,
     userGenre,
     userMood;
 
@@ -22,12 +20,23 @@ $(document).ready(function () {
     $changeZip = $("a#changeZip"),
     $locationLabel = $("span.location-label")
 
-
   let currentTime = moment();
   let morningStart = moment("4:00", "HH:mm");
   let dayStart = moment("10:30", "HH:mm");
   let nightStart = moment("19:00", "HH:mm");
 
+  let checkMood = localStorage.getItem("Mood");
+  let checkGenre = localStorage.getItem("Genre");
+
+  if (checkMood == null) {
+    $('input[type=radio]').prop('checked', false);
+  }
+
+  if (checkGenre == null) {
+    $('input[type=checkbox]').prop('checked', false);
+  }
+
+  console.log(checkGenre);
 
   $("#weather-data").hide();
   $(".helper-text").hide();
@@ -393,12 +402,8 @@ $(document).ready(function () {
 
   }
 
-
   // MODAL 
   let setPreferences = () => {
-
-    localStorage.removeItem("Mood");
-    localStorage.removeItem("Genre");
 
     if ($(".mood").is(":checked")) {
 
@@ -422,8 +427,8 @@ $(document).ready(function () {
 
   let prefsChecked = () => {
 
-    let checkMood = localStorage.getItem('Mood');
-    let checkGenre = localStorage.getItem('Genre');
+    checkMood = localStorage.getItem('Mood');
+    checkGenre = localStorage.getItem('Genre');
 
     if (checkMood === "happy") {
       $("#happy").attr("checked", "checked");
@@ -443,18 +448,6 @@ $(document).ready(function () {
 
   }
 
-
-  // clears users selected mood/genre
-  $("#clearPref").on("click", function () {
-
-    localStorage.removeItem("Mood");
-    localStorage.removeItem("Genre");
-
-    $('input[type=radio]').prop('checked', false);
-    $('input[type=checkbox]').prop('checked', false);
-
-  });
-
   // allows only 1 checkbox to be selected at a time
   $('input[type=checkbox]').on('change', function () {
 
@@ -465,7 +458,7 @@ $(document).ready(function () {
   });
 
   // MUSIC SECTION
-
+  
   // displays playlists on the page
   let appendMoodPlaylists = (playlists, offset) => {
 
@@ -505,11 +498,7 @@ $(document).ready(function () {
 
         $("p.music-error").hide();
 
-        console.log(response);
-
         playlists = response.playlists.items;
-
-        console.log(playlists);
 
         $("div.second-row i").hide();
 
@@ -524,9 +513,6 @@ $(document).ready(function () {
   }
 
   let getMoodPlaylists = () => {
-
-    console.log(!userMood)
-    console.log(userGenre)
 
     if (!userMood && !userGenre) {
 
@@ -663,6 +649,7 @@ $(document).ready(function () {
     checkZip();
     $("section#music").fadeIn("slow");
     switchToWeatherPlaylists();
+
   });
 
   // shows input field and hides weather data
@@ -701,8 +688,9 @@ $(document).ready(function () {
     localStorage.removeItem("Mood");
     localStorage.removeItem("Genre");
 
+    $('input[type=radio]').prop('checked', false);
+    $('input[type=checkbox]').prop('checked', false);
+
   });
-
-
 
 });

@@ -624,6 +624,7 @@ $(document).ready(function () {
   // adds preference data to local storage 
   $("#searchPref").on("click", function () {
 
+    $("div.second-row a").remove();
     setPreferences();
     getMoodPlaylists();
 

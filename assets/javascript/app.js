@@ -444,6 +444,26 @@ $(document).ready(function () {
   }
 
 
+  // clears users selected mood/genre
+  $("#clearPref").on("click", function () {
+
+    localStorage.removeItem("Mood");
+    localStorage.removeItem("Genre");
+
+    $('input[type=radio]').prop('checked', false);
+    $('input[type=checkbox]').prop('checked', false);
+
+  });
+
+  // allows only 1 checkbox to be selected at a time
+  $('input[type=checkbox]').on('change', function () {
+
+    if ($('input[type=checkbox]:checked').length > 1) {
+      this.checked = false;
+    }
+
+  });
+
   // MUSIC SECTION
 
   // displays playlists on the page

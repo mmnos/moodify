@@ -405,9 +405,6 @@ $(document).ready(function () {
   // MODAL 
   let setPreferences = () => {
 
-    localStorage.removeItem("Mood");
-    localStorage.removeItem("Genre");
-
     if ($(".mood").is(":checked")) {
 
       console.log($("input[type='radio']:checked").val());

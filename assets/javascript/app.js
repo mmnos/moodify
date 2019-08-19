@@ -482,7 +482,7 @@ $(document).ready(function () {
         .attr("href", `${redirect}`)
         .attr("target", "_blank")
         .append($img)
-        .addClass("mood-playlist");
+        .addClass("mood-playlist animated");
 
       $(`div#${i + offset}`).append($a);
 
@@ -491,7 +491,7 @@ $(document).ready(function () {
   }
 
   // var to hold access token
-  let accessToken = "BQDWD6uCn6hheWY1AAH4Mx9Uwm05osNjn-KgUidaAaJi7sVQNmfhhzmt-29zPSVUIZZIHysny7rSR3x_WjSkCAY91i70obQqYQqfu7HUK8Gb_vhYCsmhqxDEUar7s4LGKZqGCfnhDb-KVp1jRbDQx2isWvNSeFPLeRhmjuc2U82fjKxmJJBbO7ksXgTfFjhBsOpcPSUsbcB95Am9vB9vivf6EIAo8_zCyKXZ9LBB9g"
+  let accessToken = "BQBKRnhMMehwgw4falR-KGDkXfDrbulgPTha3H-XplIr0EGkAyYnD1Sj-Mi2wdawZ8L4Q_CuV_36HjQlN7xqD8tsGnqYuxYE1L4vtPHVHE3ELgKdBkumfVzFvk2bjC7S_t6wEUi4Q7HdiWI8KuSgKFP6x5iSdRBgVOBvivIuYp_3BpnKkyVHBhJQhvV-Oa-FiBbkDq3lcn8CzH4gNI5hSDKZUr94vZ3JrZzdDZ-4rw"
   let searchForPlaylist = function () {
 
     // makes an ajax request to search the spotify api with recommended playlists
@@ -502,10 +502,17 @@ $(document).ready(function () {
         'Authorization': 'Bearer ' + accessToken
       },
       success: function (response) {
+
         $("p.music-error").hide();
+
         console.log(response);
+
         playlists = response.playlists.items;
+
         console.log(playlists);
+
+        $("div.second-row i").hide();
+
         appendMoodPlaylists(playlists, 0);
       },
       error: function (error) {
@@ -517,19 +524,29 @@ $(document).ready(function () {
   }
 
   let getMoodPlaylists = () => {
+
     console.log(!userMood)
     console.log(userGenre)
+    
     if (!userMood && !userGenre) {
+
       search = ""
+
     }
     else if (!userMood) {
+
       search = `${userGenre}`
+
     }
     else if (!userGenre) {
+
       search = `${userMood}`
+
     }
     else {
+
       search = `${userMood}+${userGenre}`
+
     }
 
     console.log(search);
@@ -543,10 +560,19 @@ $(document).ready(function () {
           'Authorization': 'Bearer ' + accessToken
         },
         success: function (response) {
+
           console.log(response);
+
           playlists = response.playlists.items;
+
           console.log(playlists);
+
+          $("div.first-row i").hide();
+          $("div.first-row").fadeOut().addClass("fadeOutLeft");
+          $("div.second-row i").show();
+
           appendMoodPlaylists(playlists, 4);
+
         },
         error: function (error) {
           $("p.music-error").show();
@@ -555,6 +581,46 @@ $(document).ready(function () {
       });
     }
   }
+
+  // function to switch visible playlists to weather playlists
+  // - to run when arrow is clicked
+  let switchToWeatherPlaylists = () => {
+
+    $("div.second-row i").hide();
+    $("div.first-row i").show();
+
+    $("div.second-row").fadeOut("slow")
+      .addClass("fadeOutRight")
+
+    $("div.first-row").removeClass("fadeOutLeft")
+      .fadeIn("slow")
+      .addClass("fadeInLeft")
+
+  }
+
+  // function to switch visible playlists to the mood ones 
+  // - to run when arrow is clicked
+  let switchToMoodPlaylists = () => {
+
+    if ($("div.second-row").has("a").length) {
+
+      $("div.first-row i").hide();
+      $("div.second-row i").show();
+
+      $("div.first-row").fadeOut("slow")
+        .addClass("fadeOutLeft")
+
+      $("div.second-row").removeClass("fadeOutRight")
+        .fadeIn("slow")
+        .addClass("fadeInRight")
+
+    }
+  }
+
+
+  // CLICK/HOVER EVENTS 
+  $("i#left-arrow2").on("click", switchToWeatherPlaylists);
+  $("i#right-arrow1").on("click", switchToMoodPlaylists);
 
 
   $modalTrigger.on("click", function () {

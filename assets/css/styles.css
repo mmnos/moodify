@@ -245,20 +245,29 @@ div.playlist {
 
 }
 
-i.left-arrow {
+i.left-arrow, i.right-arrow {
 
     cursor: pointer;
     position: absolute;
     bottom: 250px;
+    color: rgba(255, 255, 255, .4)
+
+}
+
+i.left-arrow:hover, i.right-arrow:hover {
+
+    color: rgb(255, 255, 255)
+
+}
+
+i.left-arrow {
+
     left: 20px;
 
 }
 
 i.right-arrow {
 
-    cursor: pointer;
-    position: absolute;
-    bottom: 250px;
     right: 20px;
 
 }

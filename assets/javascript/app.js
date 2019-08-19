@@ -37,7 +37,7 @@ $(document).ready(function () {
   if (checkMood == null) {
     $('input[type=radio]').prop('checked', false);
   }
-  
+
   if (checkGenre == null) {
     $('input[type=checkbox]').prop('checked', false);
   }
@@ -399,6 +399,7 @@ $(document).ready(function () {
     // holds user input
     userZip = $("#zipcode").val().trim();
     localStorage.setItem("Location", userZip);
+    console.log(userZip);
 
     // "^" indicates the beginning of input
     // "$" indicates the end of input
@@ -493,17 +494,6 @@ $(document).ready(function () {
 
   });
 
-  // clears users selected mood/genre
-  $("#clearPref").on("click", function () {
-
-    localStorage.removeItem("Mood");
-    localStorage.removeItem("Genre");
-
-    $('input[type=radio]').prop('checked', false);
-    $('input[type=checkbox]').prop('checked', false);
-
-  });
-
   // allows only 1 checkbox to be selected at a time
   $('input[type=checkbox]').on('change', function () {
 
@@ -539,7 +529,7 @@ $(document).ready(function () {
   }
 
   // var to hold access token
-  let accessToken = "BQChK0eifoH9Xr4U4jafqgOBc2o4vXLitXxAKDVKFOO0hfiV0TdJppyaJdiahwB-qY2W_328z0Wo9fep3wjnzUUPCmzKKqIGfFyjSJ0Oy_1faqiut-iV62tmvlxoVBxD63uy5F3qGM189txgQyhYEceHA_5e9g4vg6CU3LMUvMq9H5rStcq5vp_6skYIaCkDAmCRngSXQYmeEaODGTAY_vum_12dpca2zpYeAEFfQQ"
+  let accessToken = "BQCLnF7nxFLfwxMrmocKTfygsakhdAMcpESCt3VzdrcDLiq0-uRlULMHEsLTfRhJ2Uobx3XPtehwb7RJONmxMa78Sl6XR1mqXNruDvGYhyHkNztNUv9GiMVmhnOlKtUUSiSKaPUpGU-q8_IaxwovrY1oRrN5bxX0Xz_oM4BnwhqJQpvnQkkaxkTrev3n6-dy5G5bADdPLkvyxrC6RVo1fJ027vMqpDKvPSyvGwfiJQ"
   let searchForPlaylist = function () {
 
     // makes an ajax request to search the spotify api with recommended playlists
@@ -682,6 +672,9 @@ $(document).ready(function () {
 
     localStorage.removeItem("Mood");
     localStorage.removeItem("Genre");
+
+    $('input[type=radio]').prop('checked', false);
+    $('input[type=checkbox]').prop('checked', false);
 
   });
 

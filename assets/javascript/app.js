@@ -6,13 +6,11 @@ $(document).ready(function () {
     cityName,
     temp,
     weather,
-    weatherIcon,
     forecast,
     tempCond,
     timeOfDay,
     search,
     playlists,
-    icon,
     userGenre,
     userMood;
 
@@ -22,17 +20,13 @@ $(document).ready(function () {
     $changeZip = $("a#changeZip"),
     $locationLabel = $("span.location-label")
 
-
   let currentTime = moment();
   let morningStart = moment("4:00", "HH:mm");
   let dayStart = moment("10:30", "HH:mm");
   let nightStart = moment("19:00", "HH:mm");
 
-  let checkMood = localStorage.getItem('Mood');
-  let checkGenre = localStorage.getItem('Genre');
-
-  console.log(checkMood);
-  console.log(checkGenre);
+  let checkMood = localStorage.getItem("Mood");
+  let checkGenre = localStorage.getItem("Genre");
 
   if (checkMood == null) {
     $('input[type=radio]').prop('checked', false);
@@ -42,21 +36,7 @@ $(document).ready(function () {
     $('input[type=checkbox]').prop('checked', false);
   }
 
-  if (checkMood === "happy") {
-    $("#happy").attr("checked", "checked");
-  } else {
-    $("#sad").attr("checked", "checked");
-  }
-
-  if (checkGenre == "pop") {
-    $("#pop").attr("checked", "checked");
-  } else if (checkGenre == "rock") {
-    $("#rock").attr("checked", "checked");
-  } else if (checkGenre == "hip-hop") {
-    $("#hiphop").attr("checked", "checked");
-  } else {
-    $("#country").attr("checked", "checked");
-  }
+  console.log(checkGenre);
 
   $("#weather-data").hide();
   $(".helper-text").hide();
@@ -356,6 +336,8 @@ $(document).ready(function () {
           };
 
           searchForPlaylist();
+          setPreferences();
+          getMoodPlaylists();
 
         }
 
@@ -399,7 +381,6 @@ $(document).ready(function () {
     // holds user input
     userZip = $("#zipcode").val().trim();
     localStorage.setItem("Location", userZip);
-    console.log(userZip);
 
     // "^" indicates the beginning of input
     // "$" indicates the end of input
@@ -421,38 +402,8 @@ $(document).ready(function () {
 
   }
 
-  // checks zipcode after clicking search button
-  $("#submitZip").on("click", function (event) {
-
-    checkZip();
-    $("section#music").fadeIn("slow");
-
-  });
-
-  // shows input field and hides weather data
-  $("#changeZip").on("click", function (event) {
-
-    $("section#music").fadeOut("slow");
-    $("div.music-cards a").remove();
-    $(".input-field").show();
-    $("#weather-data").hide();
-    $("#submitZip").show();
-    $("#zipcode").focus();
-
-  });
-
-  // press enter key to submit zipcode
-  $(document).on("keypress", function (event) {
-
-    if (event.key === "Enter") {
-      checkZip();
-      $("section#music").fadeIn("slow");
-    }
-
-  });
-
-  // adds preference data to local storage 
-  $("#searchPref").on("click", function () {
+  // MODAL 
+  let setPreferences = () => {
 
     localStorage.removeItem("Mood");
     localStorage.removeItem("Genre");
@@ -475,24 +426,30 @@ $(document).ready(function () {
 
     }
 
-    // makes an ajax request to search the spotify api with recommended playlists
-    $.get({
+  }
 
-      url: `https://api.spotify.com/v1/search?q=${userMood}+${userGenre}&type=playlist&limit=15`,
-      // url: `https://api.spotify.com/v1/search?q=winter,chill&type=playlist&limit=20`,
-      headers: {
-        'Authorization': 'Bearer ' + accessToken
-      },
-      success: function (response) {
-        console.log(response);
-        playlists = response.playlists.items;
-        console.log(playlists);
-        appendPlaylists(playlists);
-      }
+  let prefsChecked = () => {
 
-    });
+    checkMood = localStorage.getItem('Mood');
+    checkGenre = localStorage.getItem('Genre');
 
-  });
+    if (checkMood === "happy") {
+      $("#happy").attr("checked", "checked");
+    } else if (checkMood === "sad") {
+      $("#sad").attr("checked", "checked");
+    }
+
+    if (checkGenre == "pop") {
+      $("#pop").attr("checked", "checked");
+    } else if (checkGenre == "rock") {
+      $("#rock").attr("checked", "checked");
+    } else if (checkGenre == "hip-hop") {
+      $("#hiphop").attr("checked", "checked");
+    } else {
+      $("#country").attr("checked", "checked");
+    }
+
+  }
 
   // allows only 1 checkbox to be selected at a time
   $('input[type=checkbox]').on('change', function () {
@@ -504,12 +461,12 @@ $(document).ready(function () {
   });
 
   // MUSIC SECTION
+  
   // displays playlists on the page
-  let appendPlaylists = (playlists) => {
+  let appendMoodPlaylists = (playlists, offset) => {
 
     for (i = 0; i < 4; i++) {
 
-      let playlistName = playlists[i].name;
       let imgSrc = playlists[i].images[0].url;
       let redirect = playlists[i].external_urls.spotify;
 
@@ -520,32 +477,35 @@ $(document).ready(function () {
       let $a = $("<a>")
         .attr("href", `${redirect}`)
         .attr("target", "_blank")
-        .append($img);
+        .append($img)
+        .addClass("mood-playlist animated");
 
-      $(`div#${i}`).append($a);
+      $(`div#${i + offset}`).append($a);
 
     }
 
   }
 
   // var to hold access token
-  let accessToken = "BQCLnF7nxFLfwxMrmocKTfygsakhdAMcpESCt3VzdrcDLiq0-uRlULMHEsLTfRhJ2Uobx3XPtehwb7RJONmxMa78Sl6XR1mqXNruDvGYhyHkNztNUv9GiMVmhnOlKtUUSiSKaPUpGU-q8_IaxwovrY1oRrN5bxX0Xz_oM4BnwhqJQpvnQkkaxkTrev3n6-dy5G5bADdPLkvyxrC6RVo1fJ027vMqpDKvPSyvGwfiJQ"
+  let accessToken = "BQBKRnhMMehwgw4falR-KGDkXfDrbulgPTha3H-XplIr0EGkAyYnD1Sj-Mi2wdawZ8L4Q_CuV_36HjQlN7xqD8tsGnqYuxYE1L4vtPHVHE3ELgKdBkumfVzFvk2bjC7S_t6wEUi4Q7HdiWI8KuSgKFP6x5iSdRBgVOBvivIuYp_3BpnKkyVHBhJQhvV-Oa-FiBbkDq3lcn8CzH4gNI5hSDKZUr94vZ3JrZzdDZ-4rw"
   let searchForPlaylist = function () {
 
     // makes an ajax request to search the spotify api with recommended playlists
     $.get({
 
       url: `https://api.spotify.com/v1/search?q=${conditions[tempCond][timeOfDay][forecast].search}&type=playlist&limit=15`,
-      // url: `https://api.spotify.com/v1/search?q=winter,chill&type=playlist&limit=20`,
       headers: {
         'Authorization': 'Bearer ' + accessToken
       },
       success: function (response) {
+
         $("p.music-error").hide();
-        console.log(response);
+
         playlists = response.playlists.items;
-        console.log(playlists);
-        appendPlaylists(playlists);
+
+        $("div.second-row i").hide();
+
+        appendMoodPlaylists(playlists, 0);
       },
       error: function (error) {
         $("p.music-error").show();
@@ -556,19 +516,26 @@ $(document).ready(function () {
   }
 
   let getMoodPlaylists = () => {
-    console.log(!userMood)
-    console.log(userGenre)
+
     if (!userMood && !userGenre) {
+
       search = ""
+
     }
     else if (!userMood) {
+
       search = `${userGenre}`
+
     }
     else if (!userGenre) {
+
       search = `${userMood}`
+
     }
     else {
+
       search = `${userMood}+${userGenre}`
+
     }
 
     console.log(search);
@@ -582,10 +549,19 @@ $(document).ready(function () {
           'Authorization': 'Bearer ' + accessToken
         },
         success: function (response) {
+
           console.log(response);
+
           playlists = response.playlists.items;
+
           console.log(playlists);
+
+          $("div.first-row i").hide();
+          $("div.first-row").fadeOut().addClass("fadeOutLeft");
+          $("div.second-row i").show();
+
           appendMoodPlaylists(playlists, 4);
+
         },
         error: function (error) {
           $("p.music-error").show();
@@ -595,10 +571,51 @@ $(document).ready(function () {
     }
   }
 
+  // function to switch visible playlists to weather playlists
+  // - to run when arrow is clicked
+  let switchToWeatherPlaylists = () => {
+
+    $("div.second-row i").hide();
+    $("div.first-row i").show();
+
+    $("div.second-row").fadeOut("slow")
+      .addClass("fadeOutRight")
+
+    $("div.first-row").removeClass("fadeOutLeft")
+      .fadeIn("slow")
+      .addClass("fadeInLeft")
+
+  }
+
+  // function to switch visible playlists to the mood ones 
+  // - to run when arrow is clicked
+  let switchToMoodPlaylists = () => {
+
+    if ($("div.second-row").has("a").length) {
+
+      $("div.first-row i").hide();
+      $("div.second-row i").show();
+
+      $("div.first-row").fadeOut("slow")
+        .addClass("fadeOutLeft")
+
+      $("div.second-row").removeClass("fadeOutRight")
+        .fadeIn("slow")
+        .addClass("fadeInRight")
+
+    }
+  }
+
+
+  // CLICK/HOVER EVENTS 
+  $("i#left-arrow2").on("click", switchToWeatherPlaylists);
+  $("i#right-arrow1").on("click", switchToMoodPlaylists);
+
 
   $modalTrigger.on("click", function () {
 
     $('.modal').modal();
+    prefsChecked();
 
   })
 
@@ -634,6 +651,7 @@ $(document).ready(function () {
 
     checkZip();
     $("section#music").fadeIn("slow");
+    switchToWeatherPlaylists();
 
   });
 
@@ -677,7 +695,5 @@ $(document).ready(function () {
     $('input[type=checkbox]').prop('checked', false);
 
   });
-
-
 
 });

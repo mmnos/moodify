@@ -28,24 +28,6 @@ $(document).ready(function () {
   let dayStart = moment("10:30", "HH:mm");
   let nightStart = moment("19:00", "HH:mm");
 
-  let checkMood = localStorage.getItem('Mood');
-  let checkGenre = localStorage.getItem('Genre');
-
-  if (checkMood === "happy") {
-    $("#happy").attr("checked", "checked");
-  } else {
-    $("#sad").attr("checked", "checked");
-  }
-
-  if (checkGenre == "pop") {
-    $("#pop").attr("checked", "checked");
-  } else if (checkGenre == "rock") {
-    $("#rock").attr("checked", "checked");
-  } else if (checkGenre == "hip-hop") {
-    $("#hiphop").attr("checked", "checked");
-  } else {
-    $("#country").attr("checked", "checked");
-  }
 
   $("#weather-data").hide();
   $(".helper-text").hide();
@@ -411,6 +393,182 @@ $(document).ready(function () {
 
   }
 
+
+  // MODAL 
+  let setPreferences = () => {
+
+    localStorage.removeItem("Mood");
+    localStorage.removeItem("Genre");
+
+    if ($(".mood").is(":checked")) {
+
+      console.log($("input[type='radio']:checked").val());
+      userMood = $("input[type='radio']:checked").val();
+
+      localStorage.setItem("Mood", userMood);
+
+    }
+
+    if ($('.prefGenre').is(":checked")) {
+
+      console.log($("input[type='checkbox']:checked").val());
+      userGenre = $("input[type='checkbox']:checked").val();
+
+      localStorage.setItem("Genre", userGenre);
+
+    }
+
+  }
+
+  let prefsChecked = () => {
+
+    let checkMood = localStorage.getItem('Mood');
+    let checkGenre = localStorage.getItem('Genre');
+
+    if (checkMood === "happy") {
+      $("#happy").attr("checked", "checked");
+    } else if (checkMood === "sad") {
+      $("#sad").attr("checked", "checked");
+    }
+
+    if (checkGenre == "pop") {
+      $("#pop").attr("checked", "checked");
+    } else if (checkGenre == "rock") {
+      $("#rock").attr("checked", "checked");
+    } else if (checkGenre == "hip-hop") {
+      $("#hiphop").attr("checked", "checked");
+    } else {
+      $("#country").attr("checked", "checked");
+    }
+
+  }
+
+
+  // MUSIC SECTION
+
+  // displays playlists on the page
+  let appendMoodPlaylists = (playlists, offset) => {
+
+    for (i = 0; i < 4; i++) {
+
+      let imgSrc = playlists[i].images[0].url;
+      let redirect = playlists[i].external_urls.spotify;
+
+      let $img = $("<img>")
+        .attr("src", imgSrc)
+        .addClass("hoverable")
+
+      let $a = $("<a>")
+        .attr("href", `${redirect}`)
+        .attr("target", "_blank")
+        .append($img)
+        .addClass("mood-playlist");
+
+      $(`div#${i + offset}`).append($a);
+
+    }
+
+  }
+
+  // var to hold access token
+  let accessToken = "BQDWD6uCn6hheWY1AAH4Mx9Uwm05osNjn-KgUidaAaJi7sVQNmfhhzmt-29zPSVUIZZIHysny7rSR3x_WjSkCAY91i70obQqYQqfu7HUK8Gb_vhYCsmhqxDEUar7s4LGKZqGCfnhDb-KVp1jRbDQx2isWvNSeFPLeRhmjuc2U82fjKxmJJBbO7ksXgTfFjhBsOpcPSUsbcB95Am9vB9vivf6EIAo8_zCyKXZ9LBB9g"
+  let searchForPlaylist = function () {
+
+    // makes an ajax request to search the spotify api with recommended playlists
+    $.get({
+
+      url: `https://api.spotify.com/v1/search?q=${conditions[tempCond][timeOfDay][forecast].search}&type=playlist&limit=15`,
+      headers: {
+        'Authorization': 'Bearer ' + accessToken
+      },
+      success: function (response) {
+        $("p.music-error").hide();
+        console.log(response);
+        playlists = response.playlists.items;
+        console.log(playlists);
+        appendMoodPlaylists(playlists, 0);
+      },
+      error: function (error) {
+        $("p.music-error").show();
+      }
+
+    });
+
+  }
+
+  let getMoodPlaylists = () => {
+    console.log(userMood === true)
+    console.log(userGenre)
+    if (userMood && userGenre) {
+      search = `${userMood}+${userGenre}`
+    }
+    else if (userMood && !userGenre) {
+      search = `${userMood}`
+    }
+    else if (!userMood && userGenre) {
+      search = `${userGenre}`
+    }
+    else {
+      search = ""
+    }
+
+    if (search) {
+
+      $.get({
+
+        url: `https://api.spotify.com/v1/search?q=${search}&type=playlist&limit=15`,
+        headers: {
+          'Authorization': 'Bearer ' + accessToken
+        },
+        success: function (response) {
+          console.log(response);
+          playlists = response.playlists.items;
+          console.log(playlists);
+          appendMoodPlaylists(playlists, 4);
+        },
+        error: function (error) {
+          $("p.music-error").show();
+        }
+
+      });
+    }
+  }
+
+
+  $modalTrigger.on("click", function () {
+
+    $('.modal').modal();
+    prefsChecked();
+
+  })
+
+  $modalTrigger.on("mouseenter", function () {
+    $settingsLabel.removeClass("fadeOutRight");
+    $settingsLabel.fadeIn().addClass("fadeInRight");
+
+  })
+
+  $modalTrigger.on("mouseleave", function () {
+
+    $settingsLabel.removeClass("fadeInRight");
+    $settingsLabel.fadeOut().addClass("fadeOutRight");
+
+  })
+
+
+  $changeZip.on("mouseenter", function () {
+    $locationLabel.removeClass("fadeOutRight");
+    $locationLabel.fadeIn().addClass("fadeInRight");
+
+  })
+
+  $changeZip.on("mouseleave", function () {
+
+    $locationLabel.removeClass("fadeInRight");
+    $locationLabel.fadeOut().addClass("fadeOutRight");
+
+  })
+
   // checks zipcode after clicking search button
   $("#submitZip").on("click", function (event) {
 
@@ -445,162 +603,17 @@ $(document).ready(function () {
   $("#searchPref").on("click", function () {
 
     setPreferences();
+    getMoodPlaylists();
 
   });
 
-  let setPreferences = () => {
+  $("#clearPref").on("click", function () {
 
     localStorage.removeItem("Mood");
     localStorage.removeItem("Genre");
 
-    if ($(".mood").is(":checked")) {
+  });
 
-      console.log($("input[type='radio']:checked").val());
-      userMood = $("input[type='radio']:checked").val();
-
-      localStorage.setItem("Mood", userMood);
-
-    }
-
-    if ($('.prefGenre').is(":checked")) {
-
-      console.log($("input[type='checkbox']:checked").val());
-      userGenre = $("input[type='checkbox']:checked").val();
-
-      localStorage.setItem("Genre", userGenre);
-
-    }
-
-  }
-
-  let getMoodPlaylists = () => {
-    $.get({
-
-      url: `https://api.spotify.com/v1/search?q=${userMood}+${userGenre}&type=playlist&limit=15`,
-      // url: `https://api.spotify.com/v1/search?q=winter,chill&type=playlist&limit=20`,
-      headers: {
-        'Authorization': 'Bearer ' + accessToken
-      },
-      success: function (response) {
-        console.log(response);
-        playlists = response.playlists.items;
-        console.log(playlists);
-        appendMoodPlaylists(playlists);
-      },
-      error: function (error) {
-        $("p.music-error").show();
-      }
-
-    });
-  }
-
-  // MUSIC SECTION
-  // displays playlists on the page
-  let appendPlaylists = (playlists) => {
-
-    for (i = 0; i < 4; i++) {
-
-      let imgSrc = playlists[i].images[0].url;
-      let redirect = playlists[i].external_urls.spotify;
-
-      let $img = $("<img>")
-        .attr("src", imgSrc)
-        .addClass("hoverable")
-
-      let $a = $("<a>")
-        .attr("href", `${redirect}`)
-        .attr("target", "_blank")
-        .append($img)
-        .addClass("");
-
-      $(`div#${i}`).append($a);
-
-    }
-
-  }
-
-  let appendMoodPlaylists = (playlists) => {
-
-    for (i = 0; i < 4; i++) {
-
-      let imgSrc = playlists[i].images[0].url;
-      let redirect = playlists[i].external_urls.spotify;
-
-      let $img = $("<img>")
-        .attr("src", imgSrc)
-        .addClass("hoverable")
-
-      let $a = $("<a>")
-        .attr("href", `${redirect}`)
-        .attr("target", "_blank")
-        .append($img)
-        .addClass("mood-playlist");
-
-      $(`div#${i + 4}`).append($a);
-
-    }
-
-  }
-
-  // var to hold access token
-  let accessToken = "BQBYWWk4rUfApt7KvU7GPxqRRXhVrqaLCpApdR_6o5UI33L2KLUZq7trycoT_9jQcig9qhAdTvGxQPzHsmxYygEiQKWpX-ZCQFiPY8ifFHV-p0Naco2F9NYKSPakXXXU1PgnppL4L0rimx5RgRRSj1e1c2T6bxzqBwG8nw1gJrn5XIqsfnndvqf7r-4kHDldP7WMA8nw8sdasMe9GiyDuTCFbhO8GF4uu4tzwRlJjA"
-  let searchForPlaylist = function () {
-
-    // makes an ajax request to search the spotify api with recommended playlists
-    $.get({
-
-      url: `https://api.spotify.com/v1/search?q=${conditions[tempCond][timeOfDay][forecast].search}&type=playlist&limit=15`,
-      // url: `https://api.spotify.com/v1/search?q=winter,chill&type=playlist&limit=20`,
-      headers: {
-        'Authorization': 'Bearer ' + accessToken
-      },
-      success: function (response) {
-        $("p.music-error").hide();
-        console.log(response);
-        playlists = response.playlists.items;
-        console.log(playlists);
-        appendPlaylists(playlists);
-      },
-      error: function (error) {
-        $("p.music-error").show();
-      }
-
-    });
-
-  }
-
-  $modalTrigger.on("click", function () {
-
-    $('.modal').modal();
-
-  })
-
-  $modalTrigger.on("mouseenter", function () {
-    $settingsLabel.removeClass("fadeOutRight");
-    $settingsLabel.fadeIn().addClass("fadeInRight");
-
-  })
-
-  $modalTrigger.on("mouseleave", function () {
-
-    $settingsLabel.removeClass("fadeInRight");
-    $settingsLabel.fadeOut().addClass("fadeOutRight");
-
-  })
-
-
-  $changeZip.on("mouseenter", function () {
-    $locationLabel.removeClass("fadeOutRight");
-    $locationLabel.fadeIn().addClass("fadeInRight");
-
-  })
-
-  $changeZip.on("mouseleave", function () {
-
-    $locationLabel.removeClass("fadeInRight");
-    $locationLabel.fadeOut().addClass("fadeOutRight");
-
-  })
 
 
 });

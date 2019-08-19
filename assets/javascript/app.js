@@ -300,34 +300,34 @@ $(document).ready(function () {
           switch (true) {
             case (weatherId < 233):
               forecast = "precip";
-              icon = "t-storms";
               togglevisibility("div.thunder-storm");
               break;
+
             case (weatherId < 550):
               forecast = "precip";
-              icon = "rain";
               togglevisibility("div.rainy");
               break;
+
             case (weatherId < 623):
               forecast = "precip";
-              icon = "snowy";
               togglevisibility("div.flurries");
               break;
+
             case (weatherId < 782):
               forecast = "cloudy";
-              icon = "cloudy";
               togglevisibility("div.cloudy");
               break;
+
             case (weatherId < 804):
               forecast = "clear";
-              icon = "sunny";
               togglevisibility("div.sunny");
               break;
+
             case (weatherId == 804):
               forecast = "cloudy";
-              icon = "cloudy";
               togglevisibility("div.cloudy");
               break;
+
             default:
               forecast = "clear";
               togglevisibility("div.sunny");
@@ -484,7 +484,7 @@ $(document).ready(function () {
   }
 
   // var to hold access token
-  let accessToken = "BQAclI4Dn3_zaFfIK3YLA2YME5EWC3w0I163zf9cdcgI7oWLT4TjJfOntfvZetXqVVv4MpDgDgIJtoXrDC2FpreTVOR86aDtYs1l5yBvyAtdhuiwJDSSS2W2u5-l2USsE1kAb-81iSq1QdR6MGKTiElZFzEU6N4kODZLDpgRHeE6yTXsBNhvKCgCbPHN14ytbn_BffFm4dD0DXZdNiOW4L75NxhGIMRzp0322ANefQ"
+  let accessToken = "BQCGqj16Ip2IWCSjFBvHUXHTASS4kCWObDFD4xITDwGmmwsOAo-e6KVh_uUMOuyx6FOUMQtj6AGvHnGPaXq8D0MMO9JqJ_57yEa68MiIYOstvwrMnTg2KMB9QKt_kAixtzrvMrNbFV9iw5Gc843M6kO604LhfxeaIuSpDZC1-s_sRSju5MGQQPnCrYB2vuVzOmQBNytdyo9YH_P4p4nq8Hq99sph7jwXvvxeGqFDhw"
   let searchForPlaylist = function () {
 
     // makes an ajax request to search the spotify api with recommended playlists
@@ -500,6 +500,7 @@ $(document).ready(function () {
 
         playlists = response.playlists.items;
 
+        $("div.first-row i").hide();
         $("div.second-row i").hide();
 
         appendMoodPlaylists(playlists, 0);
@@ -513,6 +514,9 @@ $(document).ready(function () {
   }
 
   let getMoodPlaylists = () => {
+    userMood = "";
+    userGenre = "";
+    setPreferences();
 
     if (!userMood && !userGenre) {
 
@@ -553,11 +557,12 @@ $(document).ready(function () {
 
           console.log(playlists);
 
-          $("div.first-row i").hide();
-          $("div.first-row").fadeOut().addClass("fadeOutLeft");
+          $("div.first-row").hide().removeClass("fadeInUp");
           $("div.second-row i").show();
-
+          $("div.second-row").hide().removeClass("fadeInUp");
+        
           appendMoodPlaylists(playlists, 4);
+          $("div.second-row").fadeIn("slow").addClass("fadeInUp");
 
         },
         error: function (error) {
@@ -565,6 +570,12 @@ $(document).ready(function () {
         }
 
       });
+    }
+
+    else {
+      $("div.first-row").fadeIn("slow").addClass("fadeInUp");
+      $("div.second-row i").hide();
+
     }
   }
 
@@ -575,12 +586,12 @@ $(document).ready(function () {
     $("div.second-row i").hide();
     $("div.first-row i").show();
 
-    $("div.second-row").fadeOut("slow")
-      .addClass("fadeOutRight")
+    $("div.second-row").hide()
+      .removeClass("fadeInUp")
 
-    $("div.first-row").removeClass("fadeOutLeft")
+    $("div.first-row")
       .fadeIn("slow")
-      .addClass("fadeInLeft")
+      .addClass("fadeInUp")
 
   }
 
@@ -593,20 +604,20 @@ $(document).ready(function () {
       $("div.first-row i").hide();
       $("div.second-row i").show();
 
-      $("div.first-row").fadeOut("slow")
-        .addClass("fadeOutLeft")
+      $("div.first-row").hide()
+        .removeClass("fadeInUp")
 
-      $("div.second-row").removeClass("fadeOutRight")
+      $("div.second-row")
         .fadeIn("slow")
-        .addClass("fadeInRight")
+        .addClass("fadeInUp")
 
     }
   }
 
 
   // CLICK/HOVER EVENTS 
-  $("i#left-arrow2").on("click", switchToWeatherPlaylists);
-  $("i#right-arrow1").on("click", switchToMoodPlaylists);
+  $("i#up-arrow2").on("click", switchToWeatherPlaylists);
+  $("i#up-arrow1").on("click", switchToMoodPlaylists);
 
 
   $modalTrigger.on("click", function () {
@@ -657,9 +668,15 @@ $(document).ready(function () {
 
     $("section#music").fadeOut("slow");
     $("div.music-cards a").remove();
+
+    $("body").css({
+      "background": "url('./assets/images/main.jpg') no-repeat center center fixed",
+      "background-size": "cover"})
+
     $(".input-field").show();
     $("#weather-data").hide();
     $("#submitZip").show();
+
     $("#zipcode").focus();
 
   });
